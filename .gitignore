@@ -1,0 +1,22 @@
+# === Secretos — NUNCA subir ===
+/secrets/
+app/config/config.php
+
+# === Dependencias de Composer ===
+/vendor/
+
+# === Archivos generados en tiempo de ejecución ===
+public/assets/facturas/*.pdf
+public/assets/img/productos/*
+!public/assets/img/productos/.gitkeep
+!public/assets/facturas/.gitkeep
+
+# === Entorno / IDE / OS ===
+.env
+.DS_Store
+Thumbs.db
+/.vscode/
+/.idea/
+
+# === Logs ===
+*.log

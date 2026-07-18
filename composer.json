@@ -1,0 +1,19 @@
+{
+    "name": "tiendautp/ecommerce",
+    "description": "E-Commerce DS7 - Proyecto academico",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "tecnickcom/tcpdf": "^6.11"
+    },
+    "autoload": {
+        "classmap": [
+            "app/core/",
+            "app/helpers/",
+            "app/contracts/",
+            "app/services/",
+            "app/models/",
+            "app/controllers/"
+        ]
+    }
+}
