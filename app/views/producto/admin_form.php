@@ -86,6 +86,7 @@
                     <div class="col-md-6">
                         <label class="form-label-custom">Imagen del Producto</label>
                         <input type="file" class="form-input-custom" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp" style="padding: 0.5rem;">
+                        <div class="mt-1" style="font-size: 0.75rem; color: #94a3b8;">Sube una imagen desde tu computadora. Formatos: JPG, PNG, WebP (máx. 2 MB).</div>
                         <?php if (isset($producto) && !empty($producto['imagen'])): ?>
                             <div class="mt-2"><img src="<?= BASE_URL . htmlspecialchars($producto['imagen']) ?>" alt="" style="height: 80px; border-radius: 0.375rem; border: 1px solid #e2e8f0;"></div>
                         <?php endif; ?>

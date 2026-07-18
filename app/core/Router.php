@@ -35,12 +35,12 @@ class Router
         $isDefaultController = empty($segments[0]);
 
         $controllerName = $isDefaultController
-            ? 'AuthController'
+            ? 'InicioController'
             : ucfirst(strtolower($segments[0])) . 'Controller';
 
         $action = !empty($segments[1])
             ? strtolower($segments[1])
-            : ($isDefaultController ? 'login' : 'index');
+            : ($isDefaultController ? 'index' : 'index');
 
         $params = array_slice($segments, 2);
 

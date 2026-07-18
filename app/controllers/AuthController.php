@@ -37,7 +37,7 @@ class AuthController extends Controller
         }
 
         // Sanitizar entradas
-        $nombre     = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre     = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $email      = Sanitizer::email($_POST['email'] ?? '');
         $password   = $_POST['password'] ?? '';
         $id_idioma  = Sanitizer::entero($_POST['id_idioma'] ?? 0);

@@ -2,6 +2,11 @@
 
 class CarritoController extends Controller
 {
+    public function index(): void
+    {
+        $this->ver();
+    }
+
     private function requiereSesion(): void
     {
         if (!isset($_SESSION['id_usuario'])) {

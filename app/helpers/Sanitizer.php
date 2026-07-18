@@ -47,4 +47,12 @@ class Sanitizer
         $allowed = '<p><br><strong><em><ul><ol><li><table><tr><td><th><h1><h2><h3><h4><h5><h6>';
         return trim(strip_tags($valor, $allowed));
     }
+
+    public static function nombrePropio(string $valor): string
+    {
+        $valor = trim(preg_replace('/\s+/', ' ', $valor));
+        $valor = mb_convert_case($valor, MB_CASE_LOWER, 'UTF-8');
+        $valor = mb_convert_case($valor, MB_CASE_TITLE, 'UTF-8');
+        return $valor;
+    }
 }

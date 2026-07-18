@@ -17,7 +17,7 @@
                     }
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link position-relative d-flex align-items-center" href="<?= BASE_URL ?>carrito" style="color: #1e293b;">
+                    <a class="nav-link position-relative d-flex align-items-center" href="<?= BASE_URL ?>carrito/ver" style="color: #1e293b;">
                         <span class="material-symbols-outlined" style="font-size: 1.5rem;">shopping_cart</span>
                         <?php if ($cartCount > 0): ?>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill d-flex align-items-center justify-content-center" style="background: #fd761a; color: white; font-size: 0.6rem; width: 18px; height: 18px; min-width: 18px;">
