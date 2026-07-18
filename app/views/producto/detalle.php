@@ -228,3 +228,45 @@ function aceptarCookies() {
     document.cookie = 'cookies_aceptadas=1; path=/; max-age=' + 60*60*24*365;
 }
 </script>
+
+<script>
+(function() {
+    var startTime = Date.now();
+    var visitaId = null;
+    var pagina = window.location.pathname;
+    var baseUrl = '<?= BASE_URL ?>';
+    var idProducto = <?= (int) ($producto['id_producto'] ?? 0) ?>;
+
+    function registrarVisita() {
+        var params = 'pagina=' + encodeURIComponent(pagina);
+        if (idProducto > 0) params += '&id_producto=' + idProducto;
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', baseUrl + 'visita/registrar', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try { visitaId = JSON.parse(xhr.responseText).id_visita; } catch(e) {}
+            }
+        };
+        xhr.send(params);
+    }
+
+    function actualizarTiempo() {
+        if (visitaId) {
+            var elapsed = Math.floor((Date.now() - startTime) / 1000);
+            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed;
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(baseUrl + 'visita/actualizarTiempo', data);
+            }
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        registrarVisita();
+    } else {
+        window.addEventListener('load', registrarVisita);
+    }
+    window.addEventListener('pagehide', actualizarTiempo);
+    window.addEventListener('beforeunload', actualizarTiempo);
+})();
+</script>

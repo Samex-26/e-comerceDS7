@@ -167,3 +167,42 @@
         }
     })();
 </script>
+
+<script>
+(function() {
+    var startTime = Date.now();
+    var visitaId = null;
+    var pagina = window.location.pathname;
+    var baseUrl = '<?= BASE_URL ?>';
+
+    function registrarVisita() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', baseUrl + 'visita/registrar', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try { visitaId = JSON.parse(xhr.responseText).id_visita; } catch(e) {}
+            }
+        };
+        xhr.send('pagina=' + encodeURIComponent(pagina));
+    }
+
+    function actualizarTiempo() {
+        if (visitaId) {
+            var elapsed = Math.floor((Date.now() - startTime) / 1000);
+            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed;
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(baseUrl + 'visita/actualizarTiempo', data);
+            }
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        registrarVisita();
+    } else {
+        window.addEventListener('load', registrarVisita);
+    }
+    window.addEventListener('pagehide', actualizarTiempo);
+    window.addEventListener('beforeunload', actualizarTiempo);
+})();
+</script>
