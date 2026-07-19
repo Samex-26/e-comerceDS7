@@ -5,6 +5,7 @@
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     .modal-overlay { transition: opacity 0.3s ease; backdrop-filter: blur(4px); }
     .modal-content { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; }
+    .modal-hidden { pointer-events: none; }
     .modal-hidden .modal-overlay { opacity: 0; pointer-events: none; }
     .modal-hidden .modal-content { opacity: 0; transform: scale(0.95) translateY(10px); pointer-events: none; }
     .toast-success { animation: slideIn 0.3s ease, fadeOut 0.3s ease 3.7s forwards; }
@@ -151,7 +152,7 @@ $proveedoresActivos = count($proveedoresUnicos);
     </main>
 </div>
 
-<div style="position: fixed; inset: 0; z-index: 100; <?= $showModal ? '' : 'pointer-events: none;' ?>" id="modalEntry" class="<?= $showModal ? '' : 'modal-hidden' ?>">
+<div style="position: fixed; inset: 0; z-index: 100;" id="modalEntry" class="<?= $showModal ? '' : 'modal-hidden' ?>">
     <div class="modal-overlay" style="position: absolute; inset: 0; background: rgba(30,41,59,0.2); cursor: pointer;" onclick="toggleModal()"></div>
     <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 16px;">
         <div class="modal-content" style="background: white; width: 100%; max-width: 576px; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid #e2e8f0; overflow: hidden;">

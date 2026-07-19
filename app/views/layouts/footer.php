@@ -8,7 +8,7 @@
             <p class="small mb-0" style="color: #64748b;">© 2026 TiendaUTP. Universidad Tecnológica de Panamá.</p>
         </div>
         <div class="d-flex flex-wrap justify-content-center gap-4">
-            <a href="#" class="small text-decoration-none" style="color: #64748b;">Contact Us</a>
+            <a href="<?= BASE_URL ?>contacto/index" class="small text-decoration-none" style="color: #64748b;">Contact Us</a>
             <a href="#" class="small text-decoration-none" style="color: #64748b;">Privacy Policy</a>
             <a href="#" class="small text-decoration-none" style="color: #64748b;">Shipping Info</a>
             <a href="#" class="small text-decoration-none" style="color: #64748b;">Terms of Service</a>

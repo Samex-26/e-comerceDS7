@@ -54,4 +54,15 @@ class Categoria extends Model
         $stmt->execute([':id' => $id]);
         return $stmt->fetchColumn() > 0;
     }
+
+    public function listarConConteo(): array
+    {
+        $sql = 'SELECT c.*, COUNT(p.id_producto) AS total_productos
+                FROM categorias c
+                LEFT JOIN productos p ON c.id_categoria = p.id_categoria AND p.activo = 1
+                GROUP BY c.id_categoria
+                ORDER BY c.nombre ASC';
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
 }

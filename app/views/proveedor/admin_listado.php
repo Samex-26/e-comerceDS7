@@ -6,6 +6,7 @@
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     .drawer-overlay { transition: opacity 0.3s ease; backdrop-filter: blur(4px); }
     .drawer-content { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .drawer-hidden { pointer-events: none; }
     .drawer-hidden .drawer-overlay { opacity: 0; pointer-events: none; }
     .drawer-hidden .drawer-content { transform: translateX(100%); }
     .toast-success { animation: slideIn 0.3s ease, fadeOut 0.3s ease 3.7s forwards; }
@@ -145,7 +146,7 @@ $showDrawer = $editarProveedor || !empty($errores);
     </main>
 </div>
 
-<div style="position: fixed; inset: 0; z-index: 50; <?= $showDrawer ? '' : 'pointer-events: none;' ?>" id="drawer" class="<?= $showDrawer ? '' : 'drawer-hidden' ?>">
+<div style="position: fixed; inset: 0; z-index: 50;" id="drawer" class="<?= $showDrawer ? '' : 'drawer-hidden' ?>">
     <div class="drawer-overlay" style="position: absolute; inset: 0; background: rgba(30,41,59,0.4); cursor: pointer;" onclick="toggleDrawer()"></div>
     <div class="drawer-content" style="position: absolute; right: 0; top: 0; height: 100vh; width: 100%; max-width: 512px; background: white; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); display: flex; flex-direction: column;">
         <div style="padding: 24px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; background: #f8fafc;">

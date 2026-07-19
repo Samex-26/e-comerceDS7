@@ -38,7 +38,7 @@ class Producto extends Model
     {
         $stmt = $this->db->prepare(
             'INSERT INTO productos (nombre, descripcion, imagen, precio, precio_oferta, costo, cantidad, id_categoria, activo)
-             VALUES (:nombre, :descripcion, :imagen, :precio, :precio_oferta, :costo, :cantidad, :id_categoria, 1)'
+             VALUES (:nombre, :descripcion, :imagen, :precio, :precio_oferta, :costo, :cantidad, :id_categoria, :activo)'
         );
         $stmt->execute([
             ':nombre'        => $datos['nombre'],
@@ -49,6 +49,7 @@ class Producto extends Model
             ':costo'         => $datos['costo'] ?? 0,
             ':cantidad'      => $datos['cantidad'] ?? 0,
             ':id_categoria'  => $datos['id_categoria'],
+            ':activo'        => $datos['activo'] ?? 1,
         ]);
         return (int) $this->db->lastInsertId();
     }
@@ -62,7 +63,8 @@ class Producto extends Model
                     precio_oferta = :precio_oferta,
                     costo = :costo,
                     cantidad = :cantidad,
-                    id_categoria = :id_categoria';
+                    id_categoria = :id_categoria,
+                    activo = :activo';
 
         $params = [
             ':id'            => $id,
@@ -73,6 +75,7 @@ class Producto extends Model
             ':costo'         => $datos['costo'] ?? 0,
             ':cantidad'      => $datos['cantidad'],
             ':id_categoria'  => $datos['id_categoria'],
+            ':activo'        => $datos['activo'] ?? 1,
         ];
 
         if (!empty($datos['imagen'])) {
@@ -88,9 +91,31 @@ class Producto extends Model
 
     public function eliminar(int $id): bool
     {
-        // Borrado lógico: desactiva el producto sin eliminar el registro
         $stmt = $this->db->prepare('UPDATE productos SET activo = 0 WHERE id_producto = :id');
         $stmt->execute([':id' => $id]);
         return $stmt->rowCount() > 0;
+    }
+
+    public function contarActivos(): int
+    {
+        $stmt = $this->db->query('SELECT COUNT(*) FROM productos WHERE activo = 1');
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function contarStockBajo(int $limite = 10): int
+    {
+        $stmt = $this->db->prepare('SELECT COUNT(*) FROM productos WHERE activo = 1 AND cantidad <= :limite');
+        $stmt->execute([':limite' => $limite]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function listarTodosAdmin(): array
+    {
+        $sql = 'SELECT p.*, c.nombre AS categoria_nombre
+                FROM productos p
+                JOIN categorias c ON p.id_categoria = c.id_categoria
+                ORDER BY p.nombre ASC';
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
     }
 }

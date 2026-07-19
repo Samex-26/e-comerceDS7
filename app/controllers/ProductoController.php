@@ -50,14 +50,109 @@ class ProductoController extends Controller
     public function admin(): void
     {
         $this->verificarAdmin();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->procesarGuardarProducto();
+            return;
+        }
+
         $model = $this->model('Producto');
-        $productos = $model->listarActivos();
+        $productos = $model->listarTodosAdmin();
+
+        $totalProductos = $model->contarActivos();
+        $stockBajo = $model->contarStockBajo(10);
+        $catModel = $this->model('Categoria');
+        $categorias = $catModel->listarTodas();
+
+        $editarId = isset($_GET['editar']) ? (int) $_GET['editar'] : 0;
+        $productoEditar = $editarId ? $model->buscarPorId($editarId) : null;
+
         $this->view('producto/admin_listado', [
-            'productos' => $productos,
-            'errores'   => $_SESSION['errores'] ?? [],
-            'exito'     => $_SESSION['exito'] ?? '',
+            'productos'      => $productos,
+            'productoEditar' => $productoEditar,
+            'categorias'     => $categorias,
+            'totalProductos' => $totalProductos,
+            'stockBajo'      => $stockBajo,
+            'csrf_token'     => $this->generarTokenCsrf(),
+            'errores'        => $_SESSION['errores'] ?? [],
+            'exito'          => $_SESSION['exito'] ?? '',
+            'old'            => $_SESSION['old'] ?? [],
         ]);
-        unset($_SESSION['errores'], $_SESSION['exito']);
+        unset($_SESSION['errores'], $_SESSION['exito'], $_SESSION['old']);
+    }
+
+    private function procesarGuardarProducto(): void
+    {
+        $errores = [];
+        $token = $_POST['csrf_token'] ?? '';
+        if (!$this->verificarTokenCsrf($token)) {
+            $errores[] = $this->lang['error_csrf'];
+        }
+
+        $id           = Sanitizer::entero($_POST['id'] ?? 0);
+        $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
+        $descripcion  = Sanitizer::html($_POST['descripcion'] ?? '');
+        $precio       = Sanitizer::decimal($_POST['precio'] ?? 0);
+        $precioOferta = Sanitizer::decimal($_POST['precio_oferta'] ?? 0);
+        $costo        = Sanitizer::decimal($_POST['costo'] ?? 0);
+        $cantidad     = Sanitizer::entero($_POST['cantidad'] ?? 0);
+        $idCategoria  = Sanitizer::entero($_POST['id_categoria'] ?? 0);
+        $activo       = isset($_POST['activo']) ? 1 : 0;
+
+        if (!Validator::noVacio($nombre)) {
+            $errores[] = 'El nombre del producto es obligatorio.';
+        }
+        if (!Validator::numerico($precio) || $precio <= 0) {
+            $errores[] = 'El precio debe ser un numero positivo.';
+        }
+        if (!Validator::enteroPositivo($idCategoria)) {
+            $errores[] = 'Debe seleccionar una categoria valida.';
+        }
+
+        $imagen = null;
+        $model = $this->model('Producto');
+
+        if (!empty($_FILES['imagen']['name'])) {
+            $imagen = $this->procesarImagen($_FILES['imagen']);
+            if ($imagen === false) {
+                $errores[] = $this->lang['error_imagen'];
+            }
+        }
+
+        if (!empty($errores)) {
+            $_SESSION['errores'] = $errores;
+            $_SESSION['old'] = $_POST;
+            $redirect = 'producto/admin';
+            if ($id) {
+                $redirect .= '?editar=' . $id;
+            }
+            $this->redirect($redirect);
+            return;
+        }
+
+        $datos = [
+            'nombre'        => $nombre,
+            'descripcion'   => $descripcion,
+            'precio'        => $precio,
+            'precio_oferta' => $precioOferta > 0 ? $precioOferta : null,
+            'costo'         => $costo,
+            'cantidad'      => $cantidad,
+            'id_categoria'  => $idCategoria,
+            'activo'        => $activo,
+        ];
+        if ($imagen) {
+            $datos['imagen'] = $imagen;
+        }
+
+        if ($id) {
+            $model->actualizar($id, $datos);
+            $_SESSION['exito'] = $this->lang['exito_actualizado'];
+        } else {
+            $model->crear($datos);
+            $_SESSION['exito'] = $this->lang['exito_creado'];
+        }
+
+        $this->redirect('producto/admin');
     }
 
     public function crear(): void

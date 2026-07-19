@@ -39,11 +39,15 @@
                                 Admin
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" style="border: 1px solid #e2e8f0; border-radius: 0.5rem; box-shadow: 0 4px 20px rgba(30,41,59,0.05);">
+                                <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>dashboard/index"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">dashboard</span>Dashboard</a></li>
+                                <li><hr class="dropdown-divider" style="margin: 0.25rem 0;"></li>
                                 <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>producto/admin"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">inventory_2</span>Productos</a></li>
                                 <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>categoria/admin"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">category</span>Categorías</a></li>
                                 <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>proveedor/admin"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">local_shipping</span>Proveedores</a></li>
                                 <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>inventario/admin"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">warehouse</span>Inventario</a></li>
                                 <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>venta/historial"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">payments</span>Ventas</a></li>
+                                <li><hr class="dropdown-divider" style="margin: 0.25rem 0;"></li>
+                                <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>reporte/index"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">assessment</span>Reportes</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>
