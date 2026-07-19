@@ -88,7 +88,7 @@ class AuthController extends Controller
             'rol'           => 'cliente',
         ]);
 
-        $_SESSION['mensaje_exito'] = $this->lang['exito_registro'];
+        $_SESSION['exito'] = $this->lang['exito_registro'];
         $this->redirect('auth/login');
     }
 
@@ -111,10 +111,10 @@ class AuthController extends Controller
         $this->view('auth/login', [
             'csrf_token' => $this->generarTokenCsrf(),
             'errores'    => $_SESSION['errores'] ?? [],
-            'exito'      => $_SESSION['mensaje_exito'] ?? '',
+            'exito'      => $_SESSION['exito'] ?? '',
             'old'        => $_SESSION['old'] ?? [],
         ]);
-        unset($_SESSION['errores'], $_SESSION['mensaje_exito'], $_SESSION['old']);
+        unset($_SESSION['errores'], $_SESSION['exito'], $_SESSION['old']);
     }
 
     private function procesarLogin(): void
@@ -164,6 +164,7 @@ class AuthController extends Controller
         // Iniciar sesión
         $_SESSION['id_usuario']    = (int) $usuario['id_usuario'];
         $_SESSION['nombre']        = $usuario['nombre'];
+        $_SESSION['email']         = $usuario['email'];
         $_SESSION['rol']           = $usuario['rol'];
         $_SESSION['id_idioma']     = (int) $usuario['id_idioma'];
 

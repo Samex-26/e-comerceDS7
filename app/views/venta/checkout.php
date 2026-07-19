@@ -45,7 +45,7 @@
                         <div class="col-md-6">
                             <label class="form-label small text-muted text-uppercase fw-semibold">Correo</label>
                             <div class="p-3 rounded-3" style="background: #f1f5f9; border: 1px solid #e2e8f0;">
-                                <?= htmlspecialchars($_SESSION['email'] ?? $_SESSION['usuario_email'] ?? '—') ?>
+                                <?= htmlspecialchars($_SESSION['email'] ?? '—') ?>
                             </div>
                         </div>
                     </div>

@@ -69,4 +69,12 @@ abstract class Controller
         }
         return hash_equals($_SESSION['csrf_token'], $token);
     }
+
+    protected function verificarAdmin(): void
+    {
+        if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'admin') {
+            $_SESSION['errores'] = [$this->lang['acceso_denegado']];
+            $this->redirect('auth/login');
+        }
+    }
 }

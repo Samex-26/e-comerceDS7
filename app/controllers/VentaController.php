@@ -11,14 +11,6 @@ class VentaController extends Controller
         }
     }
 
-    private function verificarAdmin(): void
-    {
-        if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'admin') {
-            $_SESSION['errores'] = [$this->lang['acceso_denegado']];
-            $this->redirect('auth/login');
-        }
-    }
-
     public function checkout(): void
     {
         $this->requiereSesion();

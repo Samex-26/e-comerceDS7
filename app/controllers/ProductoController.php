@@ -39,14 +39,6 @@ class ProductoController extends Controller
 
     // ---- Acciones de administración ----
 
-    private function verificarAdmin(): void
-    {
-        if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'admin') {
-            $_SESSION['errores'] = [$this->lang['acceso_denegado']];
-            $this->redirect('auth/login');
-        }
-    }
-
     public function admin(): void
     {
         $this->verificarAdmin();

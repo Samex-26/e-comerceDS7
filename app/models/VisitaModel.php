@@ -88,16 +88,4 @@ class VisitaModel extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
-
-    public function visitasPorMes(): array
-    {
-        $stmt = $this->db->query(
-            "SELECT DATE_FORMAT(fecha, '%Y-%m') AS mes,
-                    COUNT(*) AS total_visitas
-             FROM visitas
-             GROUP BY mes
-             ORDER BY mes ASC"
-        );
-        return $stmt->fetchAll();
-    }
 }
