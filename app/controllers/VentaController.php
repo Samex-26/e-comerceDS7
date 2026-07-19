@@ -21,7 +21,7 @@ class VentaController extends Controller
 
     public function checkout(): void
     {
-        $this->requiereSesion();
+        $this->requerirClienteActivo('venta/checkout');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->procesarCheckout();
@@ -151,6 +151,7 @@ class VentaController extends Controller
         try {
             $idVenta = $ventaModel->crear([
                 'id_usuario'    => $idUsuario,
+                'fecha'         => $fecha,
                 'total'         => $total,
                 'hash_datos'    => $hashDatos,
                 'firma_digital' => $firmaDigital,

@@ -70,10 +70,10 @@
                                         <a href="<?= BASE_URL ?>producto/editar/<?= (int) $p['id_producto'] ?>" class="btn-edit d-inline-block" title="Editar">
                                             <span class="material-symbols-outlined">edit</span>
                                         </a>
-                                        <a href="<?= BASE_URL ?>producto/eliminar/<?= (int) $p['id_producto'] ?>" class="btn-delete d-inline-block" title="Eliminar"
-                                           onclick="return confirm('<?= htmlspecialchars($lang['confirmar_eliminar']) ?>')">
-                                            <span class="material-symbols-outlined">delete</span>
-                                        </a>
+                                        <form method="POST" action="<?= BASE_URL ?>producto/eliminar/<?= (int) $p['id_producto'] ?>" class="d-inline" onsubmit="return confirm('<?= htmlspecialchars($lang['confirmar_eliminar']) ?>')">
+                                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+                                            <button type="submit" class="btn btn-link btn-delete p-1" title="Eliminar"><span class="material-symbols-outlined">delete</span></button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

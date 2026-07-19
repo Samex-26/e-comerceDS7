@@ -106,7 +106,7 @@
                     <span class="material-symbols-outlined" style="font-size:1.2rem">check_circle</span>
                     <span>Stock Disponible (<?= (int) $producto['cantidad'] ?> unidades)</span>
                 </div>
-            <?php else: ?>
+            <?php elseif ((int) $producto['cantidad'] <= 0): ?>
                 <div class="d-flex align-items-center gap-2 mb-2 text-danger">
                     <span class="material-symbols-outlined" style="font-size:1.2rem">cancel</span>
                     <span>Sin stock</span>
@@ -118,8 +118,9 @@
                 <span>Entrega estimada: 2-3 días hábiles</span>
             </div>
 
-            <?php if ((int) $producto['cantidad'] > 0): ?>
+            <?php if ((int) $producto['cantidad'] > 0 && ($_SESSION['rol'] ?? '') !== 'admin'): ?>
                 <form method="POST" action="<?= BASE_URL ?>carrito/agregar" class="mb-3">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
                     <input type="hidden" name="id_producto" value="<?= (int) $producto['id_producto'] ?>">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <label class="mb-0 text-muted">Cantidad:</label>
@@ -183,9 +184,14 @@
                             <?php endif; ?>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                 <a href="<?= BASE_URL ?>producto/detalle/<?= (int) $rel['id_producto'] ?>" class="btn btn-sm btn-outline-dark">Ver detalle</a>
-                                <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $rel['id_producto'] ?>" class="btn-icon">
+                                <?php if (($_SESSION['rol'] ?? '') !== 'admin'): ?>
+                                <form method="POST" action="<?= BASE_URL ?>carrito/agregar/<?= (int) $rel['id_producto'] ?>" class="d-inline">
+                                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+                                    <button type="submit" class="btn btn-link btn-icon p-0">
                                     <span class="material-symbols-outlined" style="font-size:1.1rem">shopping_cart</span>
-                                </a>
+                                    </button>
+                                </form>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

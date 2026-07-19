@@ -1,10 +1,12 @@
 {
     "name": "tiendautp/ecommerce",
     "description": "E-Commerce DS7 - Proyecto academico",
+    "license": "proprietary",
     "type": "project",
     "require": {
         "php": ">=8.0",
-        "tecnickcom/tcpdf": "^6.11"
+        "tecnickcom/tcpdf": "^6.11",
+        "phpmailer/phpmailer": "^6.9"
     },
     "autoload": {
         "classmap": [

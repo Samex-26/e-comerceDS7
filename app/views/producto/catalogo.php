@@ -133,11 +133,15 @@
                                 <p class="price-primary mb-2">$<?= number_format($p['precio'], 2, '.', '') ?></p>
                             <?php endif; ?>
                             <div class="mt-auto">
-                                <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $p['id_producto'] ?>"
-                                   class="btn btn-primary-orange w-100 text-uppercase fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                <?php if (($_SESSION['rol'] ?? '') !== 'admin'): ?>
+                                <form method="POST" action="<?= BASE_URL ?>carrito/agregar/<?= (int) $p['id_producto'] ?>">
+                                  <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+                                  <button type="submit" class="btn btn-primary-orange w-100 text-uppercase fw-semibold d-flex align-items-center justify-content-center gap-2">
                                     <span class="material-symbols-outlined" style="font-size: 1.25rem;">shopping_cart</span>
                                     <?= htmlspecialchars($lang['agregar_carrito']) ?>
-                                </a>
+                                  </button>
+                                </form>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

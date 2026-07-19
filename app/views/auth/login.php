@@ -369,7 +369,7 @@ $currentLang = IdiomaHelper::getCodigo();
             <label for="password"><?= htmlspecialchars($lang['contrasena']) ?></label>
             <div class="input-wrapper">
                 <span class="material-symbols-outlined input-icon">lock</span>
-                <input type="password" class="input-field has-right-btn" id="password" name="password"
+                <input type="password" class="input-field has-right-btn" id="password" name="password" maxlength="12"
                        placeholder="Ingrese su contraseña" required>
                 <button type="button" class="password-toggle-btn" onclick="togglePassword()" tabindex="-1" aria-label="Mostrar contraseña">
                     <span class="material-symbols-outlined" id="passwordIcon">visibility</span>

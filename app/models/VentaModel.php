@@ -21,11 +21,12 @@ class VentaModel extends Model
             }
 
             $stmtVenta = $this->db->prepare(
-                'INSERT INTO ventas (id_usuario, total, hash_datos, firma_digital, estado)
-                 VALUES (:id_usuario, :total, :hash_datos, :firma_digital, :estado)'
+                'INSERT INTO ventas (id_usuario, fecha, total, hash_datos, firma_digital, estado)
+                 VALUES (:id_usuario, :fecha, :total, :hash_datos, :firma_digital, :estado)'
             );
             $stmtVenta->execute([
                 ':id_usuario'    => $datosVenta['id_usuario'],
+                ':fecha'         => $datosVenta['fecha'],
                 ':total'         => $datosVenta['total'],
                 ':hash_datos'    => $datosVenta['hash_datos'],
                 ':firma_digital' => $datosVenta['firma_digital'],

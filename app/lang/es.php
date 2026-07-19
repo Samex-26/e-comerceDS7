@@ -21,7 +21,7 @@ return [
     'error_csrf'        => 'Token de seguridad inválido. Intente de nuevo.',
     'exito_registro'    => 'Registro exitoso. Ya puede iniciar sesión.',
     'bienvenida_usuario' => 'Bienvenido, %s',
-    'password_length_error' => 'La contraseña debe tener al menos 8 caracteres.',
+    'password_length_error' => 'La contraseña debe tener entre 8 y 12 caracteres.',
     // Catálogo y productos
     'catalogo'           => 'Catálogo de Productos',
     'filtro_categoria'   => 'Filtrar por categoría',

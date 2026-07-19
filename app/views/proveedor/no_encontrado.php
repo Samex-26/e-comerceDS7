@@ -1,0 +1,1 @@
+<main class="container py-5" style="max-width:760px"><div class="alert alert-warning"><h1 class="h4">Proveedor no encontrado</h1><p>El proveedor solicitado no existe o ya fue eliminado.</p><a class="btn btn-outline-dark" href="<?= BASE_URL ?>proveedor/admin">Volver al listado</a></div></main>

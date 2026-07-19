@@ -1,10 +1,13 @@
-RewriteEngine On
-RewriteBase /e-comerceDS7/public/
+Options -Indexes
+DirectoryIndex index.php
 
-# Bloquear acceso directo a /app desde el navegador
-RewriteRule ^(app) - [F,L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>
 
-# Redirigir todo lo que no sea archivo/directorio existente a index.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

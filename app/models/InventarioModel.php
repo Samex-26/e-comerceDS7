@@ -72,8 +72,13 @@ class InventarioModel extends Model
         $this->db->beginTransaction();
         try {
             if ((int) $datos['id_producto'] !== (int) $viejo['id_producto']) {
+                $stmtLock = $this->db->prepare('SELECT cantidad FROM productos WHERE id_producto = :id FOR UPDATE');
+                $stmtLock->execute([':id' => $viejo['id_producto']]);
+                if ((int) $stmtLock->fetchColumn() < (int) $viejo['cantidad_ingresada']) {
+                    throw new RuntimeException('No se puede mover la entrada: parte del stock ya fue vendido.');
+                }
                 $stmtRevert = $this->db->prepare(
-                    'UPDATE productos SET cantidad = GREATEST(0, cantidad - :cantidad) WHERE id_producto = :id_producto'
+                    'UPDATE productos SET cantidad = cantidad - :cantidad WHERE id_producto = :id_producto'
                 );
                 $stmtRevert->execute([
                     ':cantidad'    => $viejo['cantidad_ingresada'],
@@ -89,8 +94,13 @@ class InventarioModel extends Model
                 ]);
             } else {
                 $diferencia = $datos['cantidad_ingresada'] - $viejo['cantidad_ingresada'];
+                $stmtLock = $this->db->prepare('SELECT cantidad FROM productos WHERE id_producto = :id FOR UPDATE');
+                $stmtLock->execute([':id' => $datos['id_producto']]);
+                if ((int) $stmtLock->fetchColumn() + $diferencia < 0) {
+                    throw new RuntimeException('No se puede reducir la entrada: parte del stock ya fue vendido.');
+                }
                 $stmtStock = $this->db->prepare(
-                    'UPDATE productos SET cantidad = GREATEST(0, cantidad + :diferencia) WHERE id_producto = :id_producto'
+                    'UPDATE productos SET cantidad = cantidad + :diferencia WHERE id_producto = :id_producto'
                 );
                 $stmtStock->execute([
                     ':diferencia'  => $diferencia,
@@ -135,8 +145,13 @@ class InventarioModel extends Model
 
         $this->db->beginTransaction();
         try {
+            $stmtLock = $this->db->prepare('SELECT cantidad FROM productos WHERE id_producto = :id FOR UPDATE');
+            $stmtLock->execute([':id' => $viejo['id_producto']]);
+            if ((int) $stmtLock->fetchColumn() < (int) $viejo['cantidad_ingresada']) {
+                throw new RuntimeException('No se puede eliminar la entrada: parte del stock ya fue vendido.');
+            }
             $stmtStock = $this->db->prepare(
-                'UPDATE productos SET cantidad = GREATEST(0, cantidad - :cantidad) WHERE id_producto = :id_producto'
+                'UPDATE productos SET cantidad = cantidad - :cantidad WHERE id_producto = :id_producto'
             );
             $stmtStock->execute([
                 ':cantidad'    => $viejo['cantidad_ingresada'],

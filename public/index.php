@@ -1,7 +1,13 @@
 <?php
 // Front Controller - Punto de entrada único del sistema
 
-require_once __DIR__ . '/../app/config/config.php';
+$configFile = __DIR__ . '/../app/config/config.php';
+if (!is_file($configFile)) {
+    http_response_code(503);
+    header('Content-Type: text/plain; charset=UTF-8');
+    exit("Configuración pendiente. Copie app/config/config.example.php a app/config/config.php y complete los valores locales.\n");
+}
+require_once $configFile;
 
 // Composer autoload (TCPDF y futuras dependencias)
 if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
@@ -30,6 +36,14 @@ spl_autoload_register(function (string $class) {
 
 // Iniciar sesión si no está iniciada
 if (session_status() === PHP_SESSION_NONE) {
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.use_only_cookies', '1');
+    session_set_cookie_params([
+        'httponly' => true,
+        'secure'   => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+        'samesite' => 'Lax',
+        'path'     => '/',
+    ]);
     session_start();
 }
 

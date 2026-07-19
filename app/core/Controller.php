@@ -15,6 +15,7 @@ abstract class Controller
     {
         // Poner el array de idioma disponible en toda vista
         $data['lang'] = $this->lang;
+        $data['csrf_token'] = $data['csrf_token'] ?? $this->generarTokenCsrf();
 
         extract($data);
 
@@ -68,5 +69,47 @@ abstract class Controller
             return false;
         }
         return hash_equals($_SESSION['csrf_token'], $token);
+    }
+
+    protected function requerirPost(): void
+    {
+        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
+            http_response_code(405);
+            header('Allow: POST');
+            exit('Método no permitido.');
+        }
+    }
+
+    protected function requerirCsrf(): void
+    {
+        $this->requerirPost();
+        if (!$this->verificarTokenCsrf((string) ($_POST['csrf_token'] ?? ''))) {
+            http_response_code(403);
+            exit('Solicitud inválida.');
+        }
+    }
+
+    protected function requerirAdmin(): void
+    {
+        if (!isset($_SESSION['id_usuario']) || ($_SESSION['rol'] ?? '') !== 'admin') {
+            $_SESSION['errores'] = [$this->lang['acceso_denegado'] ?? 'Acceso denegado.'];
+            $this->redirect('auth/login');
+        }
+    }
+
+    protected function requerirClienteActivo(string $destino = 'carrito/ver'): void
+    {
+        if (!isset($_SESSION['id_usuario'])) {
+            $_SESSION['redirect_after_login'] = $destino;
+            $_SESSION['errores'] = ['Debe iniciar sesión como cliente para usar el carrito y realizar compras.'];
+            $this->redirect('auth/login');
+        }
+        $usuario = $this->model('Usuario')->buscarPorId((int) $_SESSION['id_usuario']);
+        if (!$usuario || !(bool) $usuario['activo'] || (bool) $usuario['bloqueado'] || $usuario['rol'] !== 'cliente') {
+            unset($_SESSION['carrito']);
+            http_response_code(403);
+            header('Content-Type: text/plain; charset=UTF-8');
+            exit('Acceso denegado. El carrito y el proceso de compra son exclusivos para clientes activos.');
+        }
     }
 }

@@ -64,7 +64,7 @@ $langCode = IdiomaHelper::getCodigo();
                             <span class="input-group-text" style="background: transparent; border: 1px solid #e2e8f0; border-right: none;">
                                 <span class="material-symbols-outlined" style="font-size: 1.25rem; color: #94a3b8;">lock</span>
                             </span>
-                            <input type="password" class="form-control" id="password" name="password" required minlength="8"
+                            <input type="password" class="form-control" id="password" name="password" required minlength="8" maxlength="12"
                                    style="border: 1px solid #e2e8f0; border-left: none; padding-left: 0; font-size: 0.875rem;">
                             <button type="button" class="btn btn-outline-secondary" id="togglePassword"
                                     style="border: 1px solid #e2e8f0; border-left: none; background: transparent; color: #94a3b8;">

@@ -129,13 +129,10 @@ $proveedoresActivos = count($proveedoresUnicos);
                                            onmouseout="this.style.color='#64748b';this.style.background='transparent'">
                                             <span class="material-symbols-outlined">edit</span>
                                         </a>
-                                        <a href="<?= BASE_URL ?>inventario/eliminar/<?= (int) $e['id_inventario'] ?>"
-                                           style="padding: 8px; color: #64748b; border-radius: 8px; text-decoration: none; display: inline-flex;"
-                                           onmouseover="this.style.color='#dc2626';this.style.background='#fef2f2'"
-                                           onmouseout="this.style.color='#64748b';this.style.background='transparent'"
-                                           onclick="return confirm('&iquest;Est&aacute; seguro de eliminar esta entrada?')">
-                                            <span class="material-symbols-outlined">delete</span>
-                                        </a>
+                                        <form method="POST" action="<?= BASE_URL ?>inventario/eliminar/<?= (int) $e['id_inventario'] ?>" style="display:inline" onsubmit="return confirm('&iquest;Est&aacute; seguro de eliminar esta entrada?')">
+                                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+                                            <button type="submit" style="padding:8px;color:#64748b;border:0;background:transparent;display:inline-flex"><span class="material-symbols-outlined">delete</span></button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

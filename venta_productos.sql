@@ -30,10 +30,31 @@ CREATE TABLE usuarios (
   password_hash  VARCHAR(255) NOT NULL,
   id_idioma      INT NOT NULL,
   rol            ENUM('admin', 'cliente') NOT NULL DEFAULT 'cliente',
+  activo         TINYINT(1) NOT NULL DEFAULT 1,
+  intentos_fallidos TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  bloqueado      TINYINT(1) NOT NULL DEFAULT 0,
   created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_usuarios_idioma
     FOREIGN KEY (id_idioma) REFERENCES idiomas(id_idioma)
     ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Tokens de restablecimiento: solo se conserva SHA-256 del token original.
+CREATE TABLE password_reset_tokens (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY, usuario_id INT NOT NULL, token_hash CHAR(64) NOT NULL UNIQUE,
+  fecha_expiracion DATETIME NOT NULL, usado TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, used_at DATETIME NULL,
+  INDEX idx_reset_usuario_estado (usuario_id, usado, fecha_expiracion),
+  CONSTRAINT fk_reset_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE password_reset_audit (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY, usuario_id INT NOT NULL, solicitado_por INT NULL,
+  evento ENUM('solicitado', 'completado') NOT NULL, ip VARCHAR(45) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_reset_audit_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+  CONSTRAINT fk_reset_audit_actor FOREIGN KEY (solicitado_por) REFERENCES usuarios(id_usuario) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------
@@ -70,14 +91,20 @@ CREATE TABLE productos (
 -- ---------------------------------------------------------------------
 CREATE TABLE proveedores (
   id_proveedor            INT AUTO_INCREMENT PRIMARY KEY,
-  nombre                  VARCHAR(150) NOT NULL,
-  telefono                VARCHAR(20)  NULL,
-  celular                 VARCHAR(20)  NULL,
-  direccion               VARCHAR(255) NULL,
-  url_web                 VARCHAR(255) NULL,
-  calificacion_estrellas  TINYINT NOT NULL DEFAULT 5,
+  nombre                  VARCHAR(255) NOT NULL,
+  telefono                VARCHAR(50) NOT NULL DEFAULT '',
+  celular                 VARCHAR(50) NOT NULL DEFAULT '',
+  email                   VARCHAR(255) NOT NULL DEFAULT '',
+  direccion               TEXT NULL,
+  ciudad                  VARCHAR(100) NOT NULL DEFAULT '',
+  sitio_web               VARCHAR(255) NOT NULL DEFAULT '',
+  calificacion_estrellas  TINYINT NOT NULL DEFAULT 0,
+  notas                   TEXT NULL,
+  activo                  TINYINT(1) NOT NULL DEFAULT 1,
+  created_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT chk_proveedores_estrellas
-    CHECK (calificacion_estrellas BETWEEN 1 AND 5)
+    CHECK (calificacion_estrellas BETWEEN 0 AND 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------
@@ -87,10 +114,12 @@ CREATE TABLE inventario (
   id_inventario       INT AUTO_INCREMENT PRIMARY KEY,
   id_producto         INT NOT NULL,
   id_proveedor        INT NOT NULL,
-  costo_producto      DECIMAL(10,2) NOT NULL,
-  detalle             TEXT NULL,
-  fecha_entrada       DATE NOT NULL,
   cantidad_ingresada  INT NOT NULL,
+  costo_unitario      DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  fecha_entrada       DATE NOT NULL,
+  detalle             TEXT NULL,
+  created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_inventario_producto
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
     ON UPDATE CASCADE ON DELETE CASCADE,
@@ -176,6 +205,17 @@ CREATE TABLE cookies_consentimiento (
   CONSTRAINT fk_cookies_usuario
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
     ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Auditoría de autenticación. Nunca almacena contraseñas.
+CREATE TABLE intentos_login (
+  id_intento  BIGINT AUTO_INCREMENT PRIMARY KEY,
+  email       VARCHAR(150) NOT NULL,
+  ip          VARCHAR(45) NOT NULL,
+  resultado   ENUM('exitoso', 'fallido', 'bloqueado', 'inactivo') NOT NULL,
+  fecha       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_intentos_email_fecha (email, fecha),
+  INDEX idx_intentos_ip_fecha (ip, fecha)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------

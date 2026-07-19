@@ -21,7 +21,7 @@ return [
     'error_csrf'        => 'Invalid security token. Please try again.',
     'exito_registro'    => 'Registration successful. You can now log in.',
     'bienvenida_usuario' => 'Welcome, %s',
-    'password_length_error' => 'Password must be at least 8 characters.',
+    'password_length_error' => 'Password must be between 8 and 12 characters.',
     // Catalog and products
     'catalogo'           => 'Product Catalog',
     'filtro_categoria'   => 'Filter by category',

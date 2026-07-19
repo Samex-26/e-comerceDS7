@@ -106,6 +106,9 @@ class ProductoController extends Controller
         if ($precioOferta > 0 && !Validator::maximo($precioOferta, $precio)) {
             $errores[] = 'El precio de oferta no puede ser mayor al precio regular.';
         }
+        if ($cantidad < 0) {
+            $errores[] = 'La cantidad no puede ser negativa.';
+        }
         if (!Validator::enteroPositivo($cantidad) && $cantidad !== 0) {
             $errores[] = 'La cantidad debe ser un número entero no negativo.';
         }
@@ -127,7 +130,7 @@ class ProductoController extends Controller
         $model->crear([
             'nombre'        => $nombre,
             'descripcion'   => $descripcion,
-            'imagen'        => $imagen,
+            'imagen'        => $imagen ?: 'assets/img/producto-default.svg',
             'precio'        => $precio,
             'precio_oferta' => $precioOferta > 0 ? $precioOferta : null,
             'costo'         => $costo,
@@ -229,7 +232,9 @@ class ProductoController extends Controller
 
     public function eliminar(int $id): void
     {
+        $this->requerirPost();
         $this->verificarAdmin();
+        $this->requerirCsrf();
         $model = $this->model('Producto');
         $model->eliminar($id);
         $_SESSION['exito'] = $this->lang['exito_eliminado'];
@@ -245,22 +250,33 @@ class ProductoController extends Controller
             return '';
         }
 
-        $tiposPermitidos = ['image/jpeg', 'image/png', 'image/webp'];
+        $tiposPermitidos = [
+            'image/jpeg' => 'jpg',
+            'image/png'  => 'png',
+            'image/webp' => 'webp',
+        ];
         $maxSize = 2 * 1024 * 1024; // 2MB
 
         if ($archivo['error'] !== UPLOAD_ERR_OK) {
-            return false;
-        }
-        if (!in_array($archivo['type'], $tiposPermitidos)) {
             return false;
         }
         if ($archivo['size'] > $maxSize) {
             return false;
         }
 
-        $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
-        $nombreUnico = uniqid('prod_', true) . '.' . $extension;
-        $destino = BASE_PATH . '/../public/assets/img/productos/' . $nombreUnico;
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mimeReal = $finfo->file($archivo['tmp_name']);
+        if (!is_string($mimeReal) || !isset($tiposPermitidos[$mimeReal])) {
+            return false;
+        }
+
+        $directorio = BASE_PATH . '/../public/assets/img/productos';
+        if (!is_dir($directorio) && !mkdir($directorio, 0755, true) && !is_dir($directorio)) {
+            return false;
+        }
+
+        $nombreUnico = 'prod_' . bin2hex(random_bytes(16)) . '.' . $tiposPermitidos[$mimeReal];
+        $destino = $directorio . DIRECTORY_SEPARATOR . $nombreUnico;
 
         if (!move_uploaded_file($archivo['tmp_name'], $destino)) {
             return false;

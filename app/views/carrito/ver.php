@@ -69,6 +69,7 @@
                         </div>
 
                         <form method="POST" action="<?= BASE_URL ?>carrito/actualizar/<?= (int) $idP ?>" class="d-flex align-items-center gap-2">
+                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
                             <input type="number" name="cantidad" value="<?= (int) $item['cantidad'] ?>" min="1" class="qty-input">
                             <button type="submit" class="btn btn-sm btn-outline-secondary border-0" title="Actualizar">
                                 <span class="material-symbols-outlined" style="font-size: 20px;">refresh</span>
@@ -79,11 +80,12 @@
                             <p class="fw-bold mb-1" style="color: var(--primary);">
                                 $<?= number_format($item['subtotal'] ?? ($item['cantidad'] * $item['precio_unitario']), 2, '.', '') ?>
                             </p>
-                            <a href="<?= BASE_URL ?>carrito/eliminar/<?= (int) $idP ?>"
+                            <form method="POST" action="<?= BASE_URL ?>carrito/eliminar/<?= (int) $idP ?>"
                                class="text-danger text-decoration-none small"
                                onclick="return confirm('¿Eliminar este producto del carrito?')">
-                                <span class="material-symbols-outlined" style="font-size: 18px;">delete</span> Quitar
-                            </a>
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+                                <button type="submit" class="btn btn-link text-danger text-decoration-none small p-0"><span class="material-symbols-outlined" style="font-size: 18px;">delete</span> Quitar</button>
+                            </form>
                         </div>
                     </div>
                 <?php endforeach; ?>

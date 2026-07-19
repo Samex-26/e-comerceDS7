@@ -111,7 +111,9 @@ class InventarioController extends Controller
 
     public function eliminar(int $id): void
     {
+        $this->requerirPost();
         $this->verificarAdmin();
+        $this->requerirCsrf();
         $model = $this->model('InventarioModel');
 
         try {

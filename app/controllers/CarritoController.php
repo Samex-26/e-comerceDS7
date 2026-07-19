@@ -16,9 +16,17 @@ class CarritoController extends Controller
         }
     }
 
-    public function agregar(int $idProducto): void
+    public function agregar(?int $idProducto = null): void
     {
-        $this->requiereSesion();
+        $this->requerirPost();
+        $this->requerirClienteActivo('carrito/ver');
+        $this->requerirCsrf();
+        $idProducto = $idProducto ?? Sanitizer::entero($_POST['id_producto'] ?? 0);
+        $cantidadSolicitada = Sanitizer::entero($_POST['cantidad'] ?? 1);
+        if (!Validator::enteroPositivo($idProducto) || !Validator::enteroPositivo($cantidadSolicitada)) {
+            $_SESSION['errores'] = ['Producto o cantidad inválidos.'];
+            $this->redirect('producto');
+        }
 
         $productoModel = $this->model('Producto');
         $producto = $productoModel->buscarPorId($idProducto);
@@ -44,7 +52,7 @@ class CarritoController extends Controller
             : (float) $producto['precio'];
 
         if (isset($_SESSION['carrito'][$idProducto])) {
-            $nuevaCant = $_SESSION['carrito'][$idProducto]['cantidad'] + 1;
+            $nuevaCant = $_SESSION['carrito'][$idProducto]['cantidad'] + $cantidadSolicitada;
             if ($nuevaCant > (int) $producto['cantidad']) {
                 $_SESSION['errores'] = ['No hay suficiente stock para agregar más unidades.'];
                 $this->redirect('producto');
@@ -53,7 +61,7 @@ class CarritoController extends Controller
             $_SESSION['carrito'][$idProducto]['cantidad'] = $nuevaCant;
         } else {
             $_SESSION['carrito'][$idProducto] = [
-                'cantidad'       => 1,
+                'cantidad'       => $cantidadSolicitada,
                 'precio_unitario'=> $precio,
                 'nombre'         => $producto['nombre'],
                 'imagen'         => $producto['imagen'] ?? '',
@@ -66,12 +74,10 @@ class CarritoController extends Controller
 
     public function actualizar(int $idProducto): void
     {
-        $this->requiereSesion();
+        $this->requerirPost();
+        $this->requerirClienteActivo('carrito/ver');
 
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $this->redirect('carrito/ver');
-            return;
-        }
+        $this->requerirCsrf();
 
         $cantidad = Sanitizer::entero($_POST['cantidad'] ?? 0);
 
@@ -111,7 +117,9 @@ class CarritoController extends Controller
 
     public function eliminar(int $idProducto): void
     {
-        $this->requiereSesion();
+        $this->requerirPost();
+        $this->requerirClienteActivo('carrito/ver');
+        $this->requerirCsrf();
 
         if (isset($_SESSION['carrito'][$idProducto])) {
             unset($_SESSION['carrito'][$idProducto]);
@@ -123,11 +131,7 @@ class CarritoController extends Controller
 
     public function ver(): void
     {
-        if (!isset($_SESSION['id_usuario'])) {
-            $_SESSION['redirect_after_login'] = 'carrito/ver';
-            $this->redirect('auth/login');
-            return;
-        }
+        $this->requerirClienteActivo('carrito/ver');
 
         $carrito = $_SESSION['carrito'] ?? [];
         $total = 0;

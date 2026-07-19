@@ -47,7 +47,8 @@ class ProveedorModel extends Model
                 ciudad = :ciudad,
                 sitio_web = :sitio_web,
                 calificacion_estrellas = :calificacion_estrellas,
-                notas = :notas
+                notas = :notas,
+                activo = :activo
              WHERE id_proveedor = :id'
         );
         $stmt->execute([
@@ -61,6 +62,7 @@ class ProveedorModel extends Model
             ':sitio_web'             => $datos['sitio_web'] ?? '',
             ':calificacion_estrellas'=> $datos['calificacion_estrellas'] ?? 0,
             ':notas'                => $datos['notas'] ?? '',
+            ':activo'               => $datos['activo'] ?? 1,
         ]);
         return $stmt->rowCount() > 0;
     }
