@@ -48,6 +48,7 @@
                                 <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>venta/historial"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">payments</span>Ventas</a></li>
                                 <li><hr class="dropdown-divider" style="margin: 0.25rem 0;"></li>
                                 <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>reporte/index"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">assessment</span>Reportes</a></li>
+                                <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?= BASE_URL ?>usuario/admin"><span class="material-symbols-outlined" style="font-size: 1.2rem; color: #64748b;">group</span>Usuarios</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>
