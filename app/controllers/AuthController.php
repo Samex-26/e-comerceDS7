@@ -162,11 +162,18 @@ class AuthController extends Controller
         }
 
         // Iniciar sesión
+        session_regenerate_id(true);
+        unset($_SESSION['csrf_token']);
         $_SESSION['id_usuario']    = (int) $usuario['id_usuario'];
         $_SESSION['nombre']        = $usuario['nombre'];
         $_SESSION['email']         = $usuario['email'];
         $_SESSION['rol']           = $usuario['rol'];
         $_SESSION['id_idioma']     = (int) $usuario['id_idioma'];
+        $_SESSION['activo']        = (int) ($usuario['activo'] ?? 1);
+        $_SESSION['bloqueado']     = (int) ($usuario['bloqueado'] ?? 0);
+        if (($usuario['rol'] ?? '') !== 'cliente') {
+            unset($_SESSION['carrito'], $_SESSION['checkout_key']);
+        }
 
         // Cargar el código de idioma para evitar consultas en cada página
         $idiomaModel = $this->model('Idioma');
@@ -178,7 +185,20 @@ class AuthController extends Controller
 
     public function logout(): void
     {
+        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
+            http_response_code(405);
+            header('Allow: POST');
+            return;
+        }
+        if (!$this->verificarTokenCsrf((string) ($_POST['csrf_token'] ?? ''))) {
+            http_response_code(422);
+            return;
+        }
         $_SESSION = [];
+        if (ini_get('session.use_cookies')) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'] ?? '', (bool) $params['secure'], (bool) $params['httponly']);
+        }
         session_destroy();
         $this->redirect('auth/login');
     }

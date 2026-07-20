@@ -13,7 +13,12 @@ class VentaController extends Controller
 
     public function checkout(): void
     {
-        $this->requiereSesion();
+        if (!in_array($_SERVER['REQUEST_METHOD'] ?? 'GET', ['GET', 'POST'], true)) {
+            http_response_code(405);
+            header('Allow: GET, POST');
+            return;
+        }
+        $this->requiereClienteActivo();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->procesarCheckout();
@@ -67,6 +72,7 @@ class VentaController extends Controller
             'total'       => $total,
             'errores'     => $_SESSION['errores'] ?? [],
             'csrf_token'  => $this->generarTokenCsrf(),
+            'idempotency_key' => $_SESSION['checkout_key'] ??= bin2hex(random_bytes(32)),
         ]);
         unset($_SESSION['errores']);
     }
@@ -84,6 +90,12 @@ class VentaController extends Controller
         $token = $_POST['csrf_token'] ?? '';
         if (!$this->verificarTokenCsrf($token)) {
             $_SESSION['errores'] = [$this->lang['error_csrf']];
+            $this->redirect('venta/checkout');
+            return;
+        }
+        $idempotencyKey = (string) ($_POST['idempotency_key'] ?? '');
+        if (!preg_match('/^[a-f0-9]{64}$/', $idempotencyKey) || !hash_equals((string) ($_SESSION['checkout_key'] ?? ''), $idempotencyKey)) {
+            $_SESSION['errores'] = ['La solicitud de compra ya fue utilizada o no es válida.'];
             $this->redirect('venta/checkout');
             return;
         }
@@ -121,18 +133,14 @@ class VentaController extends Controller
                 'cantidad'       => $item['cantidad'],
                 'precio_unitario'=> $precioReal,
                 'subtotal'       => $subtotal,
+                'costo_unitario' => (float) $producto['costo'],
             ];
         }
 
         $idUsuario = (int) $_SESSION['id_usuario'];
         $fecha = date('Y-m-d H:i:s');
 
-        $datosCadena = json_encode([
-            'id_usuario' => $idUsuario,
-            'fecha'      => $fecha,
-            'total'      => $total,
-            'detalle'    => $detalle,
-        ]);
+        $datosCadena = VentaCanonicalizer::serializar($idUsuario, $fecha, $total, $detalle);
 
         $firmaService = new FirmaDigitalService();
         $hashDatos = hash('sha256', $datosCadena);
@@ -147,9 +155,12 @@ class VentaController extends Controller
                 'hash_datos'    => $hashDatos,
                 'firma_digital' => $firmaDigital,
                 'estado'        => 'confirmada',
+                'fecha'         => $fecha,
+                'idempotency_key' => $idempotencyKey,
+                'firma_version' => 2,
             ], $detalle);
 
-            unset($_SESSION['carrito']);
+            unset($_SESSION['carrito'], $_SESSION['checkout_key']);
             $this->redirect('venta/exito/' . $idVenta);
         } catch (\RuntimeException $e) {
             $_SESSION['errores'] = [$e->getMessage()];
@@ -163,7 +174,7 @@ class VentaController extends Controller
 
     public function exito(int $idVenta): void
     {
-        $this->requiereSesion();
+        $this->requiereClienteActivo();
 
         $ventaModel = $this->model('VentaModel');
         $venta = $ventaModel->buscarPorId($idVenta);
@@ -191,6 +202,20 @@ class VentaController extends Controller
             return;
         }
 
+        if ((int) ($venta['firma_version'] ?? 1) >= 2) {
+            $datosActuales = VentaCanonicalizer::serializar(
+                (int) $venta['id_usuario'],
+                $venta['fecha'],
+                (float) $venta['total'],
+                array_map(fn($d) => [
+                    'id_producto' => (int) $d['id_producto'],
+                    'cantidad' => (int) $d['cantidad'],
+                    'precio_unitario' => (float) $d['precio_unitario'],
+                    'subtotal' => (float) $d['subtotal'],
+                    'costo_unitario' => (float) ($d['costo_unitario_historico'] ?? 0),
+                ], $venta['detalle'])
+            );
+        } else {
         $datosActuales = json_encode([
             'id_usuario' => (int) $venta['id_usuario'],
             'fecha'      => $venta['fecha'],
@@ -204,6 +229,7 @@ class VentaController extends Controller
                 ];
             }, $venta['detalle']),
         ]);
+        }
 
         $firmaService = new FirmaDigitalService();
         $hashActual = hash('sha256', $datosActuales);
@@ -221,7 +247,7 @@ class VentaController extends Controller
 
     public function historial(): void
     {
-        $this->requiereSesion();
+        $this->requiereClienteActivo();
 
         $ventaModel = $this->model('VentaModel');
         $ventas = $ventaModel->listarPorUsuario((int) $_SESSION['id_usuario']);

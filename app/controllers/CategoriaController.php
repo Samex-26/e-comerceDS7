@@ -176,6 +176,7 @@ class CategoriaController extends Controller
     public function eliminar(int $id): void
     {
         $this->verificarAdmin();
+        $this->exigirPostConCsrf();
         $model = $this->model('Categoria');
 
         if ($model->tieneProductos($id)) {

@@ -160,6 +160,7 @@ class UsuarioController extends Controller
     public function eliminar(int $id): void
     {
         $this->verificarAdmin();
+        $this->exigirPostConCsrf();
 
         // Proteccion 2: no eliminarse a si mismo
         if ($id === (int) ($_SESSION['id_usuario'] ?? 0)) {

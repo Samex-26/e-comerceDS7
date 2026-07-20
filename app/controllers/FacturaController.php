@@ -12,7 +12,7 @@ class FacturaController extends Controller
 
     public function generar(int $idVenta): void
     {
-        $this->requiereSesion();
+        $this->requiereClienteActivo();
 
         $ventaModel = $this->model('VentaModel');
         $venta = $ventaModel->buscarPorId($idVenta);
@@ -24,9 +24,7 @@ class FacturaController extends Controller
         }
 
         $esPropietario = (int) $venta['id_usuario'] === (int) $_SESSION['id_usuario'];
-        $esAdmin = ($_SESSION['rol'] ?? '') === 'admin';
-
-        if (!$esPropietario && !$esAdmin) {
+        if (!$esPropietario) {
             $_SESSION['errores'] = ['No tiene permiso para descargar esta factura.'];
             $this->redirect('producto');
             return;
@@ -34,12 +32,18 @@ class FacturaController extends Controller
 
         $facturaModel = $this->model('FacturaModel');
 
-        $rutaRelativa = 'assets/facturas/factura_' . $idVenta . '.pdf';
-        $rutaAbsoluta = BASE_PATH . '/../public/' . $rutaRelativa;
+        $rutaRelativa = 'facturas/' . bin2hex(random_bytes(24)) . '.pdf';
+        $rutaAbsoluta = BASE_PATH . '/../storage/' . $rutaRelativa;
 
         $existente = $facturaModel->buscarPorVenta($idVenta);
-        if ($existente && file_exists($rutaAbsoluta)) {
-            $this->servirPDF($rutaAbsoluta, $idVenta);
+        if ($existente) {
+            $rutaExistente = BASE_PATH . '/../storage/' . ltrim((string) $existente['ruta_pdf'], '/');
+            if (file_exists($rutaExistente)) {
+                $this->servirPDF($rutaExistente, $idVenta);
+                return;
+            }
+            $_SESSION['errores'] = ['La factura histórica requiere ejecutar la migración segura de archivos.'];
+            $this->redirect('venta/historial');
             return;
         }
 
@@ -171,8 +175,7 @@ class FacturaController extends Controller
 
         $pdf->SetFont('Courier', '', 7);
         $pdf->SetTextColor(148, 163, 184);
-        $pdf->MultiCell(0, 4, 'Hash: ' . ($venta['hash_datos'] ?? '—'), 0, 'L');
-        $pdf->MultiCell(0, 4, 'Firma: ' . ($venta['firma_digital'] ?? '—'), 0, 'L');
+        $pdf->MultiCell(0, 4, 'Integridad verificable por el administrador del sistema.', 0, 'L');
         $pdf->Ln(4);
 
         $pdf->SetFont('Helvetica', '', 8);

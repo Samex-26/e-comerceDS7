@@ -34,13 +34,24 @@ class Producto extends Model
         return $stmt->fetch();
     }
 
+    public function buscarPorSku(string $sku, ?int $excluirId = null): array|false
+    {
+        $sql = 'SELECT * FROM productos WHERE sku = :sku';
+        $params = [':sku' => $sku];
+        if ($excluirId !== null) { $sql .= ' AND id_producto != :id'; $params[':id'] = $excluirId; }
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetch();
+    }
+
     public function crear(array $datos): int
     {
         $stmt = $this->db->prepare(
-            'INSERT INTO productos (nombre, descripcion, imagen, precio, precio_oferta, costo, cantidad, id_categoria, activo)
-             VALUES (:nombre, :descripcion, :imagen, :precio, :precio_oferta, :costo, :cantidad, :id_categoria, :activo)'
+            'INSERT INTO productos (sku, nombre, descripcion, imagen, precio, precio_oferta, costo, cantidad, id_categoria, activo)
+             VALUES (:sku, :nombre, :descripcion, :imagen, :precio, :precio_oferta, :costo, :cantidad, :id_categoria, :activo)'
         );
         $stmt->execute([
+            ':sku'           => $datos['sku'],
             ':nombre'        => $datos['nombre'],
             ':descripcion'   => $datos['descripcion'] ?? '',
             ':imagen'        => $datos['imagen'] ?? '',
@@ -57,6 +68,7 @@ class Producto extends Model
     public function actualizar(int $id, array $datos): bool
     {
         $sql = 'UPDATE productos SET
+                    sku = :sku,
                     nombre = :nombre,
                     descripcion = :descripcion,
                     precio = :precio,
@@ -67,6 +79,7 @@ class Producto extends Model
                     activo = :activo';
 
         $params = [
+            ':sku'           => $datos['sku'],
             ':id'            => $id,
             ':nombre'        => $datos['nombre'],
             ':descripcion'   => $datos['descripcion'] ?? '',

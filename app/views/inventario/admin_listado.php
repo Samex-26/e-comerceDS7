@@ -176,11 +176,19 @@ $proveedoresActivos = count($proveedoresUnicos);
                         <option value="">Seleccionar producto</option>
                         <?php foreach ($productos as $prod): ?>
                             <option value="<?= (int) $prod['id_producto'] ?>"
+                                data-precio="<?= htmlspecialchars(number_format((float) $prod['precio'], 2, '.', '')) ?>"
+                                data-costo="<?= htmlspecialchars(number_format((float) $prod['costo'], 2, '.', '')) ?>"
+                                data-stock="<?= (int) $prod['cantidad'] ?>"
                                 <?= ((int) ($editarEntrada['id_producto'] ?? $old['id_producto'] ?? 0) === (int) $prod['id_producto']) ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($prod['nombre']) ?> (Stock: <?= (int) $prod['cantidad'] ?>)
                             </option>
                         <?php endforeach; ?>
                     </select>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+                    <div><label style="font-size:12px;color:#64748b;font-weight:600">Precio actual</label><input id="producto_precio" type="text" readonly style="width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc"></div>
+                    <div><label style="font-size:12px;color:#64748b;font-weight:600">Stock actual</label><input id="producto_stock" type="text" readonly style="width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc"></div>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
@@ -214,7 +222,7 @@ $proveedoresActivos = count($proveedoresUnicos);
                         <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 6px;">Costo Unitario</label>
                         <div style="position: relative;">
                             <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-weight: 700;">$</span>
-                            <input type="number" step="0.01" min="0" name="costo_unitario"
+                            <input id="producto_costo" type="number" step="0.01" min="0" name="costo_unitario" readonly required
                                    style="width: 100%; padding: 12px 16px 12px 32px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                                    onfocus="this.style.borderColor='#1e293b';this.style.boxShadow='0 0 0 2px rgba(30,41,59,0.25)'"
                                    onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
@@ -228,14 +236,14 @@ $proveedoresActivos = count($proveedoresUnicos);
                                style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                                onfocus="this.style.borderColor='#1e293b';this.style.boxShadow='0 0 0 2px rgba(30,41,59,0.25)'"
                                onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
-                               placeholder="0"
+                               placeholder="Ingrese la cantidad recibida"
                                value="<?= htmlspecialchars($editarEntrada['cantidad_ingresada'] ?? $old['cantidad_ingresada'] ?? '') ?>">
                     </div>
                 </div>
 
                 <div style="margin-bottom: 20px;">
                     <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 6px;">Detalle / Notas</label>
-                    <textarea name="detalle" rows="3"
+                    <textarea name="detalle" rows="3" required minlength="2" maxlength="1000"
                               style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; resize: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                               onfocus="this.style.borderColor='#1e293b';this.style.boxShadow='0 0 0 2px rgba(30,41,59,0.25)'"
                               onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
@@ -260,6 +268,16 @@ $proveedoresActivos = count($proveedoresUnicos);
 </div>
 
 <script>
+    function actualizarDatosProducto() {
+        var select = document.querySelector('select[name="id_producto"]');
+        var option = select.options[select.selectedIndex];
+        document.getElementById('producto_precio').value = option && option.value ? '$' + option.dataset.precio : '';
+        document.getElementById('producto_costo').value = option && option.value ? option.dataset.costo : '';
+        document.getElementById('producto_stock').value = option && option.value ? option.dataset.stock : '';
+    }
+    document.querySelector('select[name="id_producto"]').addEventListener('change', actualizarDatosProducto);
+    document.addEventListener('DOMContentLoaded', actualizarDatosProducto);
+
     function toggleModal() {
         const modal = document.getElementById('modalEntry');
         modal.classList.toggle('modal-hidden');

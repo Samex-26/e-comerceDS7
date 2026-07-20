@@ -144,7 +144,7 @@ $showDrawer = !empty($productoEditar) || !empty($errores);
                                             <?php endif; ?>
                                             <div>
                                                 <p class="fw-semibold mb-0" style="color: #1e293b;"><?= htmlspecialchars($p['nombre']) ?></p>
-                                                <small style="color: #94a3b8;">SKU: PRD-<?= str_pad((string) $p['id_producto'], 5, '0', STR_PAD_LEFT) ?></small>
+                                                <small style="color: #94a3b8;">SKU: <?= htmlspecialchars($p['sku'] ?? '') ?></small>
                                             </div>
                                         </div>
                                     </td>
@@ -222,6 +222,11 @@ $showDrawer = !empty($productoEditar) || !empty($errores);
                 <span class="material-symbols-outlined" style="font-size: 1.1rem;">info</span>
                 Informacion General
             </p>
+
+            <div style="margin-bottom: 1.25rem;">
+                <label class="form-label-custom">SKU <span style="color: #ef4444;">*</span></label>
+                <input type="text" class="form-input-custom" name="sku" maxlength="80" pattern="[A-Za-z0-9_-]+" required value="<?= htmlspecialchars($old['sku'] ?? $productoEditar['sku'] ?? '') ?>">
+            </div>
 
             <div style="margin-bottom: 1.25rem;">
                 <label class="form-label-custom">Nombre del Producto <span style="color: #ef4444;">*</span></label>

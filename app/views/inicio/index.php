@@ -222,7 +222,7 @@
 <script>
 (function() {
     var startTime = Date.now();
-    var visitaId = null;
+    var visitaId = null, visitaToken = null;
     var pagina = window.location.pathname;
     var baseUrl = '<?= BASE_URL ?>';
 
@@ -232,7 +232,7 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             if (xhr.status === 200) {
-                try { visitaId = JSON.parse(xhr.responseText).id_visita; } catch(e) {}
+                try { var r = JSON.parse(xhr.responseText); visitaId = r.id_visita; visitaToken = r.token; } catch(e) {}
             }
         };
         xhr.send('pagina=' + encodeURIComponent(pagina));
@@ -241,7 +241,7 @@
     function actualizarTiempo() {
         if (visitaId) {
             var elapsed = Math.floor((Date.now() - startTime) / 1000);
-            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed;
+            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed + '&token=' + encodeURIComponent(visitaToken || '');
             if (navigator.sendBeacon) {
                 navigator.sendBeacon(baseUrl + 'visita/actualizarTiempo', data);
             }

@@ -132,13 +132,17 @@
                             <?php else: ?>
                                 <p class="price-primary mb-2">$<?= number_format($p['precio'], 2, '.', '') ?></p>
                             <?php endif; ?>
+                            <?php if (isset($_SESSION['id_usuario']) && ($_SESSION['rol'] ?? '') === 'cliente' && (int) ($_SESSION['activo'] ?? 1) === 1 && (int) ($_SESSION['bloqueado'] ?? 0) === 0): ?>
                             <div class="mt-auto">
-                                <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $p['id_producto'] ?>"
-                                   class="btn btn-primary-orange w-100 text-uppercase fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                <form method="POST" action="<?= BASE_URL ?>carrito/agregar/<?= (int) $p['id_producto'] ?>">
+                                   <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+                                   <button type="submit" class="btn btn-primary-orange w-100 text-uppercase fw-semibold d-flex align-items-center justify-content-center gap-2">
                                     <span class="material-symbols-outlined" style="font-size: 1.25rem;">shopping_cart</span>
                                     <?= htmlspecialchars($lang['agregar_carrito']) ?>
-                                </a>
+                                   </button>
+                                </form>
                             </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -171,7 +175,7 @@
 <script>
 (function() {
     var startTime = Date.now();
-    var visitaId = null;
+    var visitaId = null, visitaToken = null;
     var pagina = window.location.pathname;
     var baseUrl = '<?= BASE_URL ?>';
 
@@ -181,7 +185,7 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             if (xhr.status === 200) {
-                try { visitaId = JSON.parse(xhr.responseText).id_visita; } catch(e) {}
+                try { var r = JSON.parse(xhr.responseText); visitaId = r.id_visita; visitaToken = r.token; } catch(e) {}
             }
         };
         xhr.send('pagina=' + encodeURIComponent(pagina));
@@ -190,7 +194,7 @@
     function actualizarTiempo() {
         if (visitaId) {
             var elapsed = Math.floor((Date.now() - startTime) / 1000);
-            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed;
+            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed + '&token=' + encodeURIComponent(visitaToken || '');
             if (navigator.sendBeacon) {
                 navigator.sendBeacon(baseUrl + 'visita/actualizarTiempo', data);
             }

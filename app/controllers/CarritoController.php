@@ -18,7 +18,9 @@ class CarritoController extends Controller
 
     public function agregar(int $idProducto): void
     {
-        $this->requiereSesion();
+        $this->exigirMetodoPost();
+        $this->requiereClienteActivo();
+        $this->exigirCsrf();
 
         $productoModel = $this->model('Producto');
         $producto = $productoModel->buscarPorId($idProducto);
@@ -66,7 +68,9 @@ class CarritoController extends Controller
 
     public function actualizar(int $idProducto): void
     {
-        $this->requiereSesion();
+        $this->exigirMetodoPost();
+        $this->requiereClienteActivo();
+        $this->exigirCsrf();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $this->redirect('carrito/ver');
@@ -111,7 +115,9 @@ class CarritoController extends Controller
 
     public function eliminar(int $idProducto): void
     {
-        $this->requiereSesion();
+        $this->exigirMetodoPost();
+        $this->requiereClienteActivo();
+        $this->exigirCsrf();
 
         if (isset($_SESSION['carrito'][$idProducto])) {
             unset($_SESSION['carrito'][$idProducto]);
@@ -123,6 +129,7 @@ class CarritoController extends Controller
 
     public function ver(): void
     {
+        $this->requiereClienteActivo();
         if (!isset($_SESSION['id_usuario'])) {
             $_SESSION['redirect_after_login'] = 'carrito/ver';
             $this->redirect('auth/login');
@@ -143,6 +150,7 @@ class CarritoController extends Controller
             'total'    => $total,
             'errores'  => $_SESSION['errores'] ?? [],
             'exito'    => $_SESSION['exito'] ?? '',
+            'csrf_token' => $this->generarTokenCsrf(),
         ]);
         unset($_SESSION['errores'], $_SESSION['exito']);
     }

@@ -73,12 +73,13 @@ class InventarioModel extends Model
         try {
             if ((int) $datos['id_producto'] !== (int) $viejo['id_producto']) {
                 $stmtRevert = $this->db->prepare(
-                    'UPDATE productos SET cantidad = GREATEST(0, cantidad - :cantidad) WHERE id_producto = :id_producto'
+                    'UPDATE productos SET cantidad = cantidad - :cantidad WHERE id_producto = :id_producto AND cantidad >= :cantidad'
                 );
                 $stmtRevert->execute([
                     ':cantidad'    => $viejo['cantidad_ingresada'],
                     ':id_producto' => $viejo['id_producto'],
                 ]);
+                if ($stmtRevert->rowCount() !== 1) throw new RuntimeException('No se puede mover la entrada: el stock ya fue consumido.');
 
                 $stmtApply = $this->db->prepare(
                     'UPDATE productos SET cantidad = cantidad + :cantidad WHERE id_producto = :id_producto'
@@ -90,12 +91,13 @@ class InventarioModel extends Model
             } else {
                 $diferencia = $datos['cantidad_ingresada'] - $viejo['cantidad_ingresada'];
                 $stmtStock = $this->db->prepare(
-                    'UPDATE productos SET cantidad = GREATEST(0, cantidad + :diferencia) WHERE id_producto = :id_producto'
+                    'UPDATE productos SET cantidad = cantidad + :diferencia WHERE id_producto = :id_producto AND cantidad + :diferencia >= 0'
                 );
                 $stmtStock->execute([
                     ':diferencia'  => $diferencia,
                     ':id_producto' => $datos['id_producto'],
                 ]);
+                if ($stmtStock->rowCount() !== 1 && $diferencia < 0) throw new RuntimeException('No se puede reducir la entrada: el stock ya fue consumido.');
             }
 
             $stmt = $this->db->prepare(
@@ -136,12 +138,13 @@ class InventarioModel extends Model
         $this->db->beginTransaction();
         try {
             $stmtStock = $this->db->prepare(
-                'UPDATE productos SET cantidad = GREATEST(0, cantidad - :cantidad) WHERE id_producto = :id_producto'
+                'UPDATE productos SET cantidad = cantidad - :cantidad WHERE id_producto = :id_producto AND cantidad >= :cantidad'
             );
             $stmtStock->execute([
                 ':cantidad'    => $viejo['cantidad_ingresada'],
                 ':id_producto' => $viejo['id_producto'],
             ]);
+            if ($stmtStock->rowCount() !== 1) throw new RuntimeException('No se puede eliminar la entrada: el stock ya fue consumido.');
 
             $stmt = $this->db->prepare('DELETE FROM inventario WHERE id_inventario = :id');
             $stmt->execute([':id' => $id]);

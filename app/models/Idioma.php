@@ -16,4 +16,11 @@ class Idioma extends Model
         $stmt->execute([':id' => $id]);
         return $stmt->fetch();
     }
+
+    public function buscarPorCodigo(string $codigo): array|false
+    {
+        $stmt = $this->db->prepare('SELECT * FROM idiomas WHERE codigo = :codigo');
+        $stmt->execute([':codigo' => $codigo]);
+        return $stmt->fetch();
+    }
 }
