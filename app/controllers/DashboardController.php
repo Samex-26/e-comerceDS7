@@ -16,17 +16,15 @@ class DashboardController extends Controller
         $kpiVentasSuma         = (float) ($resumenMes['suma_ventas'] ?? 0);
         $kpiGanancia           = $ventaModel->gananciaNetaMes();
         $kpiProductosVendidos  = $ventaModel->productosVendidosMes();
-        $kpiVisitantes         = $visitaModel->totalVisitas();
+        $inicioActual = date('Y-m-01 00:00:00');
+        $inicioSiguiente = date('Y-m-01 00:00:00', strtotime('+1 month'));
+        $inicioAnterior = date('Y-m-01 00:00:00', strtotime('-1 month'));
+        $visitasActual = $visitaModel->resumenPeriodo($inicioActual, $inicioSiguiente);
+        $visitasPrevio = $visitaModel->resumenPeriodo($inicioAnterior, $inicioActual);
+        $kpiVisitantes = (int) ($visitasActual['visitantes'] ?? 0);
 
         /* Variación de visitas vs mes anterior */
-        $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare(
-            "SELECT COUNT(*) FROM visitas
-             WHERE MONTH(fecha) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
-               AND YEAR(fecha) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)"
-        );
-        $stmt->execute();
-        $visitasAnterior = (int) $stmt->fetchColumn();
+        $visitasAnterior = (int) ($visitasPrevio['visitantes'] ?? 0);
         $variacionVisitas = $visitasAnterior > 0
             ? round(($kpiVisitantes - $visitasAnterior) / $visitasAnterior * 100, 1)
             : 0;

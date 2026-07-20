@@ -9,4 +9,4 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-base-url="<?= htmlspecialchars(BASE_URL) ?>" data-csrf="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">

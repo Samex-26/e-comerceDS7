@@ -95,9 +95,9 @@ $showDrawer = $editarProveedor || !empty($errores);
                                         </div>
                                     </div>
                                 </td>
-                                <td style="padding: 20px 24px; color: #475569;"><?= htmlspecialchars($p['telefono'] ?: '&mdash;') ?></td>
-                                <td style="padding: 20px 24px; color: #475569;"><?= htmlspecialchars($p['celular'] ?: '&mdash;') ?></td>
-                                <td style="padding: 20px 24px; color: #475569; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?= htmlspecialchars($p['direccion'] ?: '&mdash;') ?></td>
+                                <td style="padding: 20px 24px; color: #475569;"><?= $p['telefono'] !== '' ? htmlspecialchars($p['telefono']) : '—' ?></td>
+                                <td style="padding: 20px 24px; color: #475569;"><?= $p['celular'] !== '' ? htmlspecialchars($p['celular']) : '—' ?></td>
+                                <td style="padding: 20px 24px; color: #475569; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?= !empty($p['direccion']) ? htmlspecialchars($p['direccion']) : '—' ?></td>
                                 <td style="padding: 20px 24px;">
                                     <?php if (!empty($p['sitio_web'])): ?>
                                         <a href="<?= htmlspecialchars($p['sitio_web']) ?>" target="_blank" style="color: #fd761a; font-weight: 500; display: flex; align-items: center; gap: 4px; font-size: 14px; text-decoration: none;">
@@ -105,7 +105,7 @@ $showDrawer = $editarProveedor || !empty($errores);
                                             <span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span>
                                         </a>
                                     <?php else: ?>
-                                        <span style="color: #94a3b8;">&mdash;</span>
+                                        <span style="color: #94a3b8;">—</span>
                                     <?php endif; ?>
                                 </td>
                                 <td style="padding: 20px 24px;">
@@ -160,6 +160,14 @@ $showDrawer = $editarProveedor || !empty($errores);
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
             <input type="hidden" name="id" value="<?= $editarProveedor ? (int) $editarProveedor['id_proveedor'] : '' ?>">
 
+            <div style="margin-bottom:20px">
+                <label style="font-size:12px;color:#64748b;font-weight:600">Estado *</label>
+                <select name="activo" required style="width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px">
+                    <option value="1" <?= (int)($editarProveedor['activo'] ?? $old['activo'] ?? 1) === 1 ? 'selected' : '' ?>>Activo</option>
+                    <option value="0" <?= (int)($editarProveedor['activo'] ?? $old['activo'] ?? 1) === 0 ? 'selected' : '' ?>>Inactivo</option>
+                </select>
+            </div>
+
             <div style="margin-bottom: 24px;">
                 <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Nombre del Proveedor <span style="color: #ef4444;">*</span></label>
                 <input type="text" name="nombre" required
@@ -173,7 +181,7 @@ $showDrawer = $editarProveedor || !empty($errores);
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
                 <div>
                     <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Tel&eacute;fono</label>
-                    <input type="text" name="telefono"
+                    <input type="text" name="telefono" required minlength="7" maxlength="20" pattern="[0-9+() \-]{7,20}"
                            style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                            onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
                            onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
@@ -182,7 +190,7 @@ $showDrawer = $editarProveedor || !empty($errores);
                 </div>
                 <div>
                     <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Celular</label>
-                    <input type="text" name="celular"
+                    <input type="text" name="celular" required minlength="7" maxlength="20" pattern="[0-9+() \-]{7,20}"
                            style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                            onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
                            onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
@@ -203,7 +211,7 @@ $showDrawer = $editarProveedor || !empty($errores);
 
             <div style="margin-bottom: 24px;">
                 <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Direcci&oacute;n</label>
-                <input type="text" name="direccion"
+                <input type="text" name="direccion" required minlength="5" maxlength="255"
                        style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                        onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
                        onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
@@ -225,12 +233,12 @@ $showDrawer = $editarProveedor || !empty($errores);
                     <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Sitio Web</label>
                     <div style="position: relative;">
                         <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;">https://</span>
-                        <input type="text" name="sitio_web"
+                        <input type="url" name="sitio_web" required maxlength="255"
                                style="width: 100%; padding: 12px 16px 12px 80px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                                onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
                                onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
                                placeholder="www.ejemplo.pe"
-                               value="<?= htmlspecialchars(preg_replace('#^https?://#', '', $editarProveedor['sitio_web'] ?? $old['sitio_web'] ?? '')) ?>">
+                               value="<?= htmlspecialchars($editarProveedor['sitio_web'] ?? $old['sitio_web'] ?? '') ?>">
                     </div>
                 </div>
             </div>
@@ -238,7 +246,7 @@ $showDrawer = $editarProveedor || !empty($errores);
             <div style="margin-bottom: 24px;">
                 <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 12px;">Calificaci&oacute;n</label>
                 <div style="display: flex; align-items: center; gap: 8px;" id="star-selector">
-                    <?php $rating = (int) ($editarProveedor['calificacion_estrellas'] ?? $old['calificacion_estrellas'] ?? 0); ?>
+                    <?php $rating = (int) ($editarProveedor['calificacion_estrellas'] ?? $old['calificacion_estrellas'] ?? 1); ?>
                     <?php for ($i = 1; $i <= 5; $i++): ?>
                         <button type="button" onclick="setRating(<?= $i ?>)" style="padding: 4px; border: none; background: transparent; cursor: pointer;">
                             <span class="material-symbols-outlined" style="font-size: 36px; <?= $i <= $rating ? 'color: #fd761a; font-variation-settings: \'FILL\' 1;' : 'color: #cbd5e1;' ?>">star</span>

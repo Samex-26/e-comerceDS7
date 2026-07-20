@@ -118,9 +118,10 @@
                 <span>Entrega estimada: 2-3 días hábiles</span>
             </div>
 
-            <?php if ((int) $producto['cantidad'] > 0): ?>
-                <form method="POST" action="<?= BASE_URL ?>carrito/agregar" class="mb-3">
-                    <input type="hidden" name="id_producto" value="<?= (int) $producto['id_producto'] ?>">
+            <?php $puedeComprar = isset($_SESSION['id_usuario']) && ($_SESSION['rol'] ?? '') === 'cliente' && (int) ($_SESSION['activo'] ?? 1) === 1 && (int) ($_SESSION['bloqueado'] ?? 0) === 0; ?>
+            <?php if ((int) $producto['cantidad'] > 0 && $puedeComprar): ?>
+                <form method="POST" action="<?= BASE_URL ?>carrito/agregar/<?= (int) $producto['id_producto'] ?>" class="mb-3">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <label class="mb-0 text-muted">Cantidad:</label>
                         <div class="qty-selector">
@@ -134,7 +135,7 @@
                         Agregar al carrito
                     </button>
                 </form>
-            <?php else: ?>
+            <?php elseif ((int) $producto['cantidad'] <= 0): ?>
                 <button class="btn btn-secondary btn-lg w-100" disabled>Sin stock</button>
             <?php endif; ?>
 
@@ -183,9 +184,9 @@
                             <?php endif; ?>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                 <a href="<?= BASE_URL ?>producto/detalle/<?= (int) $rel['id_producto'] ?>" class="btn btn-sm btn-outline-dark">Ver detalle</a>
-                                <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $rel['id_producto'] ?>" class="btn-icon">
+                                <?php if ($puedeComprar): ?><form method="POST" action="<?= BASE_URL ?>carrito/agregar/<?= (int) $rel['id_producto'] ?>"><input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>"><button type="submit" class="btn-icon" style="border:0">
                                     <span class="material-symbols-outlined" style="font-size:1.1rem">shopping_cart</span>
-                                </a>
+                                </button></form><?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -232,7 +233,7 @@ function aceptarCookies() {
 <script>
 (function() {
     var startTime = Date.now();
-    var visitaId = null;
+    var visitaId = null, visitaToken = null;
     var pagina = window.location.pathname;
     var baseUrl = '<?= BASE_URL ?>';
     var idProducto = <?= (int) ($producto['id_producto'] ?? 0) ?>;
@@ -245,7 +246,7 @@ function aceptarCookies() {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             if (xhr.status === 200) {
-                try { visitaId = JSON.parse(xhr.responseText).id_visita; } catch(e) {}
+                try { var r = JSON.parse(xhr.responseText); visitaId = r.id_visita; visitaToken = r.token; } catch(e) {}
             }
         };
         xhr.send(params);
@@ -254,7 +255,7 @@ function aceptarCookies() {
     function actualizarTiempo() {
         if (visitaId) {
             var elapsed = Math.floor((Date.now() - startTime) / 1000);
-            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed;
+            var data = 'id_visita=' + visitaId + '&tiempo_segundos=' + elapsed + '&token=' + encodeURIComponent(visitaToken || '');
             if (navigator.sendBeacon) {
                 navigator.sendBeacon(baseUrl + 'visita/actualizarTiempo', data);
             }

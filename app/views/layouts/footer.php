@@ -15,7 +15,14 @@
         </div>
     </div>
 </footer>
+<style>.cookies-banner,.cookie-banner{display:none!important}.consent-center{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:10000;background:#1e293b;color:#fff;padding:1rem;border-radius:.75rem}.consent-center[hidden]{display:none}</style>
+<div id="consentCenter" class="consent-center" hidden>
+    <p class="mb-2">Las cookies necesarias mantienen la sesión. Las analíticas son opcionales y solo se activan con su permiso.</p>
+    <button type="button" class="btn btn-light btn-sm" data-consent="accepted">Aceptar analíticas</button>
+    <button type="button" class="btn btn-outline-light btn-sm" data-consent="rejected">Rechazar</button>
+</div>
+<button type="button" id="revokeConsent" class="btn btn-sm btn-secondary" style="position:fixed;right:1rem;bottom:1rem;z-index:9999">Privacidad</button>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="<?= BASE_URL ?>assets/js/main.js"></script>
 </body>
 </html>

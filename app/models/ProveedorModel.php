@@ -18,8 +18,8 @@ class ProveedorModel extends Model
     public function crear(array $datos): int
     {
         $stmt = $this->db->prepare(
-            'INSERT INTO proveedores (nombre, telefono, celular, email, direccion, ciudad, sitio_web, calificacion_estrellas, notas)
-             VALUES (:nombre, :telefono, :celular, :email, :direccion, :ciudad, :sitio_web, :calificacion_estrellas, :notas)'
+            'INSERT INTO proveedores (nombre, telefono, celular, email, direccion, ciudad, sitio_web, calificacion_estrellas, notas, activo)
+             VALUES (:nombre, :telefono, :celular, :email, :direccion, :ciudad, :sitio_web, :calificacion_estrellas, :notas, :activo)'
         );
         $stmt->execute([
             ':nombre'                => $datos['nombre'],
@@ -31,6 +31,7 @@ class ProveedorModel extends Model
             ':sitio_web'             => $datos['sitio_web'] ?? '',
             ':calificacion_estrellas'=> $datos['calificacion_estrellas'] ?? 0,
             ':notas'                => $datos['notas'] ?? '',
+            ':activo'               => $datos['activo'],
         ]);
         return (int) $this->db->lastInsertId();
     }
@@ -47,7 +48,8 @@ class ProveedorModel extends Model
                 ciudad = :ciudad,
                 sitio_web = :sitio_web,
                 calificacion_estrellas = :calificacion_estrellas,
-                notas = :notas
+                notas = :notas,
+                activo = :activo
              WHERE id_proveedor = :id'
         );
         $stmt->execute([
@@ -61,6 +63,7 @@ class ProveedorModel extends Model
             ':sitio_web'             => $datos['sitio_web'] ?? '',
             ':calificacion_estrellas'=> $datos['calificacion_estrellas'] ?? 0,
             ':notas'                => $datos['notas'] ?? '',
+            ':activo'               => $datos['activo'],
         ]);
         return $stmt->rowCount() > 0;
     }

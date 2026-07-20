@@ -35,12 +35,22 @@ class VisitaModel extends Model
         return (int) $stmt->fetchColumn();
     }
 
+    public function resumenPeriodo(string $inicio, string $fin): array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT COUNT(*) AS visitas,
+                    COUNT(DISTINCT COALESCE(CONCAT('u:', id_usuario), CONCAT('ip:', ip))) AS visitantes
+             FROM visitas WHERE fecha >= :inicio AND fecha < :fin"
+        );
+        $stmt->execute([':inicio' => $inicio, ':fin' => $fin]);
+        return $stmt->fetch();
+    }
+
     public function topMasVisitados(?string $fechaInicio = null, ?string $fechaFin = null, int $limite = 10): array
     {
         $sql = 'SELECT p.id_producto, p.nombre, COUNT(v.id_visita) AS visitas
-                FROM visitas v
-                JOIN productos p ON v.id_producto = p.id_producto
-                WHERE v.id_producto IS NOT NULL';
+                FROM productos p
+                LEFT JOIN visitas v ON v.id_producto = p.id_producto';
         $params = [':limite' => $limite];
 
         if ($fechaInicio !== null) {
@@ -78,8 +88,7 @@ class VisitaModel extends Model
             $params[':fin'] = $fechaFin . ' 23:59:59';
         }
 
-        $sql .= ' GROUP BY p.id_producto, p.nombre
-                  HAVING COUNT(v.id_visita) > 0
+        $sql .= ' WHERE p.activo = 1 GROUP BY p.id_producto, p.nombre
                   ORDER BY visitas ASC LIMIT :limite';
         $stmt = $this->db->prepare($sql);
         foreach ($params as $k => $v) {

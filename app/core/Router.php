@@ -75,9 +75,7 @@ class Router
         require_once BASE_PATH . '/views/layouts/header.php';
         echo '<div class="container mt-5"><div class="alert alert-danger">';
         echo '<h2>Error 404 - Página no encontrada</h2>';
-        if (DEBUG && $message) {
-            echo '<p>' . htmlspecialchars($message, ENT_QUOTES, 'UTF-8') . '</p>';
-        }
+        if ($message !== '') error_log('Router 404: ' . $message);
         echo '<a href="' . BASE_URL . '" class="btn btn-primary">Volver al inicio</a>';
         echo '</div></div>';
         require_once BASE_PATH . '/views/layouts/footer.php';

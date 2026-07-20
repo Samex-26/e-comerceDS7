@@ -21,21 +21,24 @@ class VentaModel extends Model
             }
 
             $stmtVenta = $this->db->prepare(
-                'INSERT INTO ventas (id_usuario, total, hash_datos, firma_digital, estado)
-                 VALUES (:id_usuario, :total, :hash_datos, :firma_digital, :estado)'
+                'INSERT INTO ventas (id_usuario, fecha, total, hash_datos, firma_digital, estado, idempotency_key, firma_version)
+                 VALUES (:id_usuario, :fecha, :total, :hash_datos, :firma_digital, :estado, :idempotency_key, :firma_version)'
             );
             $stmtVenta->execute([
                 ':id_usuario'    => $datosVenta['id_usuario'],
+                ':fecha'         => $datosVenta['fecha'],
                 ':total'         => $datosVenta['total'],
                 ':hash_datos'    => $datosVenta['hash_datos'],
                 ':firma_digital' => $datosVenta['firma_digital'],
                 ':estado'        => $datosVenta['estado'] ?? 'confirmada',
+                ':idempotency_key' => $datosVenta['idempotency_key'],
+                ':firma_version' => $datosVenta['firma_version'] ?? 2,
             ]);
             $idVenta = (int) $this->db->lastInsertId();
 
             $stmtDetalle = $this->db->prepare(
-                'INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario, subtotal)
-                 VALUES (:id_venta, :id_producto, :cantidad, :precio_unitario, :subtotal)'
+                'INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario, subtotal, costo_unitario_historico)
+                 VALUES (:id_venta, :id_producto, :cantidad, :precio_unitario, :subtotal, :costo_unitario_historico)'
             );
 
             $stmtStock = $this->db->prepare(
@@ -49,6 +52,7 @@ class VentaModel extends Model
                     ':cantidad'       => $linea['cantidad'],
                     ':precio_unitario'=> $linea['precio_unitario'],
                     ':subtotal'       => $linea['subtotal'],
+                    ':costo_unitario_historico' => $linea['costo_unitario'],
                 ]);
 
                 $stmtStock->execute([
@@ -83,7 +87,7 @@ class VentaModel extends Model
             'SELECT dv.*, p.nombre AS producto_nombre
              FROM detalle_ventas dv
              JOIN productos p ON dv.id_producto = p.id_producto
-             WHERE dv.id_venta = :id'
+             WHERE dv.id_venta = :id ORDER BY dv.id_producto, dv.id_detalle'
         );
         $stmtDet->execute([':id' => $id]);
         $venta['detalle'] = $stmtDet->fetchAll();
@@ -108,7 +112,7 @@ class VentaModel extends Model
     public function gananciaNetaMes(): float
     {
         $stmt = $this->db->prepare(
-            "SELECT COALESCE(SUM((dv.precio_unitario - p.costo) * dv.cantidad), 0)
+            "SELECT COALESCE(SUM((dv.precio_unitario - COALESCE(dv.costo_unitario_historico, p.costo)) * dv.cantidad), 0)
              FROM detalle_ventas dv
              JOIN ventas v ON dv.id_venta = v.id_venta
              JOIN productos p ON dv.id_producto = p.id_producto
@@ -189,8 +193,8 @@ class VentaModel extends Model
         $stmt = $this->db->prepare(
             "SELECT COUNT(DISTINCT v.id_venta) AS total_ventas,
                     COALESCE(SUM(dv.subtotal), 0) AS suma_ventas,
-                    COALESCE(SUM(p.costo * dv.cantidad), 0) AS total_costos,
-                    COALESCE(SUM((dv.precio_unitario - p.costo) * dv.cantidad), 0) AS ganancia_neta
+                     COALESCE(SUM(COALESCE(dv.costo_unitario_historico, p.costo) * dv.cantidad), 0) AS total_costos,
+                     COALESCE(SUM((dv.precio_unitario - COALESCE(dv.costo_unitario_historico, p.costo)) * dv.cantidad), 0) AS ganancia_neta
              FROM ventas v
              JOIN detalle_ventas dv ON v.id_venta = dv.id_venta
              JOIN productos p ON dv.id_producto = p.id_producto

@@ -50,6 +50,7 @@ CREATE TABLE categorias (
 -- ---------------------------------------------------------------------
 CREATE TABLE productos (
   id_producto    INT AUTO_INCREMENT PRIMARY KEY,
+  sku            VARCHAR(80) NOT NULL UNIQUE,
   nombre         VARCHAR(150) NOT NULL,
   descripcion    TEXT NULL,
   imagen         VARCHAR(255) NULL,
@@ -74,7 +75,11 @@ CREATE TABLE proveedores (
   telefono                VARCHAR(20)  NULL,
   celular                 VARCHAR(20)  NULL,
   direccion               VARCHAR(255) NULL,
-  url_web                 VARCHAR(255) NULL,
+  email                   VARCHAR(255) NOT NULL DEFAULT '',
+  ciudad                  VARCHAR(100) NOT NULL DEFAULT '',
+  sitio_web               VARCHAR(255) NOT NULL DEFAULT '',
+  notas                   TEXT NULL,
+  activo                  TINYINT(1) NOT NULL DEFAULT 1,
   calificacion_estrellas  TINYINT NOT NULL DEFAULT 5,
   CONSTRAINT chk_proveedores_estrellas
     CHECK (calificacion_estrellas BETWEEN 1 AND 5)
@@ -87,7 +92,7 @@ CREATE TABLE inventario (
   id_inventario       INT AUTO_INCREMENT PRIMARY KEY,
   id_producto         INT NOT NULL,
   id_proveedor        INT NOT NULL,
-  costo_producto      DECIMAL(10,2) NOT NULL,
+  costo_unitario      DECIMAL(10,2) NOT NULL,
   detalle             TEXT NULL,
   fecha_entrada       DATE NOT NULL,
   cantidad_ingresada  INT NOT NULL,
@@ -110,6 +115,8 @@ CREATE TABLE ventas (
   hash_datos     VARCHAR(255) NOT NULL,   -- hash de integridad de la venta + detalle
   firma_digital  TEXT NOT NULL,           -- firma generada por el CriptoServiceInterface
   estado         ENUM('pendiente', 'confirmada', 'anulada') NOT NULL DEFAULT 'confirmada',
+  idempotency_key CHAR(64) NULL UNIQUE,
+  firma_version  TINYINT UNSIGNED NOT NULL DEFAULT 1,
   CONSTRAINT fk_ventas_usuario
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
     ON UPDATE CASCADE ON DELETE RESTRICT
@@ -125,6 +132,7 @@ CREATE TABLE detalle_ventas (
   cantidad         INT NOT NULL,
   precio_unitario  DECIMAL(10,2) NOT NULL,
   subtotal         DECIMAL(10,2) NOT NULL,
+  costo_unitario_historico DECIMAL(10,2) NULL,
   CONSTRAINT fk_detalle_venta
     FOREIGN KEY (id_venta) REFERENCES ventas(id_venta)
     ON UPDATE CASCADE ON DELETE CASCADE,

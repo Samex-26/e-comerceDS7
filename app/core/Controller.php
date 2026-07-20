@@ -9,6 +9,7 @@ abstract class Controller
     public function __construct()
     {
         $this->lang = IdiomaHelper::cargar();
+        $this->generarTokenCsrf();
     }
 
     protected function view(string $viewName, array $data = []): void
@@ -76,5 +77,68 @@ abstract class Controller
             $_SESSION['errores'] = [$this->lang['acceso_denegado']];
             $this->redirect('auth/login');
         }
+    }
+
+    protected function requiereClienteActivo(): array
+    {
+        if (!isset($_SESSION['id_usuario'])) {
+            $_SESSION['errores'] = ['Debe iniciar sesión como cliente.'];
+            $this->redirect('auth/login');
+        }
+
+        $usuario = $this->model('Usuario')->buscarPorId((int) $_SESSION['id_usuario']);
+        if (!$usuario || (int) ($usuario['activo'] ?? 1) !== 1 || (int) ($usuario['bloqueado'] ?? 0) === 1) {
+            unset($_SESSION['id_usuario'], $_SESSION['nombre'], $_SESSION['email'], $_SESSION['rol'], $_SESSION['activo'], $_SESSION['carrito'], $_SESSION['checkout_key']);
+            http_response_code(403);
+            $this->renderAccesoDenegado('La cuenta no está disponible o está bloqueada.');
+            exit;
+        }
+        if (($usuario['rol'] ?? '') !== 'cliente') {
+            unset($_SESSION['carrito'], $_SESSION['checkout_key']);
+            $_SESSION['rol'] = $usuario['rol'];
+            http_response_code(403);
+            $this->renderAccesoDenegado('Esta operación está disponible únicamente para clientes.');
+            exit;
+        }
+
+        $_SESSION['rol'] = 'cliente';
+        $_SESSION['activo'] = 1;
+        return $usuario;
+    }
+
+    /** Compatibilidad interna; las rutas nuevas deben usar requiereClienteActivo(). */
+    protected function verificarCliente(): void { $this->requiereClienteActivo(); }
+
+    protected function exigirMetodoPost(): void
+    {
+        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
+            http_response_code(405);
+            header('Allow: POST');
+            echo 'Método no permitido.';
+            exit;
+        }
+    }
+
+    protected function exigirCsrf(): void
+    {
+        if (!$this->verificarTokenCsrf((string) ($_POST['csrf_token'] ?? ''))) {
+            http_response_code(422);
+            echo 'Token de seguridad inválido.';
+            exit;
+        }
+    }
+
+    protected function exigirPostConCsrf(): void
+    {
+        $this->exigirMetodoPost();
+        $this->exigirCsrf();
+    }
+
+    private function renderAccesoDenegado(string $mensaje): void
+    {
+        header('Content-Type: text/html; charset=UTF-8');
+        echo '<!doctype html><html lang="es"><meta charset="utf-8"><title>Acceso denegado</title>';
+        echo '<body><main><h1>Acceso denegado</h1><p>' . htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') . '</p>';
+        echo '<a href="' . htmlspecialchars(BASE_URL, ENT_QUOTES, 'UTF-8') . '">Volver al catálogo</a></main></body></html>';
     }
 }

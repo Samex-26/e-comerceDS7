@@ -26,6 +26,7 @@
 
     <form method="POST" action="<?= BASE_URL ?>venta/checkout">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+        <input type="hidden" name="idempotency_key" value="<?= htmlspecialchars($idempotency_key) ?>">
 
         <div class="row g-4">
             <!-- Left Column: Buyer Info -->
