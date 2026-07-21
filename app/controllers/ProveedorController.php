@@ -42,7 +42,11 @@ class ProveedorController extends Controller
         $telefono     = Sanitizer::telefono($_POST['telefono'] ?? '');
         $celular      = Sanitizer::telefono($_POST['celular'] ?? '');
         $direccion    = Sanitizer::texto($_POST['direccion'] ?? '');
-        $urlWeb       = Sanitizer::url($_POST['url_web'] ?? '');
+        $urlWeb = trim($_POST['url_web'] ?? '');
+        if ($urlWeb !== '' && !preg_match('#^https?://#i', $urlWeb)) {
+            $urlWeb = 'https://' . $urlWeb;
+        }
+        $urlWeb       = Sanitizer::url($urlWeb);
         $calificacion = Sanitizer::entero($_POST['calificacion_estrellas'] ?? 0);
 
         if (!Validator::noVacio($nombre)) {
@@ -80,8 +84,11 @@ class ProveedorController extends Controller
         ];
 
         if ($id) {
-            $model->actualizar($id, $datos);
-            $_SESSION['exito'] = $this->lang['exito_actualizado'];
+            if ($model->actualizar($id, $datos)) {
+                $_SESSION['exito'] = $this->lang['exito_actualizado'];
+            } else {
+                $_SESSION['exito'] = $this->lang['sin_cambios_proveedor'];
+            }
         } else {
             $model->crear($datos);
             $_SESSION['exito'] = $this->lang['exito_creado'];

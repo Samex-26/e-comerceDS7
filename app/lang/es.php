@@ -54,6 +54,7 @@ return [
     'exito_creado'       => 'Registro creado exitosamente.',
     'exito_actualizado'  => 'Registro actualizado exitosamente.',
     'exito_eliminado'    => 'Registro eliminado exitosamente.',
+    'sin_cambios_proveedor' => 'No se detectaron cambios en el proveedor.',
     'error_imagen'       => 'Error al subir la imagen. Solo se permiten archivos JPG, PNG y WebP de hasta 2MB.',
     // Proveedores e Inventario
     'admin_proveedores'  => 'Administración de Proveedores',

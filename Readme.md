@@ -9,15 +9,15 @@
 
 | Nombre | Cédula | Rol en el desarrollo |
 |---|---|---|
-| Samuel Ojo | *[completar]* | *[completar]* |
-| Anacelis Boniche | *[completar]* | *[completar]* |
-| Daniel Morales | *[completar]* | *[completar]* |
-| Diego Vasquez | *[completar]* | *[completar]* |
+| Samuel Ojo Ruiz | *[8-1031-1344]* | *[completar]* |
+| Anacelis Boniche | *[8-1032-665]* | *[completar]* |
+| Danel Morales | *[8-1006-2453]* | *[completar]* |
+| Diego Vasquez | *[8-1002-2253]* | *[completar]* |
 
 Examen final de **Desarrollo de Software VII**, Universidad Tecnológica de Panamá — Facultad de Ingeniería en Sistemas Computacionales, Grupo 1GS133.
 
 ### 1.3. Fecha del Sistema y Versión
-- **Versión:** v1.0.0
+- **Versión:** v1.5.2
 - **Fecha de entrega:** 21/07/2026
 
 ### 🎥 1.4. Demostración en Video

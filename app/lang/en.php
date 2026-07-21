@@ -54,6 +54,7 @@ return [
     'exito_creado'       => 'Record created successfully.',
     'exito_actualizado'  => 'Record updated successfully.',
     'exito_eliminado'    => 'Record deleted successfully.',
+    'sin_cambios_proveedor' => 'No changes detected for this supplier.',
     'error_imagen'       => 'Error uploading image. Only JPG, PNG and WebP files up to 2MB are allowed.',
     // Suppliers and Inventory
     'admin_proveedores'  => 'Supplier Management',

@@ -88,7 +88,7 @@ CREATE TABLE inventario (
   id_inventario       INT AUTO_INCREMENT PRIMARY KEY,
   id_producto         INT NOT NULL,
   id_proveedor        INT NOT NULL,
-  costo_producto      DECIMAL(10,2) NOT NULL,
+  costo_unitario     DECIMAL(10,2) NOT NULL,
   detalle             TEXT NULL,
   fecha_entrada       DATE NOT NULL,
   cantidad_ingresada  INT NOT NULL,

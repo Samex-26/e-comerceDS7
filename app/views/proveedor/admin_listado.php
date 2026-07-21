@@ -206,7 +206,7 @@ $showDrawer = $editarProveedor || !empty($errores);
                            style="width: 100%; padding: 12px 16px 12px 80px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                            onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
                            onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
-                           placeholder="www.ejemplo.pe"
+                           placeholder="www.miproveedor.com"
                            value="<?= htmlspecialchars(preg_replace('#^https?://#', '', $editarProveedor['url_web'] ?? $old['url_web'] ?? '')) ?>">
                 </div>
             </div>
