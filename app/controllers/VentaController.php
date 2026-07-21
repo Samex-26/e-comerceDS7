@@ -14,6 +14,7 @@ class VentaController extends Controller
     public function checkout(): void
     {
         $this->requiereSesion();
+        $this->verificarCliente();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->procesarCheckout();
@@ -164,6 +165,7 @@ class VentaController extends Controller
     public function exito(int $idVenta): void
     {
         $this->requiereSesion();
+        $this->verificarCliente();
 
         $ventaModel = $this->model('VentaModel');
         $venta = $ventaModel->buscarPorId($idVenta);
@@ -222,6 +224,7 @@ class VentaController extends Controller
     public function historial(): void
     {
         $this->requiereSesion();
+        $this->verificarCliente();
 
         $ventaModel = $this->model('VentaModel');
         $ventas = $ventaModel->listarPorUsuario((int) $_SESSION['id_usuario']);

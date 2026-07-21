@@ -39,8 +39,9 @@ class CategoriaController extends Controller
         }
 
         $id          = Sanitizer::entero($_POST['id'] ?? 0);
-        $nombre      = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre      = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $descripcion = Sanitizer::texto($_POST['descripcion'] ?? '');
+        $icono       = Sanitizer::texto($_POST['icono'] ?? 'category');
 
         if (!Validator::noVacio($nombre)) {
             $errores[] = 'El nombre de la categoria es obligatorio.';
@@ -51,7 +52,7 @@ class CategoriaController extends Controller
 
         if (!empty($errores)) {
             $_SESSION['errores'] = $errores;
-            $_SESSION['old'] = ['nombre' => $nombre, 'descripcion' => $descripcion];
+            $_SESSION['old'] = ['nombre' => $nombre, 'descripcion' => $descripcion, 'icono' => $icono];
             $redirect = 'categoria/admin';
             if ($id) {
                 $redirect .= '?editar=' . $id;
@@ -61,7 +62,7 @@ class CategoriaController extends Controller
         }
 
         $model = $this->model('Categoria');
-        $datos = ['nombre' => $nombre, 'descripcion' => $descripcion];
+        $datos = ['nombre' => $nombre, 'descripcion' => $descripcion, 'icono' => $icono];
 
         if ($id) {
             $model->actualizar($id, $datos);
@@ -97,8 +98,9 @@ class CategoriaController extends Controller
             $errores[] = $this->lang['error_csrf'];
         }
 
-        $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $descripcion  = Sanitizer::texto($_POST['descripcion'] ?? '');
+        $icono        = Sanitizer::texto($_POST['icono'] ?? 'category');
 
         if (!Validator::noVacio($nombre)) {
             $errores[] = 'El nombre de la categoría es obligatorio.';
@@ -109,13 +111,13 @@ class CategoriaController extends Controller
 
         if (!empty($errores)) {
             $_SESSION['errores'] = $errores;
-            $_SESSION['old'] = ['nombre' => $nombre, 'descripcion' => $descripcion];
+            $_SESSION['old'] = ['nombre' => $nombre, 'descripcion' => $descripcion, 'icono' => $icono];
             $this->redirect('categoria/crear');
             return;
         }
 
         $model = $this->model('Categoria');
-        $model->crear(['nombre' => $nombre, 'descripcion' => $descripcion]);
+        $model->crear(['nombre' => $nombre, 'descripcion' => $descripcion, 'icono' => $icono]);
         $_SESSION['exito'] = $this->lang['exito_creado'];
         $this->redirect('categoria/admin');
     }
@@ -151,8 +153,9 @@ class CategoriaController extends Controller
             $errores[] = $this->lang['error_csrf'];
         }
 
-        $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $descripcion  = Sanitizer::texto($_POST['descripcion'] ?? '');
+        $icono        = Sanitizer::texto($_POST['icono'] ?? 'category');
 
         if (!Validator::noVacio($nombre)) {
             $errores[] = 'El nombre de la categoría es obligatorio.';
@@ -168,7 +171,7 @@ class CategoriaController extends Controller
         }
 
         $model = $this->model('Categoria');
-        $model->actualizar($id, ['nombre' => $nombre, 'descripcion' => $descripcion]);
+        $model->actualizar($id, ['nombre' => $nombre, 'descripcion' => $descripcion, 'icono' => $icono]);
         $_SESSION['exito'] = $this->lang['exito_actualizado'];
         $this->redirect('categoria/admin');
     }

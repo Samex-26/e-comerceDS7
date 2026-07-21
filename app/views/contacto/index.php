@@ -21,7 +21,7 @@
                     <span class="material-symbols-outlined" style="color: #4f46e5;">location_on</span>
                 </div>
                 <h6 class="fw-bold mb-1" style="color: #1e293b;">Direccion</h6>
-                <p class="small mb-0" style="color: #64748b;">Universidad Tecnologica de Panama<br>Facultad de Ingenieria en Sistemas Computacionales<br>Desarrollo de Software VII</p>
+                <p class="small mb-0" style="color: #64748b;">Westland Mall, Local 26<br>Autopista Arraiján-La Chorrera<br>Arraiján, Panamá</p>
             </div>
         </div>
         <div class="col-md-4">
@@ -30,7 +30,7 @@
                     <span class="material-symbols-outlined" style="color: #059669;">mail</span>
                 </div>
                 <h6 class="fw-bold mb-1" style="color: #1e293b;">Correo Electronico</h6>
-                <p class="small mb-0" style="color: #64748b;">contacto@tiendautp.com<br>ds7@utp.edu.pa</p>
+                <p class="small mb-0" style="color: #64748b;">contacto@e-comerceds7.com<br>ds7@utp.edu.pa</p>
             </div>
         </div>
         <div class="col-md-4">
@@ -39,7 +39,7 @@
                     <span class="material-symbols-outlined" style="color: #d97706;">group</span>
                 </div>
                 <h6 class="fw-bold mb-1" style="color: #1e293b;">Equipo</h6>
-                <p class="small mb-0" style="color: #64748b;">Estudiantes de Desarrollo de Software VII<br>Grupo de proyecto - TiendaUTP</p>
+                <p class="small mb-0" style="color: #64748b;">Estudiantes de Desarrollo de Software VII<br>Grupo de proyecto - e-comerceDS7</p>
             </div>
         </div>
     </div>

@@ -19,11 +19,12 @@ class Categoria extends Model
     public function crear(array $datos): int
     {
         $stmt = $this->db->prepare(
-            'INSERT INTO categorias (nombre, descripcion) VALUES (:nombre, :descripcion)'
+            'INSERT INTO categorias (nombre, descripcion, icono) VALUES (:nombre, :descripcion, :icono)'
         );
         $stmt->execute([
             ':nombre'      => $datos['nombre'],
             ':descripcion' => $datos['descripcion'] ?? '',
+            ':icono'       => $datos['icono'] ?? 'category',
         ]);
         return (int) $this->db->lastInsertId();
     }
@@ -31,12 +32,13 @@ class Categoria extends Model
     public function actualizar(int $id, array $datos): bool
     {
         $stmt = $this->db->prepare(
-            'UPDATE categorias SET nombre = :nombre, descripcion = :descripcion WHERE id_categoria = :id'
+            'UPDATE categorias SET nombre = :nombre, descripcion = :descripcion, icono = :icono WHERE id_categoria = :id'
         );
         $stmt->execute([
             ':id'          => $id,
             ':nombre'      => $datos['nombre'],
             ':descripcion' => $datos['descripcion'] ?? '',
+            ':icono'       => $datos['icono'] ?? 'category',
         ]);
         return $stmt->rowCount() > 0;
     }

@@ -16,6 +16,7 @@
                         }
                     }
                 ?>
+                <?php if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'admin'): ?>
                 <li class="nav-item">
                     <a class="nav-link position-relative d-flex align-items-center" href="<?= BASE_URL ?>carrito/ver" style="color: #1e293b;">
                         <span class="material-symbols-outlined" style="font-size: 1.5rem;">shopping_cart</span>
@@ -26,6 +27,7 @@
                         <?php endif; ?>
                     </a>
                 </li>
+                <?php endif; ?>
                 <?php if (isset($_SESSION['id_usuario'])): ?>
                     <li class="nav-item">
                         <span class="nav-link" style="color: #64748b; font-size: 0.9rem;">

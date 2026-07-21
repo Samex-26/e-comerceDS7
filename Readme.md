@@ -1,4 +1,4 @@
-# TiendaUTP — Sistema de Venta de Productos con Carrito de Compras
+# e-comerceDS7 — Sistema de Venta de Productos con Carrito de Compras
 
 Prototipo de sistema de e-commerce desarrollado como examen final de **Desarrollo de Software VII**, Universidad Tecnológica de Panamá — Facultad de Ingeniería en Sistemas Computacionales, Grupo 1GS133.
 
@@ -20,7 +20,7 @@ Prototipo de sistema de e-commerce desarrollado como examen final de **Desarroll
 
 ## Descripción
 
-TiendaUTP es un sistema web de venta de productos construido desde cero con arquitectura **MVC en PHP puro** (sin frameworks como Laravel o Symfony), diseñado para demostrar comprensión práctica del patrón Modelo-Vista-Controlador, principios SOLID/DRY, recomendaciones OWASP, y un patrón de contratos (interfaces) para operaciones criptográficas.
+e-comerceDS7 es un sistema web de venta de productos construido desde cero con arquitectura **MVC en PHP puro** (sin frameworks como Laravel o Symfony), diseñado para demostrar comprensión práctica del patrón Modelo-Vista-Controlador, principios SOLID/DRY, recomendaciones OWASP, y un patrón de contratos (interfaces) para operaciones criptográficas.
 
 El sistema incluye catálogo público multi-idioma, carrito de compras con ventas firmadas digitalmente (integridad verificable), generación de facturas en PDF, panel administrativo con gestión de productos/categorías/proveedores/inventario, tracking de visitas, dashboard de métricas y reportes.
 

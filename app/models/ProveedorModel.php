@@ -18,19 +18,16 @@ class ProveedorModel extends Model
     public function crear(array $datos): int
     {
         $stmt = $this->db->prepare(
-            'INSERT INTO proveedores (nombre, telefono, celular, email, direccion, ciudad, sitio_web, calificacion_estrellas, notas)
-             VALUES (:nombre, :telefono, :celular, :email, :direccion, :ciudad, :sitio_web, :calificacion_estrellas, :notas)'
+            'INSERT INTO proveedores (nombre, telefono, celular, direccion, url_web, calificacion_estrellas)
+             VALUES (:nombre, :telefono, :celular, :direccion, :url_web, :calificacion_estrellas)'
         );
         $stmt->execute([
             ':nombre'                => $datos['nombre'],
             ':telefono'              => $datos['telefono'] ?? '',
             ':celular'               => $datos['celular'] ?? '',
-            ':email'                 => $datos['email'] ?? '',
             ':direccion'             => $datos['direccion'] ?? '',
-            ':ciudad'                => $datos['ciudad'] ?? '',
-            ':sitio_web'             => $datos['sitio_web'] ?? '',
+            ':url_web'               => $datos['url_web'] ?? '',
             ':calificacion_estrellas'=> $datos['calificacion_estrellas'] ?? 0,
-            ':notas'                => $datos['notas'] ?? '',
         ]);
         return (int) $this->db->lastInsertId();
     }
@@ -42,12 +39,9 @@ class ProveedorModel extends Model
                 nombre = :nombre,
                 telefono = :telefono,
                 celular = :celular,
-                email = :email,
                 direccion = :direccion,
-                ciudad = :ciudad,
-                sitio_web = :sitio_web,
-                calificacion_estrellas = :calificacion_estrellas,
-                notas = :notas
+                url_web = :url_web,
+                calificacion_estrellas = :calificacion_estrellas
              WHERE id_proveedor = :id'
         );
         $stmt->execute([
@@ -55,12 +49,9 @@ class ProveedorModel extends Model
             ':nombre'                => $datos['nombre'],
             ':telefono'              => $datos['telefono'] ?? '',
             ':celular'               => $datos['celular'] ?? '',
-            ':email'                 => $datos['email'] ?? '',
             ':direccion'             => $datos['direccion'] ?? '',
-            ':ciudad'                => $datos['ciudad'] ?? '',
-            ':sitio_web'             => $datos['sitio_web'] ?? '',
+            ':url_web'               => $datos['url_web'] ?? '',
             ':calificacion_estrellas'=> $datos['calificacion_estrellas'] ?? 0,
-            ':notas'                => $datos['notas'] ?? '',
         ]);
         return $stmt->rowCount() > 0;
     }

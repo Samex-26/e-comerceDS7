@@ -34,8 +34,8 @@ class FacturaController extends Controller
 
         $facturaModel = $this->model('FacturaModel');
 
-        $rutaRelativa = 'assets/facturas/factura_' . $idVenta . '.pdf';
-        $rutaAbsoluta = BASE_PATH . '/../public/' . $rutaRelativa;
+        $rutaRelativa = 'storage/facturas/factura_' . $idVenta . '.pdf';
+        $rutaAbsoluta = BASE_PATH . '/' . $rutaRelativa;
 
         $existente = $facturaModel->buscarPorVenta($idVenta);
         if ($existente && file_exists($rutaAbsoluta)) {
@@ -55,8 +55,8 @@ class FacturaController extends Controller
 
         $pdf = new \TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 
-        $pdf->SetCreator('TiendaUTP');
-        $pdf->SetAuthor('TiendaUTP');
+        $pdf->SetCreator('e-comerceDS7');
+        $pdf->SetAuthor('e-comerceDS7');
         $pdf->SetTitle('Factura #UTP-' . str_pad((string) $idVenta, 5, '0', STR_PAD_LEFT));
         $pdf->SetSubject('Factura de compra');
 
@@ -76,10 +76,11 @@ class FacturaController extends Controller
         $pdf->SetTextColor(30, 41, 59);
 
         $pdf->SetFont('Helvetica', 'B', 22);
-        $pdf->Cell(0, 14, 'TiendaUTP', 0, 1, 'L');
+        $pdf->Cell(0, 14, 'e-comerceDS7', 0, 1, 'L');
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->SetTextColor(100, 116, 139);
         $pdf->Cell(0, 6, 'Universidad Tecnologica de Panama', 0, 1, 'L');
+        $pdf->Cell(0, 6, 'Westland Mall, Local 26, Autopista Arraijan-La Chorrera, Arraijan, Panama', 0, 1, 'L');
         $pdf->Cell(0, 6, 'Factura electronica', 0, 1, 'L');
         $pdf->Ln(4);
 
@@ -178,7 +179,7 @@ class FacturaController extends Controller
         $pdf->SetFont('Helvetica', '', 8);
         $pdf->SetTextColor(148, 163, 184);
         $pdf->Cell(0, 5, 'Gracias por su compra', 0, 1, 'C');
-        $pdf->Cell(0, 5, 'TiendaUTP - Universidad Tecnologica de Panama', 0, 1, 'C');
+        $pdf->Cell(0, 5, 'e-comerceDS7 - Universidad Tecnologica de Panama', 0, 1, 'C');
 
         $pdf->Output($rutaAbsoluta, 'F');
 

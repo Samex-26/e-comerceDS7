@@ -42,7 +42,8 @@ CREATE TABLE usuarios (
 CREATE TABLE categorias (
   id_categoria  INT AUTO_INCREMENT PRIMARY KEY,
   nombre        VARCHAR(100) NOT NULL,
-  descripcion   TEXT NULL
+  descripcion   TEXT NULL,
+  icono         VARCHAR(50) NOT NULL DEFAULT 'category'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------

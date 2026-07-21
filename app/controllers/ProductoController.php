@@ -82,7 +82,7 @@ class ProductoController extends Controller
         }
 
         $id           = Sanitizer::entero($_POST['id'] ?? 0);
-        $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $descripcion  = Sanitizer::html($_POST['descripcion'] ?? '');
         $precio       = Sanitizer::decimal($_POST['precio'] ?? 0);
         $precioOferta = Sanitizer::decimal($_POST['precio_oferta'] ?? 0);
@@ -100,6 +100,18 @@ class ProductoController extends Controller
         if (!Validator::enteroPositivo($idCategoria)) {
             $errores[] = 'Debe seleccionar una categoria valida.';
         }
+        if ($precioOferta > 0 && $precioOferta >= $precio) {
+            $errores[] = 'El precio de oferta debe ser menor al precio base.';
+        }
+        if ($precioOferta < 0) {
+            $errores[] = 'El precio de oferta no puede ser negativo.';
+        }
+        if (!Validator::numerico($costo) || $costo < 0) {
+            $errores[] = 'El costo no puede ser negativo.';
+        }
+        if ($cantidad < 0) {
+            $errores[] = 'La cantidad no puede ser negativa.';
+        }
 
         $imagen = null;
         $model = $this->model('Producto');
@@ -109,6 +121,8 @@ class ProductoController extends Controller
             if ($imagen === false) {
                 $errores[] = $this->lang['error_imagen'];
             }
+        } elseif ($id === 0) {
+            $errores[] = 'La imagen del producto es obligatoria. Debe subir un archivo JPG, PNG o WebP.';
         }
 
         if (!empty($errores)) {
@@ -172,7 +186,7 @@ class ProductoController extends Controller
             $errores[] = $this->lang['error_csrf'];
         }
 
-        $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $descripcion  = Sanitizer::html($_POST['descripcion'] ?? '');
         $precio       = Sanitizer::decimal($_POST['precio'] ?? 0);
         $precioOferta = Sanitizer::decimal($_POST['precio_oferta'] ?? 0);
@@ -190,19 +204,29 @@ class ProductoController extends Controller
         if (!Validator::enteroPositivo($idCategoria)) {
             $errores[] = 'Debe seleccionar una categoría válida.';
         }
-        if ($precioOferta > 0 && !Validator::maximo($precioOferta, $precio)) {
-            $errores[] = 'El precio de oferta no puede ser mayor al precio regular.';
+        if ($precioOferta > 0 && $precioOferta >= $precio) {
+            $errores[] = 'El precio de oferta debe ser menor al precio base.';
+        }
+        if ($precioOferta < 0) {
+            $errores[] = 'El precio de oferta no puede ser negativo.';
+        }
+        if (!Validator::numerico($costo) || $costo < 0) {
+            $errores[] = 'El costo no puede ser negativo.';
         }
         if (!Validator::enteroPositivo($cantidad) && $cantidad !== 0) {
             $errores[] = 'La cantidad debe ser un número entero no negativo.';
         }
-
-        // Procesar imagen
-        $imagen = $this->procesarImagen($_FILES['imagen'] ?? []);
-        if ($imagen === false) {
-            $errores[] = $this->lang['error_imagen'];
+        if ($cantidad < 0) {
+            $errores[] = 'La cantidad no puede ser negativa.';
         }
 
+        // Procesar imagen — obligatoria al crear
+        $imagen = $this->procesarImagen($_FILES['imagen'] ?? []);
+        if ($imagen === false || empty($imagen)) {
+            $errores[] = $imagen === false ? $this->lang['error_imagen'] : 'La imagen del producto es obligatoria. Debe subir un archivo JPG, PNG o WebP.';
+        }
+
+        error_log('DEBUG errores: ' . print_r($errores, true));
         if (!empty($errores)) {
             $_SESSION['errores'] = $errores;
             $_SESSION['old'] = $_POST;
@@ -247,7 +271,7 @@ class ProductoController extends Controller
                 'csrf_token' => $this->generarTokenCsrf(),
                 'errores'    => $_SESSION['errores'] ?? [],
             ]);
-            unset($_SESSION['errores']);
+            unset($_SESSION['errores'], $_SESSION['old']);
         }
     }
 
@@ -259,7 +283,7 @@ class ProductoController extends Controller
             $errores[] = $this->lang['error_csrf'];
         }
 
-        $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $descripcion  = Sanitizer::html($_POST['descripcion'] ?? '');
         $precio       = Sanitizer::decimal($_POST['precio'] ?? 0);
         $precioOferta = Sanitizer::decimal($_POST['precio_oferta'] ?? 0);
@@ -276,8 +300,8 @@ class ProductoController extends Controller
         if (!Validator::enteroPositivo($idCategoria)) {
             $errores[] = 'Debe seleccionar una categoría válida.';
         }
-        if ($precioOferta > 0 && !Validator::maximo($precioOferta, $precio)) {
-            $errores[] = 'El precio de oferta no puede ser mayor al precio regular.';
+        if ($precioOferta > 0 && $precioOferta >= $precio) {
+            $errores[] = 'El precio de oferta debe ser menor al precio base.';
         }
 
         // Imagen opcional en edición

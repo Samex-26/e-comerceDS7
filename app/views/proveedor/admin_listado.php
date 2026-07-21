@@ -87,21 +87,18 @@ $showDrawer = $editarProveedor || !empty($errores);
                                         <div style="width: 40px; height: 40px; border-radius: 8px; background: #dbeafe; display: flex; align-items: center; justify-content: center; color: #1e293b; font-weight: 700; font-size: 14px;">
                                             <?= strtoupper(substr($p['nombre'], 0, 2)) ?>
                                         </div>
-                                        <div>
-                                            <p style="font-weight: 600; color: #1e293b; margin: 0;"><?= htmlspecialchars($p['nombre']) ?></p>
-                                            <?php if (!empty($p['email'])): ?>
-                                                <p style="font-size: 12px; color: #64748b; margin: 2px 0 0 0;"><?= htmlspecialchars($p['email']) ?></p>
-                                            <?php endif; ?>
-                                        </div>
+                                                    <div>
+                                                            <p style="font-weight: 600; color: #1e293b; margin: 0;"><?= htmlspecialchars($p['nombre']) ?></p>
+                                                        </div>
                                     </div>
                                 </td>
                                 <td style="padding: 20px 24px; color: #475569;"><?= htmlspecialchars($p['telefono'] ?: '&mdash;') ?></td>
                                 <td style="padding: 20px 24px; color: #475569;"><?= htmlspecialchars($p['celular'] ?: '&mdash;') ?></td>
                                 <td style="padding: 20px 24px; color: #475569; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?= htmlspecialchars($p['direccion'] ?: '&mdash;') ?></td>
                                 <td style="padding: 20px 24px;">
-                                    <?php if (!empty($p['sitio_web'])): ?>
-                                        <a href="<?= htmlspecialchars($p['sitio_web']) ?>" target="_blank" style="color: #fd761a; font-weight: 500; display: flex; align-items: center; gap: 4px; font-size: 14px; text-decoration: none;">
-                                            <?= htmlspecialchars(preg_replace('#^https?://#', '', $p['sitio_web'])) ?>
+                                    <?php if (!empty($p['url_web'])): ?>
+                                        <a href="<?= htmlspecialchars($p['url_web']) ?>" target="_blank" style="color: #fd761a; font-weight: 500; display: flex; align-items: center; gap: 4px; font-size: 14px; text-decoration: none;">
+                                            <?= htmlspecialchars(preg_replace('#^https?://#', '', $p['url_web'])) ?>
                                             <span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span>
                                         </a>
                                     <?php else: ?>
@@ -192,16 +189,6 @@ $showDrawer = $editarProveedor || !empty($errores);
             </div>
 
             <div style="margin-bottom: 24px;">
-                <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Email</label>
-                <input type="email" name="email"
-                       style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
-                       onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
-                       onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
-                       placeholder="contacto@ejemplo.pe"
-                       value="<?= htmlspecialchars($editarProveedor['email'] ?? $old['email'] ?? '') ?>">
-            </div>
-
-            <div style="margin-bottom: 24px;">
                 <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Direcci&oacute;n</label>
                 <input type="text" name="direccion"
                        style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
@@ -211,27 +198,16 @@ $showDrawer = $editarProveedor || !empty($errores);
                        value="<?= htmlspecialchars($editarProveedor['direccion'] ?? $old['direccion'] ?? '') ?>">
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
-                <div>
-                    <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Ciudad</label>
-                    <input type="text" name="ciudad"
-                           style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
+            <div style="margin-bottom: 24px;">
+                <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Sitio Web</label>
+                <div style="position: relative;">
+                    <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;">https://</span>
+                    <input type="text" name="url_web"
+                           style="width: 100%; padding: 12px 16px 12px 80px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
                            onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
                            onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
-                           placeholder="Lima"
-                           value="<?= htmlspecialchars($editarProveedor['ciudad'] ?? $old['ciudad'] ?? '') ?>">
-                </div>
-                <div>
-                    <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Sitio Web</label>
-                    <div style="position: relative;">
-                        <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;">https://</span>
-                        <input type="text" name="sitio_web"
-                               style="width: 100%; padding: 12px 16px 12px 80px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
-                               onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
-                               onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
-                               placeholder="www.ejemplo.pe"
-                               value="<?= htmlspecialchars(preg_replace('#^https?://#', '', $editarProveedor['sitio_web'] ?? $old['sitio_web'] ?? '')) ?>">
-                    </div>
+                           placeholder="www.ejemplo.pe"
+                           value="<?= htmlspecialchars(preg_replace('#^https?://#', '', $editarProveedor['url_web'] ?? $old['url_web'] ?? '')) ?>">
                 </div>
             </div>
 
@@ -247,15 +223,6 @@ $showDrawer = $editarProveedor || !empty($errores);
                     <input type="hidden" name="calificacion_estrellas" id="calificacion_estrellas" value="<?= $rating ?>">
                 </div>
                 <p style="font-size: 12px; color: #94a3b8; font-style: italic; margin: 4px 0 0 0;">Califica la confiabilidad y calidad del proveedor.</p>
-            </div>
-
-            <div style="margin-bottom: 24px;">
-                <label style="font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: block; margin-bottom: 8px;">Notas</label>
-                <textarea name="notas" rows="3"
-                          style="width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; resize: none; box-sizing: border-box; font-family: inherit; font-size: inherit;"
-                          onfocus="this.style.borderColor='#fd761a';this.style.boxShadow='0 0 0 2px rgba(253,118,26,0.25)'"
-                          onblur="this.style.borderColor='#cbd5e1';this.style.boxShadow='none'"
-                          placeholder="Notas adicionales..."><?= htmlspecialchars($editarProveedor['notas'] ?? $old['notas'] ?? '') ?></textarea>
             </div>
 
             <div style="padding-top: 16px; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 16px;">

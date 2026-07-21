@@ -5,6 +5,9 @@
     .form-label-custom { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; font-weight: 600; margin-bottom: 0.4rem; }
     .form-input-custom { border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.7rem 1rem; width: 100%; transition: all 0.2s; }
     .form-input-custom:focus { border-color: #4f46e5; box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15); outline: none; }
+    .cat-icon-option { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 0.5rem; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.2s; }
+    .cat-icon-option:hover { border-color: #cbd5e1; background: #f8fafc; }
+    .cat-icon-option.selected { border-color: #4f46e5; background: #eef2ff; }
 </style>
 
 <div class="container-fluid py-4 px-4" style="background: #f7f9fb; min-height: calc(100vh - 56px);">
@@ -23,6 +26,20 @@
         <div class="p-4">
             <form method="POST" action="<?= BASE_URL ?>categoria/<?= isset($categoria) ? 'editar/' . (int) $categoria['id_categoria'] : 'crear' ?>">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+
+                <div class="mb-4">
+                    <label class="form-label-custom">Icono Visual</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;" id="icon-selector">
+                        <?php $iconos = ['category', 'shopping_basket', 'home', 'favorite', 'smartphone', 'styler', 'chair', 'fitness_center', 'book', 'computer', 'restaurant', 'pets']; ?>
+                        <?php $iconoActual = $categoria['icono'] ?? $old['icono'] ?? 'category'; ?>
+                        <?php foreach ($iconos as $ico): ?>
+                            <div class="cat-icon-option <?= $ico === $iconoActual ? 'selected' : '' ?>" data-icon="<?= $ico ?>" onclick="selectIcon(this)">
+                                <span class="material-symbols-outlined" style="font-size: 1.3rem;"><?= $ico ?></span>
+                            </div>
+                        <?php endforeach; ?>
+                        <input type="hidden" name="icono" id="icono_selected" value="<?= htmlspecialchars($iconoActual) ?>">
+                    </div>
+                </div>
 
                 <div class="mb-4">
                     <label class="form-label-custom">Nombre de la Categoría <span class="text-danger">*</span></label>
@@ -48,3 +65,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    function selectIcon(el) {
+        document.querySelectorAll('.cat-icon-option').forEach(function(o) { o.classList.remove('selected'); });
+        el.classList.add('selected');
+        document.getElementById('icono_selected').value = el.dataset.icon;
+    }
+</script>

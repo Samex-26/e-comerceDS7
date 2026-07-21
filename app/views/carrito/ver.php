@@ -18,6 +18,10 @@
 </style>
 
 <div class="container py-5" style="max-width: 1100px;">
+    <a href="javascript:history.back()" class="btn px-0 mb-3 d-inline-flex align-items-center gap-1" style="color: var(--primary); font-weight: 600; border: none; background: none;">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Volver
+    </a>
     <h2 class="fw-bold mb-4" style="color: var(--primary);">Carrito de Compras</h2>
 
     <?php if (!empty($exito)): ?>
@@ -68,15 +72,18 @@
                             </div>
                         </div>
 
-                        <form method="POST" action="<?= BASE_URL ?>carrito/actualizar/<?= (int) $idP ?>" class="d-flex align-items-center gap-2">
-                            <input type="number" name="cantidad" value="<?= (int) $item['cantidad'] ?>" min="1" class="qty-input">
-                            <button type="submit" class="btn btn-sm btn-outline-secondary border-0" title="Actualizar">
-                                <span class="material-symbols-outlined" style="font-size: 20px;">refresh</span>
+                        <div class="d-flex align-items-center gap-2" data-id-producto="<?= (int) $idP ?>">
+                            <button type="button" class="btn btn-sm btn-outline-secondary border-0 btn-qty-minus" title="Disminuir">
+                                <span class="material-symbols-outlined" style="font-size: 20px;">remove</span>
                             </button>
-                        </form>
+                            <input type="number" name="cantidad" value="<?= (int) $item['cantidad'] ?>" min="1" class="qty-input input-qty">
+                            <button type="button" class="btn btn-sm btn-outline-secondary border-0 btn-qty-plus" title="Aumentar">
+                                <span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+                            </button>
+                        </div>
 
                         <div class="text-end" style="min-width: 90px;">
-                            <p class="fw-bold mb-1" style="color: var(--primary);">
+                            <p class="fw-bold mb-1" style="color: var(--primary);" data-subtotal-for="<?= (int) $idP ?>">
                                 $<?= number_format($item['subtotal'] ?? ($item['cantidad'] * $item['precio_unitario']), 2, '.', '') ?>
                             </p>
                             <a href="<?= BASE_URL ?>carrito/eliminar/<?= (int) $idP ?>"
@@ -94,7 +101,7 @@
                     <h5 class="fw-bold mb-3" style="color: var(--primary);">Resumen</h5>
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted">Subtotal</span>
-                        <span class="fw-semibold">$<?= number_format($total, 2, '.', '') ?></span>
+                        <span class="fw-semibold" id="cart-subtotal-summary">$<?= number_format($total, 2, '.', '') ?></span>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <span class="text-muted">Envío</span>
@@ -103,7 +110,7 @@
                     <hr>
                     <div class="d-flex justify-content-between mb-4">
                         <span class="fw-bold" style="color: var(--primary);">Total</span>
-                        <span class="fw-bold fs-5" style="color: var(--primary);">$<?= number_format($total, 2, '.', '') ?></span>
+                        <span class="fw-bold fs-5" id="cart-total-summary" style="color: var(--primary);">$<?= number_format($total, 2, '.', '') ?></span>
                     </div>
                     <a href="<?= BASE_URL ?>venta/checkout" class="btn btn-secondary-custom w-100 py-3 fw-bold rounded-3">
                         <span class="material-symbols-outlined me-2">lock</span>

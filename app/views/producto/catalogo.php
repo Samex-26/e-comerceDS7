@@ -60,17 +60,6 @@
         background-color: #d1d5db;
         color: #45474c;
     }
-    .cookies-banner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: white;
-        border-top: 1px solid #e2e8f0;
-        z-index: 1050;
-        padding: 1rem 0;
-        display: none;
-    }
 </style>
 
 <div class="container my-4">
@@ -119,9 +108,14 @@
                             <?php endif; ?>
                         </div>
                         <div class="card-body d-flex flex-column p-3">
-                            <h6 class="fw-semibold mb-2" style="font-size: 1.25rem;">
+                            <h6 class="fw-semibold mb-1" style="font-size: 1.25rem;">
                                 <?= htmlspecialchars($p['nombre']) ?>
                             </h6>
+                            <?php if (!empty($p['descripcion'])): ?>
+                                <p class="text-muted small mb-2" style="font-size: 0.8rem; line-height: 1.3;">
+                                    <?= htmlspecialchars(mb_substr($p['descripcion'], 0, 100)) ?><?= mb_strlen($p['descripcion']) > 100 ? '...' : '' ?>
+                                </p>
+                            <?php endif; ?>
                             <?php if (!empty($p['precio_oferta']) && $p['precio_oferta'] > 0): ?>
                                 <p class="mb-2">
                                     <span class="price-primary">$<?= number_format($p['precio_oferta'], 2, '.', '') ?></span>
@@ -147,26 +141,7 @@
     <?php endif; ?>
 </div>
 
-<div class="cookies-banner" id="cookieBanner">
-    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-        <p class="mb-0 text-muted small">
-            Utilizamos cookies propias y de terceros para mejorar tu experiencia en nuestro sitio web.
-            <a href="#" class="text-decoration-underline text-muted">Más información</a>
-        </p>
-        <button onclick="document.getElementById('cookieBanner').style.display='none'; localStorage.setItem('cookieConsent','true');"
-                class="btn text-white px-4 py-2 flex-shrink-0" style="background-color: #1e293b;">
-            Aceptar
-        </button>
-    </div>
-</div>
 
-<script>
-    (function() {
-        if (!localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookieBanner').style.display = '';
-        }
-    })();
-</script>
 
 <script>
 (function() {

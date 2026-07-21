@@ -14,6 +14,10 @@
 </style>
 
 <div class="container py-5" style="max-width: 1200px;">
+    <a href="<?= BASE_URL ?>carrito/ver" class="btn px-0 mb-3 d-inline-flex align-items-center gap-1" style="color: var(--primary); font-weight: 600; border: none; background: none;">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Volver al carrito
+    </a>
     <h2 class="fw-bold mb-4" style="color: var(--primary);">Checkout</h2>
 
     <?php if (!empty($errores)): ?>

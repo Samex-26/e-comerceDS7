@@ -27,7 +27,7 @@
 <?php
 $showDrawer = !empty($categoriaEditar) || !empty($errores);
 $iconos = ['category', 'shopping_basket', 'home', 'favorite', 'smartphone', 'styler', 'chair', 'fitness_center', 'book', 'computer', 'restaurant', 'pets'];
-$iconoActual = $categoriaEditar['nombre'] ?? $old['nombre'] ?? '';
+$iconoActual = $categoriaEditar['icono'] ?? $old['icono'] ?? 'category';
 ?>
 
 <?php if ($exito): ?>
@@ -93,7 +93,7 @@ $iconoActual = $categoriaEditar['nombre'] ?? $old['nombre'] ?? '';
                                     <td style="padding-left: 1.5rem;">
                                         <div style="display: flex; align-items: center; gap: 12px;">
                                             <div style="width: 40px; height: 40px; border-radius: 0.5rem; background: #eef2ff; display: flex; align-items: center; justify-content: center; color: #4f46e5;">
-                                                <span class="material-symbols-outlined" style="font-size: 1.2rem;"><?= $iconos[crc32($cat['nombre']) % count($iconos)] ?></span>
+                                                <span class="material-symbols-outlined" style="font-size: 1.2rem;"><?= htmlspecialchars($cat['icono'] ?? 'category') ?></span>
                                             </div>
                                             <div>
                                                 <p class="fw-semibold mb-0" style="color: #1e293b;"><?= htmlspecialchars($cat['nombre']) ?></p>
@@ -164,11 +164,11 @@ $iconoActual = $categoriaEditar['nombre'] ?? $old['nombre'] ?? '';
                 <label class="form-label-custom">Icono Visual</label>
                 <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;" id="icon-selector">
                     <?php foreach ($iconos as $ico): ?>
-                        <div class="cat-icon-option <?= $ico === 'category' && !$categoriaEditar ? 'selected' : '' ?>" data-icon="<?= $ico ?>" onclick="selectIcon(this)">
+                        <div class="cat-icon-option <?= $ico === $iconoActual ? 'selected' : '' ?>" data-icon="<?= $ico ?>" onclick="selectIcon(this)">
                             <span class="material-symbols-outlined" style="font-size: 1.3rem;"><?= $ico ?></span>
                         </div>
                     <?php endforeach; ?>
-                    <input type="hidden" name="icono" id="icono_selected" value="category">
+                    <input type="hidden" name="icono" id="icono_selected" value="<?= htmlspecialchars($iconoActual) ?>">
                 </div>
             </div>
 

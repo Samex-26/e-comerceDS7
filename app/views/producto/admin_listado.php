@@ -144,7 +144,6 @@ $showDrawer = !empty($productoEditar) || !empty($errores);
                                             <?php endif; ?>
                                             <div>
                                                 <p class="fw-semibold mb-0" style="color: #1e293b;"><?= htmlspecialchars($p['nombre']) ?></p>
-                                                <small style="color: #94a3b8;">SKU: PRD-<?= str_pad((string) $p['id_producto'], 5, '0', STR_PAD_LEFT) ?></small>
                                             </div>
                                         </div>
                                     </td>

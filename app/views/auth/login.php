@@ -328,7 +328,7 @@ $currentLang = IdiomaHelper::getCodigo();
     <div class="logo-icon-wrap">
         <span class="material-symbols-outlined">shopping_bag</span>
     </div>
-    <h1 class="logo-text">TiendaUTP</h1>
+    <h1 class="logo-text">e-comerceDS7</h1>
 </div>
 
 <div class="login-card">
@@ -396,7 +396,7 @@ $currentLang = IdiomaHelper::getCodigo();
 </p>
 
 <footer class="login-footer">
-    &copy; 2024 TiendaUTP. Universidad Tecnol&oacute;gica de Panam&aacute;.
+    &copy; 2024 e-comerceDS7. Universidad Tecnol&oacute;gica de Panam&aacute;.
 </footer>
 
 <script>

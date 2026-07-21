@@ -54,6 +54,13 @@ abstract class Controller
         exit;
     }
 
+    protected function json(array $data): void
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
     protected function generarTokenCsrf(): string
     {
         if (empty($_SESSION['csrf_token'])) {
@@ -75,6 +82,14 @@ abstract class Controller
         if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'admin') {
             $_SESSION['errores'] = [$this->lang['acceso_denegado']];
             $this->redirect('auth/login');
+        }
+    }
+
+    protected function verificarCliente(): void
+    {
+        if (isset($_SESSION['id_usuario']) && $_SESSION['rol'] === 'admin') {
+            $_SESSION['errores'] = [$this->lang['compras_exclusivas_cliente']];
+            $this->redirect('dashboard/index');
         }
     }
 }

@@ -30,10 +30,13 @@
     .related-card .card-img-top { height: 200px; object-fit: cover; }
     .related-card .btn-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; background: #fd761a; color: white; border: none; text-decoration: none; }
     .related-card .btn-icon:hover { background: #e06500; color: white; }
-    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: white; padding: 1rem 0; z-index: 9999; }
 </style>
 
 <div class="container mt-4">
+    <a href="javascript:history.back()" class="btn px-0 mb-2 d-inline-flex align-items-center gap-1" style="color: var(--primary); font-weight: 600; border: none; background: none;">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Volver
+    </a>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-custom">
             <li class="breadcrumb-item"><a href="<?= BASE_URL ?>" class="text-decoration-none">Inicio</a></li>
@@ -119,8 +122,7 @@
             </div>
 
             <?php if ((int) $producto['cantidad'] > 0): ?>
-                <form method="POST" action="<?= BASE_URL ?>carrito/agregar" class="mb-3">
-                    <input type="hidden" name="id_producto" value="<?= (int) $producto['id_producto'] ?>">
+                <form method="POST" action="<?= BASE_URL ?>carrito/agregar/<?= (int) $producto['id_producto'] ?>">
                     <div class="d-flex align-items-center gap-3 mb-3">
                         <label class="mb-0 text-muted">Cantidad:</label>
                         <div class="qty-selector">
@@ -196,13 +198,6 @@
     <?php endif; ?>
 </div>
 
-<div class="cookie-banner" id="cookieBanner">
-    <div class="container d-flex justify-content-between align-items-center">
-        <span>Este sitio utiliza cookies para mejorar tu experiencia. Al continuar navegando, aceptas su uso.</span>
-        <button class="btn btn-light btn-sm ms-3" onclick="aceptarCookies()">Aceptar</button>
-    </div>
-</div>
-
 <script>
 function cambiarImagen(el, src) {
     document.querySelectorAll('.thumb-img').forEach(function(t) {
@@ -222,10 +217,6 @@ function decrementarCantidad() {
     var input = document.getElementById('inputCantidad');
     var val = parseInt(input.value) || 1;
     if (val > 1) input.value = val - 1;
-}
-function aceptarCookies() {
-    document.getElementById('cookieBanner').style.display = 'none';
-    document.cookie = 'cookies_aceptadas=1; path=/; max-age=' + 60*60*24*365;
 }
 </script>
 

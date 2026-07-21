@@ -14,7 +14,7 @@ $langCode = IdiomaHelper::getCodigo();
 
     <div class="text-center mt-4">
         <span class="material-symbols-outlined" style="font-size: 3rem; color: #1e293b;">shopping_bag</span>
-        <h1 class="h4 mt-2" style="color: #1e293b; font-weight: 600;">TiendaUTP</h1>
+        <h1 class="h4 mt-2" style="color: #1e293b; font-weight: 600;">e-comerceDS7</h1>
     </div>
 
     <div class="container d-flex justify-content-center mt-3 mb-4">
@@ -108,7 +108,7 @@ $langCode = IdiomaHelper::getCodigo();
     </div>
 
     <footer class="text-center py-4 mt-auto" style="color: #64748b; font-size: 0.8rem; border-top: 1px solid #e2e8f0;">
-        &copy; 2024 TiendaUTP. Universidad Tecnológica de Panamá.
+        &copy; 2024 e-comerceDS7. Universidad Tecnológica de Panamá.
     </footer>
 </div>
 

@@ -41,12 +41,9 @@ class ProveedorController extends Controller
         $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
         $telefono     = Sanitizer::telefono($_POST['telefono'] ?? '');
         $celular      = Sanitizer::telefono($_POST['celular'] ?? '');
-        $email        = Sanitizer::email($_POST['email'] ?? '');
         $direccion    = Sanitizer::texto($_POST['direccion'] ?? '');
-        $ciudad       = Sanitizer::texto($_POST['ciudad'] ?? '');
-        $sitioWeb     = Sanitizer::url($_POST['sitio_web'] ?? '');
+        $urlWeb       = Sanitizer::url($_POST['url_web'] ?? '');
         $calificacion = Sanitizer::entero($_POST['calificacion_estrellas'] ?? 0);
-        $notas        = Sanitizer::texto($_POST['notas'] ?? '');
 
         if (!Validator::noVacio($nombre)) {
             $errores[] = 'El nombre del proveedor es obligatorio.';
@@ -54,10 +51,7 @@ class ProveedorController extends Controller
         if (!Validator::longitud($nombre, 2, 255)) {
             $errores[] = 'El nombre debe tener entre 2 y 255 caracteres.';
         }
-        if (!empty($email) && !Validator::email($email)) {
-            $errores[] = 'El formato del correo electrónico no es válido.';
-        }
-        if (!empty($sitioWeb) && !Validator::url($sitioWeb)) {
+        if (!empty($urlWeb) && !Validator::url($urlWeb)) {
             $errores[] = 'El formato de la URL del sitio web no es válido.';
         }
         if (!Validator::rangoNumerico($calificacion, 0, 5)) {
@@ -80,12 +74,9 @@ class ProveedorController extends Controller
             'nombre'                => $nombre,
             'telefono'              => $telefono,
             'celular'               => $celular,
-            'email'                 => $email,
             'direccion'             => $direccion,
-            'ciudad'                => $ciudad,
-            'sitio_web'             => $sitioWeb,
+            'url_web'               => $urlWeb,
             'calificacion_estrellas'=> $calificacion,
-            'notas'                => $notas,
         ];
 
         if ($id) {

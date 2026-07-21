@@ -16,10 +16,20 @@
         </div>
 
         <?php if (!empty($errores)): ?>
-            <div class="mx-3 mt-3 px-4 py-3 rounded-3" style="background: #fee2e2; border: 1px solid #fecaca; color: #991b1b;">
+            <div class="mx-3 mt-3 px-4 py-3 rounded-3" style="background: #fee2e2; border: 1px solid #fecaca; color: #991b1b;" id="error-banner">
                 <?php foreach ($errores as $e): ?><p class="mb-0 d-flex align-items-center gap-2"><span class="material-symbols-outlined">error</span><?= htmlspecialchars($e) ?></p><?php endforeach; ?>
             </div>
         <?php endif; ?>
+    <?php if (!empty($errores)): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var banner = document.getElementById('error-banner');
+            if (banner) {
+                banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    </script>
+    <?php endif; ?>
 
         <div class="p-4">
             <form method="POST" action="<?= BASE_URL ?>producto/<?= isset($producto) ? 'editar/' . (int) $producto['id_producto'] : 'crear' ?>"
@@ -84,9 +94,9 @@
                 </p>
                 <div class="row g-4 mb-4">
                     <div class="col-md-6">
-                        <label class="form-label-custom">Imagen del Producto</label>
-                        <input type="file" class="form-input-custom" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp" style="padding: 0.5rem;">
-                        <div class="mt-1" style="font-size: 0.75rem; color: #94a3b8;">Sube una imagen desde tu computadora. Formatos: JPG, PNG, WebP (máx. 2 MB).</div>
+                        <label class="form-label-custom">Imagen del Producto <?= !isset($producto) ? '<span class="text-danger">*</span>' : '' ?></label>
+                        <input type="file" class="form-input-custom" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp" style="padding: 0.5rem;" <?= !isset($producto) ? 'required' : '' ?>>
+                        <div class="mt-1" style="font-size: 0.75rem; color: #94a3b8;">Sube una imagen desde tu computadora. Formatos: JPG, PNG, WebP (máx. 2 MB).<?= !isset($producto) ? ' <strong>Campo obligatorio</strong>.' : '' ?></div>
                         <?php if (isset($producto) && !empty($producto['imagen'])): ?>
                             <div class="mt-2"><img src="<?= BASE_URL . htmlspecialchars($producto['imagen']) ?>" alt="" style="height: 80px; border-radius: 0.375rem; border: 1px solid #e2e8f0;"></div>
                         <?php endif; ?>

@@ -119,7 +119,7 @@
     <div class="container position-relative" style="z-index: 1;">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <h1 class="hero-title"><?= htmlspecialchars($lang['bienvenido_tiendautp'] ?? 'Bienvenido a TiendaUTP') ?></h1>
+                <h1 class="hero-title"><?= htmlspecialchars($lang['bienvenido_tiendautp'] ?? 'Bienvenido a e-comerceDS7') ?></h1>
                 <p class="hero-subtitle mt-3">
                     <?= htmlspecialchars($lang['landing_descripcion'] ?? 'Explora nuestra plataforma de comercio electrónico con compras seguras, múltiples categorías y facturación digital respaldada por firma criptográfica.') ?>
                 </p>
@@ -156,7 +156,7 @@
 <section class="features-section">
     <div class="container">
         <div class="text-center mb-4">
-            <h2 class="fw-bold" style="color: #1e293b;"><?= htmlspecialchars($lang['landing_caracteristicas'] ?? '¿Por qué elegir TiendaUTP?') ?></h2>
+            <h2 class="fw-bold" style="color: #1e293b;"><?= htmlspecialchars($lang['landing_caracteristicas'] ?? '¿Por qué elegir e-comerceDS7?') ?></h2>
         </div>
         <div class="row g-3">
             <div class="col-md-6 col-lg-3">
