@@ -37,8 +37,11 @@ class Sanitizer
 
     public static function telefono(string $valor): string
     {
-        // Solo dígitos, signo +, guiones, espacios y paréntesis
-        return preg_replace('/[^0-9\+\-\(\) ]/', '', trim($valor));
+        $digits = preg_replace('/[^0-9]/', '', trim($valor));
+        if (strlen($digits) === 8) {
+            return substr($digits, 0, 4) . '-' . substr($digits, 4);
+        }
+        return $digits;
     }
 
     public static function html(string $valor): string
@@ -54,5 +57,12 @@ class Sanitizer
         $valor = mb_convert_case($valor, MB_CASE_LOWER, 'UTF-8');
         $valor = mb_convert_case($valor, MB_CASE_TITLE, 'UTF-8');
         return $valor;
+    }
+
+    public static function capitalizar(string $valor): string
+    {
+        $valor = trim($valor);
+        if ($valor === '') return $valor;
+        return mb_strtoupper(mb_substr($valor, 0, 1)) . mb_substr($valor, 1);
     }
 }

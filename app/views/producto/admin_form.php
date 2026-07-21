@@ -15,21 +15,7 @@
             <h2 class="fw-bold mb-0 fs-4"><?= htmlspecialchars(isset($producto) ? $lang['editar_producto'] : $lang['nuevo_producto']) ?></h2>
         </div>
 
-        <?php if (!empty($errores)): ?>
-            <div class="mx-3 mt-3 px-4 py-3 rounded-3" style="background: #fee2e2; border: 1px solid #fecaca; color: #991b1b;" id="error-banner">
-                <?php foreach ($errores as $e): ?><p class="mb-0 d-flex align-items-center gap-2"><span class="material-symbols-outlined">error</span><?= htmlspecialchars($e) ?></p><?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-    <?php if (!empty($errores)): ?>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var banner = document.getElementById('error-banner');
-            if (banner) {
-                banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    </script>
-    <?php endif; ?>
+        <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
         <div class="p-4">
             <form method="POST" action="<?= BASE_URL ?>producto/<?= isset($producto) ? 'editar/' . (int) $producto['id_producto'] : 'crear' ?>"

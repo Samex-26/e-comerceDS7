@@ -49,20 +49,7 @@
             <div class="contact-card">
                 <h5 class="fw-bold mb-3" style="color: #1e293b;">Envia tu mensaje</h5>
 
-                <?php if (!empty($exito)): ?>
-                    <div class="px-4 py-3 rounded-3 d-flex align-items-center gap-2 mb-4" style="background: #d1fae5; border: 1px solid #a7f3d0; color: #065f46;">
-                        <span class="material-symbols-outlined" style="font-size: 1.2rem;">check_circle</span>
-                        <?= htmlspecialchars($exito) ?>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (!empty($errores)): ?>
-                    <div class="px-4 py-3 rounded-3 mb-4" style="background: #fee2e2; border: 1px solid #fecaca; color: #991b1b;">
-                        <?php foreach ($errores as $e): ?>
-                            <p class="mb-0 d-flex align-items-center gap-2"><span class="material-symbols-outlined" style="font-size: 1.2rem;">error</span><?= htmlspecialchars($e) ?></p>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
                 <form method="POST" action="<?= BASE_URL ?>contacto/index">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">

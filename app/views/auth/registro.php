@@ -22,14 +22,7 @@ $langCode = IdiomaHelper::getCodigo();
             <div class="card-body p-4">
                 <h2 class="h5 mb-4" style="color: #1e293b; font-weight: 600;">Crear cuenta</h2>
 
-                <?php if (!empty($errores)): ?>
-                    <div class="alert p-3 mb-4" style="background: #fef2f2; border: 1px solid #fee2e2; border-radius: 8px; color: #dc2626; font-size: 0.875rem;">
-                        <strong><?= htmlspecialchars($lang['error_campos']) ?></strong>
-                        <?php foreach ($errores as $e): ?>
-                            <p class="mb-0 mt-1"><?= htmlspecialchars($e) ?></p>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
                 <form method="POST" action="<?= BASE_URL ?>auth/registro">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
@@ -71,7 +64,7 @@ $langCode = IdiomaHelper::getCodigo();
                                 <span class="material-symbols-outlined" style="font-size: 1.25rem;">visibility</span>
                             </button>
                         </div>
-                        <div class="form-text" style="color: #64748b; font-size: 0.75rem;"><?= htmlspecialchars($lang['password_length_error']) ?></div>
+                        <div class="form-text" style="color: #64748b; font-size: 0.75rem;">8 a 12 caracteres, incluyendo al menos un carácter especial</div>
                     </div>
 
                     <div class="mb-4">

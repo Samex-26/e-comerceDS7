@@ -42,7 +42,7 @@ class UsuarioController extends Controller
 
         $id        = Sanitizer::entero($_POST['id'] ?? 0);
         $nombre    = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $email     = Sanitizer::email($_POST['email'] ?? '');
+        $email     = trim(strtolower($_POST['email'] ?? ''));
         $password  = $_POST['password'] ?? '';
         $id_idioma = Sanitizer::entero($_POST['id_idioma'] ?? 0);
         $rol       = $_POST['rol'] ?? '';

@@ -38,10 +38,10 @@ class ProveedorController extends Controller
         }
 
         $id           = Sanitizer::entero($_POST['id'] ?? 0);
-        $nombre       = Sanitizer::texto($_POST['nombre'] ?? '');
+        $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
         $telefono     = Sanitizer::telefono($_POST['telefono'] ?? '');
         $celular      = Sanitizer::telefono($_POST['celular'] ?? '');
-        $direccion    = Sanitizer::texto($_POST['direccion'] ?? '');
+        $direccion    = Sanitizer::capitalizar(Sanitizer::texto($_POST['direccion'] ?? ''));
         $urlWeb = trim($_POST['url_web'] ?? '');
         if ($urlWeb !== '' && !preg_match('#^https?://#i', $urlWeb)) {
             $urlWeb = 'https://' . $urlWeb;

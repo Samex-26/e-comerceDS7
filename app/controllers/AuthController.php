@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         // Sanitizar entradas
         $nombre     = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $email      = Sanitizer::email($_POST['email'] ?? '');
+        $email      = trim(strtolower($_POST['email'] ?? ''));
         $password   = $_POST['password'] ?? '';
         $id_idioma  = Sanitizer::entero($_POST['id_idioma'] ?? 0);
 
@@ -49,8 +49,11 @@ class AuthController extends Controller
         if (!Validator::email($email)) {
             $errores[] = 'Correo electrónico inválido.';
         }
-        if (!Validator::longitud($password, 8, 100)) {
+        if (!Validator::longitud($password, 8, 12)) {
             $errores[] = $this->lang['password_length_error'];
+        }
+        if (!Validator::tieneCaracterEspecial($password)) {
+            $errores[] = $this->lang['password_special_error'] ?? 'La contraseña debe incluir al menos un carácter especial (ej. @, #, $, %).';
         }
 
         // Validar que el idioma exista
@@ -95,7 +98,7 @@ class AuthController extends Controller
     public function login(): void
     {
         if ($this->estaLogueado()) {
-            $this->redirect('producto');
+            $this->redirect(($_SESSION['rol'] ?? '') === 'admin' ? 'dashboard/index' : 'producto');
             return;
         }
 
@@ -122,7 +125,7 @@ class AuthController extends Controller
         $errores = [];
 
         // Validaciones previas a BD (evitar consultas innecesarias)
-        $email    = Sanitizer::email($_POST['email'] ?? '');
+        $email    = trim(strtolower($_POST['email'] ?? ''));
         $password = $_POST['password'] ?? '';
         $token    = $_POST['csrf_token'] ?? '';
 
@@ -173,7 +176,11 @@ class AuthController extends Controller
         $idioma = $idiomaModel->buscarPorId($usuario['id_idioma']);
         $_SESSION['idioma_codigo'] = $idioma ? $idioma['codigo'] : 'es';
 
-        $this->redirect('producto');
+        if ($usuario['rol'] === 'admin') {
+            $this->redirect('dashboard/index');
+        } else {
+            $this->redirect('producto');
+        }
     }
 
     public function logout(): void

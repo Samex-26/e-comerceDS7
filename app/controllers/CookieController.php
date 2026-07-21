@@ -15,7 +15,7 @@ class CookieController extends Controller
             'id_usuario' => $_SESSION['id_usuario'] ?? null,
         ]);
 
-        setcookie('cookie_consent', '1', time() + 365 * 86400, '/', '', false, true);
+        setcookie('cookie_consent', '1', time() + 365 * 86400, '/', '', false, false);
 
         echo json_encode(['ok' => true]);
     }

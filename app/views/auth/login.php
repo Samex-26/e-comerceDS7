@@ -334,23 +334,7 @@ $currentLang = IdiomaHelper::getCodigo();
 <div class="login-card">
     <h2 class="login-card-title"><?= htmlspecialchars($lang['inicio_sesion']) ?></h2>
 
-    <?php if (!empty($exito)): ?>
-        <div class="success-alert">
-            <span class="material-symbols-outlined">check_circle</span>
-            <span><?= htmlspecialchars($exito) ?></span>
-        </div>
-    <?php endif; ?>
-
-    <?php if (!empty($errores)): ?>
-        <div class="error-alert">
-            <span class="material-symbols-outlined">error_outline</span>
-            <div>
-                <?php foreach ($errores as $e): ?>
-                    <p><?= htmlspecialchars($e) ?></p>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    <?php endif; ?>
+    <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
     <form method="POST" action="<?= BASE_URL ?>auth/login">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">

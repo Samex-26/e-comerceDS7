@@ -17,11 +17,7 @@
             <h2 class="fw-bold mb-0 fs-4"><?= htmlspecialchars(isset($categoria) ? $lang['editar_categoria'] : $lang['nueva_categoria']) ?></h2>
         </div>
 
-        <?php if (!empty($errores)): ?>
-            <div class="mx-3 mt-3 px-4 py-3 rounded-3" style="background: #fee2e2; border: 1px solid #fecaca; color: #991b1b;">
-                <?php foreach ($errores as $e): ?><p class="mb-0 d-flex align-items-center gap-2"><span class="material-symbols-outlined">error</span><?= htmlspecialchars($e) ?></p><?php endforeach; ?>
-            </div>
-        <?php endif; ?>
+        <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
         <div class="p-4">
             <form method="POST" action="<?= BASE_URL ?>categoria/<?= isset($categoria) ? 'editar/' . (int) $categoria['id_categoria'] : 'crear' ?>">

@@ -26,13 +26,7 @@
     </header>
 
     <main style="padding: 1.5rem 2rem; max-width: 640px;">
-        <?php if (!empty($errores)): ?>
-            <div style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 12px 16px; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                <?php foreach ($errores as $e): ?>
-                    <p style="margin: 0; font-size: 14px;"><?= htmlspecialchars($e) ?></p>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
+        <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
         <div style="background: white; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.5rem;">
             <form method="POST" action="<?= BASE_URL ?>usuario/<?= $esEdicion ? 'editar/' . (int) $usuario['id_usuario'] : 'crear' ?>">

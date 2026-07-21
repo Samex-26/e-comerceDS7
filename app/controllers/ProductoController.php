@@ -83,7 +83,7 @@ class ProductoController extends Controller
 
         $id           = Sanitizer::entero($_POST['id'] ?? 0);
         $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $descripcion  = Sanitizer::html($_POST['descripcion'] ?? '');
+        $descripcion  = Sanitizer::capitalizar(Sanitizer::html($_POST['descripcion'] ?? ''));
         $precio       = Sanitizer::decimal($_POST['precio'] ?? 0);
         $precioOferta = Sanitizer::decimal($_POST['precio_oferta'] ?? 0);
         $costo        = Sanitizer::decimal($_POST['costo'] ?? 0);
@@ -187,7 +187,7 @@ class ProductoController extends Controller
         }
 
         $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $descripcion  = Sanitizer::html($_POST['descripcion'] ?? '');
+        $descripcion  = Sanitizer::capitalizar(Sanitizer::html($_POST['descripcion'] ?? ''));
         $precio       = Sanitizer::decimal($_POST['precio'] ?? 0);
         $precioOferta = Sanitizer::decimal($_POST['precio_oferta'] ?? 0);
         $costo        = Sanitizer::decimal($_POST['costo'] ?? 0);
@@ -284,7 +284,7 @@ class ProductoController extends Controller
         }
 
         $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $descripcion  = Sanitizer::html($_POST['descripcion'] ?? '');
+        $descripcion  = Sanitizer::capitalizar(Sanitizer::html($_POST['descripcion'] ?? ''));
         $precio       = Sanitizer::decimal($_POST['precio'] ?? 0);
         $precioOferta = Sanitizer::decimal($_POST['precio_oferta'] ?? 0);
         $costo        = Sanitizer::decimal($_POST['costo'] ?? 0);

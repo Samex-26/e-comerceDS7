@@ -30,23 +30,7 @@
 $showDrawer = !empty($productoEditar) || !empty($errores);
 ?>
 
-<?php if ($exito): ?>
-<div style="position: fixed; top: 16px; right: 16px; z-index: 200; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 16px 24px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 12px;" class="toast-success">
-    <span class="material-symbols-outlined" style="color: #16a34a;">check_circle</span>
-    <span style="font-weight: 500;"><?= htmlspecialchars($exito) ?></span>
-</div>
-<?php endif; ?>
-
-<?php if (!empty($errores)): ?>
-<div style="position: fixed; top: 16px; right: 16px; z-index: 200; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 16px 24px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 12px; max-width: 448px;" class="toast-error">
-    <span class="material-symbols-outlined" style="color: #dc2626;">error</span>
-    <div>
-        <?php foreach ($errores as $e): ?>
-            <p style="font-size: 14px;"><?= htmlspecialchars($e) ?></p>
-        <?php endforeach; ?>
-    </div>
-</div>
-<?php endif; ?>
+<?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
 <div style="min-height: 100vh; display: flex; flex-direction: column; background: #f7f9fb;">
     <header style="background: white; border-bottom: 1px solid #e2e8f0; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 30;">
@@ -365,17 +349,4 @@ $showDrawer = !empty($productoEditar) || !empty($errores);
         }
     });
 
-    <?php if ($exito): ?>
-    setTimeout(function() {
-        var toast = document.querySelector('.toast-success');
-        if (toast) toast.remove();
-    }, 4000);
-    <?php endif; ?>
-
-    <?php if (!empty($errores)): ?>
-    setTimeout(function() {
-        var toast = document.querySelector('.toast-error');
-        if (toast) toast.remove();
-    }, 5000);
-    <?php endif; ?>
 </script>

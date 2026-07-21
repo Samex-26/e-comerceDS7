@@ -60,4 +60,9 @@ class Validator
     {
         return self::entero($valor) && (int) $valor > 0;
     }
+
+    public static function tieneCaracterEspecial(string $valor): bool
+    {
+        return (bool) preg_match('/[!@#$%^&*(),.?":{}|<>_\-]/', $valor);
+    }
 }

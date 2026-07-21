@@ -24,22 +24,7 @@
     </a>
     <h2 class="fw-bold mb-4" style="color: var(--primary);">Carrito de Compras</h2>
 
-    <?php if (!empty($exito)): ?>
-        <div class="alert alert-success border-0 rounded-3 py-3 d-flex align-items-center gap-2">
-            <span class="material-symbols-outlined">check_circle</span>
-            <?= htmlspecialchars($exito) ?>
-        </div>
-    <?php endif; ?>
-    <?php if (!empty($errores)): ?>
-        <div class="alert alert-danger border-0 rounded-3 py-3">
-            <?php foreach ($errores as $e): ?>
-                <p class="mb-0 d-flex align-items-center gap-2">
-                    <span class="material-symbols-outlined">error</span>
-                    <?= htmlspecialchars($e) ?>
-                </p>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+    <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
     <?php if (empty($carrito)): ?>
         <div class="text-center py-5">

@@ -25,10 +25,10 @@ class ContactoController extends Controller
             $errores[] = 'Error de seguridad. Intente nuevamente.';
         }
 
-        $nombre   = Sanitizer::texto($_POST['nombre'] ?? '');
-        $email    = Sanitizer::email($_POST['email'] ?? '');
-        $asunto   = Sanitizer::texto($_POST['asunto'] ?? '');
-        $mensaje  = Sanitizer::texto($_POST['mensaje'] ?? '');
+        $nombre   = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
+        $email    = trim(strtolower($_POST['email'] ?? ''));
+        $asunto   = Sanitizer::capitalizar(Sanitizer::texto($_POST['asunto'] ?? ''));
+        $mensaje  = Sanitizer::capitalizar(Sanitizer::texto($_POST['mensaje'] ?? ''));
 
         if (!Validator::noVacio($nombre)) {
             $errores[] = 'El nombre es obligatorio.';

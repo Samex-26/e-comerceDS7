@@ -20,13 +20,7 @@
     </a>
     <h2 class="fw-bold mb-4" style="color: var(--primary);">Checkout</h2>
 
-    <?php if (!empty($errores)): ?>
-        <div class="alert alert-danger border-0 rounded-3 py-3">
-            <?php foreach ($errores as $e): ?>
-                <p class="mb-0"><?= htmlspecialchars($e) ?></p>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+    <?php require BASE_PATH . '/views/layouts/toast.php'; ?>
 
     <form method="POST" action="<?= BASE_URL ?>venta/checkout">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">

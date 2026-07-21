@@ -40,7 +40,7 @@ class CategoriaController extends Controller
 
         $id          = Sanitizer::entero($_POST['id'] ?? 0);
         $nombre      = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $descripcion = Sanitizer::texto($_POST['descripcion'] ?? '');
+        $descripcion = Sanitizer::capitalizar(Sanitizer::texto($_POST['descripcion'] ?? ''));
         $icono       = Sanitizer::texto($_POST['icono'] ?? 'category');
 
         if (!Validator::noVacio($nombre)) {
@@ -99,7 +99,7 @@ class CategoriaController extends Controller
         }
 
         $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $descripcion  = Sanitizer::texto($_POST['descripcion'] ?? '');
+        $descripcion  = Sanitizer::capitalizar(Sanitizer::texto($_POST['descripcion'] ?? ''));
         $icono        = Sanitizer::texto($_POST['icono'] ?? 'category');
 
         if (!Validator::noVacio($nombre)) {
@@ -154,7 +154,7 @@ class CategoriaController extends Controller
         }
 
         $nombre       = Sanitizer::nombrePropio(Sanitizer::texto($_POST['nombre'] ?? ''));
-        $descripcion  = Sanitizer::texto($_POST['descripcion'] ?? '');
+        $descripcion  = Sanitizer::capitalizar(Sanitizer::texto($_POST['descripcion'] ?? ''));
         $icono        = Sanitizer::texto($_POST['icono'] ?? 'category');
 
         if (!Validator::noVacio($nombre)) {

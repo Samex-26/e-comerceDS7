@@ -50,7 +50,7 @@ class InventarioController extends Controller
         $cantidad         = Sanitizer::entero($_POST['cantidad_ingresada'] ?? 0);
         $costoUnitario    = Sanitizer::decimal($_POST['costo_unitario'] ?? 0);
         $fechaEntrada     = Sanitizer::texto($_POST['fecha_entrada'] ?? '');
-        $detalle          = Sanitizer::texto($_POST['detalle'] ?? '');
+        $detalle          = Sanitizer::capitalizar(Sanitizer::texto($_POST['detalle'] ?? ''));
 
         if (!Validator::enteroPositivo($idProducto)) {
             $errores[] = 'Debe seleccionar un producto válido.';
