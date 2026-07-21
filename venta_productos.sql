@@ -203,3 +203,39 @@ INSERT INTO categorias (nombre, descripcion) VALUES
   ('Electricidad', 'Artículos y componentes eléctricos'),
   ('Hogar', 'Artículos para el hogar'),
   ('Textil', 'Productos textiles');
+
+--- ---------------------------------------------------------------------
+-- Datos semilla mínimos (necesarios para que el registro de usuarios
+-- funcione desde el primer momento: todo usuario requiere id_idioma)
+-- ---------------------------------------------------------------------
+INSERT INTO idiomas (codigo, nombre) VALUES
+  ('es', 'Español'),
+  ('en', 'English');
+
+-- Categorías de ejemplo (ajustar/ampliar según el catálogo real)
+INSERT INTO categorias (nombre, descripcion) VALUES
+  ('Ropa', 'Prendas de vestir en general'),
+  ('Electricidad', 'Artículos y componentes eléctricos'),
+  ('Hogar', 'Artículos para el hogar'),
+  ('Textil', 'Productos textiles');
+
+-- ---------------------------------------------------------------------
+-- Usuarios de prueba (ver README, sección 3 — Matriz de Roles y Credenciales)
+-- Contraseñas hasheadas con bcrypt, compatibles con password_verify() de PHP
+-- ---------------------------------------------------------------------
+
+-- Administrador
+-- Email:      admin@correo.com
+-- Contraseña: Admin12345
+INSERT INTO usuarios (nombre, email, password_hash, id_idioma, rol) VALUES
+  ('Administrador de Prueba', 'admin@correo.com',
+   '$2b$12$c676Q03cwQ6ggP77ULeaNO5p2sh4F1Pvgsrzi19oq/BYZb8G.2stG',
+   (SELECT id_idioma FROM idiomas WHERE codigo = 'es' LIMIT 1), 'admin');
+
+-- Cliente / Estudiante-Operador
+-- Email:      user@correo.com
+-- Contraseña: Cliente12345
+INSERT INTO usuarios (nombre, email, password_hash, id_idioma, rol) VALUES
+  ('Usuario de Prueba', 'user@correo.com',
+   '$2b$12$mYPFnIIsi7l/e5vPk26dguiS0pb5dHcl971Hneq54OCy9811ZFeZy',
+   (SELECT id_idioma FROM idiomas WHERE codigo = 'es' LIMIT 1), 'cliente');
