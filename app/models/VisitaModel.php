@@ -64,9 +64,8 @@ class VisitaModel extends Model
     public function topMenosVisitados(?string $fechaInicio = null, ?string $fechaFin = null, int $limite = 10): array
     {
         $sql = 'SELECT p.id_producto, p.nombre, COUNT(v.id_visita) AS visitas
-                FROM visitas v
-                JOIN productos p ON v.id_producto = p.id_producto
-                WHERE v.id_producto IS NOT NULL';
+                FROM productos p
+                LEFT JOIN visitas v ON p.id_producto = v.id_producto';
         $params = [':limite' => $limite];
 
         if ($fechaInicio !== null) {
@@ -79,8 +78,7 @@ class VisitaModel extends Model
         }
 
         $sql .= ' GROUP BY p.id_producto, p.nombre
-                  HAVING COUNT(v.id_visita) > 0
-                  ORDER BY visitas ASC LIMIT :limite';
+                  ORDER BY visitas ASC, p.nombre ASC LIMIT :limite';
         $stmt = $this->db->prepare($sql);
         foreach ($params as $k => $v) {
             $stmt->bindValue($k, $v, is_int($v) ? PDO::PARAM_INT : PDO::PARAM_STR);

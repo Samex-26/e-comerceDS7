@@ -32,8 +32,14 @@ class ProductoController extends Controller
             return;
         }
 
+        $productosRelacionados = $model->buscarRelacionados(
+            (int) $producto['id_categoria'],
+            $id
+        );
+
         $this->view('producto/detalle', [
-            'producto' => $producto,
+            'producto'             => $producto,
+            'productosRelacionados' => $productosRelacionados,
         ]);
     }
 

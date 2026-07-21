@@ -44,8 +44,16 @@ class CarritoController extends Controller
             ? (float) $producto['precio_oferta']
             : (float) $producto['precio'];
 
+        $cantidad = Sanitizer::entero($_POST['cantidad'] ?? 1);
+        if (!Validator::enteroPositivo($cantidad)) {
+            $cantidad = 1;
+        }
+        if ($cantidad > (int) $producto['cantidad']) {
+            $cantidad = (int) $producto['cantidad'];
+        }
+
         if (isset($_SESSION['carrito'][$idProducto])) {
-            $nuevaCant = $_SESSION['carrito'][$idProducto]['cantidad'] + 1;
+            $nuevaCant = $_SESSION['carrito'][$idProducto]['cantidad'] + $cantidad;
             if ($nuevaCant > (int) $producto['cantidad']) {
                 $_SESSION['errores'] = ['No hay suficiente stock para agregar más unidades.'];
                 $this->redirect('producto');
@@ -54,7 +62,7 @@ class CarritoController extends Controller
             $_SESSION['carrito'][$idProducto]['cantidad'] = $nuevaCant;
         } else {
             $_SESSION['carrito'][$idProducto] = [
-                'cantidad'       => 1,
+                'cantidad'       => $cantidad,
                 'precio_unitario'=> $precio,
                 'nombre'         => $producto['nombre'],
                 'imagen'         => $producto['imagen'] ?? '',

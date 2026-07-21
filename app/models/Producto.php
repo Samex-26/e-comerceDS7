@@ -34,6 +34,25 @@ class Producto extends Model
         return $stmt->fetch();
     }
 
+    public function buscarRelacionados(int $idCategoria, int $idProductoExcluir, int $limite = 4): array
+    {
+        $stmt = $this->db->prepare(
+            'SELECT p.*, c.nombre AS categoria_nombre
+             FROM productos p
+             JOIN categorias c ON p.id_categoria = c.id_categoria
+             WHERE p.activo = 1
+               AND p.id_categoria = :id_categoria
+               AND p.id_producto != :id_producto
+             ORDER BY p.nombre ASC
+             LIMIT :limite'
+        );
+        $stmt->bindValue(':id_categoria', $idCategoria, PDO::PARAM_INT);
+        $stmt->bindValue(':id_producto', $idProductoExcluir, PDO::PARAM_INT);
+        $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function crear(array $datos): int
     {
         $stmt = $this->db->prepare(

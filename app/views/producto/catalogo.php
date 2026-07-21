@@ -60,6 +60,8 @@
         background-color: #d1d5db;
         color: #45474c;
     }
+    .link-detalle { text-decoration: none; color: inherit; display: flex; flex-direction: column; flex-grow: 1; }
+    .link-detalle:hover { cursor: pointer; }
 </style>
 
 <div class="container my-4">
@@ -92,47 +94,45 @@
             <?php foreach ($productos as $p): ?>
                 <div class="col">
                     <div class="card card-product h-100 border-0">
-                        <div class="img-wrap position-relative">
-                            <?php if (!empty($p['imagen'])): ?>
-                                <img src="<?= BASE_URL . htmlspecialchars($p['imagen']) ?>"
-                                     alt="<?= htmlspecialchars($p['nombre']) ?>">
-                            <?php else: ?>
-                                <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
-                                    <span class="material-symbols-outlined text-muted" style="font-size: 3rem;">image</span>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (!empty($p['precio_oferta']) && $p['precio_oferta'] > 0): ?>
-                                <span class="badge badge-discount position-absolute top-0 end-0 m-2">
-                                    -<?= round((1 - $p['precio_oferta'] / $p['precio']) * 100) ?>%
-                                </span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="card-body d-flex flex-column p-3">
-                            <h6 class="fw-semibold mb-1" style="font-size: 1.25rem;">
-                                <?= htmlspecialchars($p['nombre']) ?>
-                            </h6>
-                            <?php if (!empty($p['descripcion'])): ?>
-                                <p class="text-muted small mb-2" style="font-size: 0.8rem; line-height: 1.3;">
-                                    <?= htmlspecialchars(mb_substr($p['descripcion'], 0, 100)) ?><?= mb_strlen($p['descripcion']) > 100 ? '...' : '' ?>
-                                </p>
-                            <?php endif; ?>
-                            <?php if (!empty($p['precio_oferta']) && $p['precio_oferta'] > 0): ?>
-                                <p class="mb-2">
-                                    <span class="price-primary">$<?= number_format($p['precio_oferta'], 2, '.', '') ?></span>
-                                    <span class="text-decoration-line-through text-muted ms-2" style="font-size: 0.9rem;">
-                                        $<?= number_format($p['precio'], 2, '.', '') ?>
+                        <a href="<?= BASE_URL ?>producto/detalle/<?= (int) $p['id_producto'] ?>"
+                           class="link-detalle">
+                            <div class="img-wrap position-relative">
+                                <?php if (!empty($p['imagen'])): ?>
+                                    <img src="<?= BASE_URL . htmlspecialchars($p['imagen']) ?>"
+                                         alt="<?= htmlspecialchars($p['nombre']) ?>">
+                                <?php else: ?>
+                                    <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                                        <span class="material-symbols-outlined text-muted" style="font-size: 3rem;">image</span>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (!empty($p['precio_oferta']) && $p['precio_oferta'] > 0): ?>
+                                    <span class="badge badge-discount position-absolute top-0 end-0 m-2">
+                                        -<?= round((1 - $p['precio_oferta'] / $p['precio']) * 100) ?>%
                                     </span>
-                                </p>
-                            <?php else: ?>
-                                <p class="price-primary mb-2">$<?= number_format($p['precio'], 2, '.', '') ?></p>
-                            <?php endif; ?>
-                            <div class="mt-auto">
-                                <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $p['id_producto'] ?>"
-                                   class="btn btn-primary-orange w-100 text-uppercase fw-semibold d-flex align-items-center justify-content-center gap-2">
-                                    <span class="material-symbols-outlined" style="font-size: 1.25rem;">shopping_cart</span>
-                                    <?= htmlspecialchars($lang['agregar_carrito']) ?>
-                                </a>
+                                <?php endif; ?>
                             </div>
+                            <div class="card-body d-flex flex-column p-3">
+                                <h6 class="fw-semibold mb-1" style="font-size: 1.25rem;">
+                                    <?= htmlspecialchars($p['nombre']) ?>
+                                </h6>
+                                <?php if (!empty($p['precio_oferta']) && $p['precio_oferta'] > 0): ?>
+                                    <p class="mb-2">
+                                        <span class="price-primary">$<?= number_format($p['precio_oferta'], 2, '.', '') ?></span>
+                                        <span class="text-decoration-line-through text-muted ms-2" style="font-size: 0.9rem;">
+                                            $<?= number_format($p['precio'], 2, '.', '') ?>
+                                        </span>
+                                    </p>
+                                <?php else: ?>
+                                    <p class="price-primary mb-2">$<?= number_format($p['precio'], 2, '.', '') ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                        <div class="px-3 pb-3">
+                            <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $p['id_producto'] ?>"
+                               class="btn btn-primary-orange w-100 text-uppercase fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                <span class="material-symbols-outlined" style="font-size: 1.25rem;">shopping_cart</span>
+                                <?= htmlspecialchars($lang['agregar_carrito']) ?>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -3,8 +3,6 @@
     .breadcrumb-custom .breadcrumb-item + .breadcrumb-item::before { content: "›"; }
     .category-badge { background-color: #1e293b; color: white; padding: 0.25rem 1rem; border-radius: 50px; font-size: 0.85rem; display: inline-block; }
     .product-title { font-size: 32px; font-weight: 700; font-family: 'Inter', sans-serif; }
-    .star-filled { color: #fd761a; }
-    .star-empty { color: #d1d5db; }
     .price-block { background-color: #f2f4f6; border-radius: 12px; padding: 1.25rem; }
     .current-price { font-size: 1.75rem; font-weight: 700; color: #1e293b; }
     .current-price-sale { font-size: 1.75rem; font-weight: 700; color: #dc2626; }
@@ -22,10 +20,6 @@
     .main-image-container { border: 1px solid #e2e8f0; background: white; border-radius: 12px; overflow: hidden; }
     .main-image-container img { transition: transform 0.3s ease; width: 100%; height: 450px; object-fit: contain; }
     .main-image-container:hover img { transform: scale(1.05); }
-    .thumb-img { width: 90px; height: 90px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; }
-    .thumb-img:hover { opacity: 0.7; }
-    .thumb-active { border: 2px solid #1e293b !important; }
-    .thumb-inactive { border: 1px solid #e2e8f0; }
     .warranty-item { display: flex; align-items: center; gap: 0.5rem; color: #4b5563; font-size: 0.9rem; margin-bottom: 0.5rem; }
     .related-card .card-img-top { height: 200px; object-fit: cover; }
     .related-card .btn-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; background: #fd761a; color: white; border: none; text-decoration: none; }
@@ -50,27 +44,12 @@
             <div class="main-image-container mb-3">
                 <?php if (!empty($producto['imagen'])): ?>
                     <img src="<?= BASE_URL . htmlspecialchars($producto['imagen']) ?>"
-                         alt="<?= htmlspecialchars($producto['nombre']) ?>"
-                         id="mainImage">
+                         alt="<?= htmlspecialchars($producto['nombre']) ?>">
                 <?php else: ?>
                     <div class="d-flex align-items-center justify-content-center bg-light" style="height: 450px;">
                         <span class="text-muted fs-4"><?= htmlspecialchars($lang['sin_imagen'] ?? 'Sin imagen') ?></span>
                     </div>
                 <?php endif; ?>
-            </div>
-
-            <div class="d-flex gap-2">
-                <?php $imgSrc = !empty($producto['imagen']) ? BASE_URL . htmlspecialchars($producto['imagen']) : ''; ?>
-                <?php for ($i = 0; $i < 4; $i++): ?>
-                    <?php if (!empty($producto['imagen'])): ?>
-                        <img src="<?= $imgSrc ?>"
-                             class="thumb-img <?= $i === 0 ? 'thumb-active' : 'thumb-inactive' ?>"
-                             alt="Vista <?= $i + 1 ?>"
-                             onclick="cambiarImagen(this, '<?= $imgSrc ?>')">
-                    <?php else: ?>
-                        <div class="thumb-img thumb-inactive bg-light d-flex align-items-center justify-content-center text-muted" style="font-size:0.7rem">No img</div>
-                    <?php endif; ?>
-                <?php endfor; ?>
             </div>
         </div>
 
@@ -78,17 +57,6 @@
             <span class="category-badge mb-2"><?= htmlspecialchars($producto['categoria_nombre'] ?? '') ?></span>
 
             <h1 class="product-title mb-2"><?= htmlspecialchars($producto['nombre']) ?></h1>
-
-            <div class="d-flex align-items-center gap-2 mb-3">
-                <div>
-                    <span class="material-symbols-outlined star-filled">star</span>
-                    <span class="material-symbols-outlined star-filled">star</span>
-                    <span class="material-symbols-outlined star-filled">star</span>
-                    <span class="material-symbols-outlined star-filled">star</span>
-                    <span class="material-symbols-outlined star-empty">star</span>
-                </div>
-                <span class="text-muted small">(0 reseñas)</span>
-            </div>
 
             <p class="text-muted mb-3"><?= nl2br(htmlspecialchars($producto['descripcion'])) ?></p>
 
@@ -102,6 +70,7 @@
                 <?php else: ?>
                     <div class="current-price">$<?= number_format($producto['precio'], 2, '.', '') ?></div>
                 <?php endif; ?>
+                <div class="small text-muted mt-1">Precio con IVA incluido. Envío gratis a todo el país.</div>
             </div>
 
             <?php if ((int) $producto['cantidad'] > 0): ?>
@@ -165,30 +134,32 @@
             <?php foreach ($productosRelacionados as $rel): ?>
                 <div class="col">
                     <div class="card h-100 shadow-sm related-card">
-                        <?php if (!empty($rel['imagen'])): ?>
-                            <img src="<?= BASE_URL . htmlspecialchars($rel['imagen']) ?>" class="card-img-top" alt="<?= htmlspecialchars($rel['nombre']) ?>">
-                        <?php else: ?>
-                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height:200px;">
-                                <span class="text-muted"><?= htmlspecialchars($lang['sin_imagen'] ?? 'Sin imagen') ?></span>
-                            </div>
-                        <?php endif; ?>
-                        <div class="card-body d-flex flex-column">
-                            <span class="category-badge align-self-start mb-2" style="font-size:0.7rem"><?= htmlspecialchars($rel['categoria_nombre'] ?? '') ?></span>
-                            <h6 class="card-title"><?= htmlspecialchars($rel['nombre']) ?></h6>
-                            <?php if (!empty($rel['precio_oferta']) && $rel['precio_oferta'] > 0): ?>
-                                <p class="card-text mb-2">
-                                    <span class="text-decoration-line-through text-muted small">$<?= number_format($rel['precio'], 2, '.', '') ?></span>
-                                    <span class="fw-bold" style="color:#1e293b;">$<?= number_format($rel['precio_oferta'], 2, '.', '') ?></span>
-                                </p>
+                        <a href="<?= BASE_URL ?>producto/detalle/<?= (int) $rel['id_producto'] ?>"
+                           class="text-decoration-none text-reset d-flex flex-column flex-grow-1">
+                            <?php if (!empty($rel['imagen'])): ?>
+                                <img src="<?= BASE_URL . htmlspecialchars($rel['imagen']) ?>" class="card-img-top" alt="<?= htmlspecialchars($rel['nombre']) ?>">
                             <?php else: ?>
-                                <p class="card-text fw-bold mb-2" style="color:#1e293b;">$<?= number_format($rel['precio'], 2, '.', '') ?></p>
+                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height:200px;">
+                                    <span class="text-muted"><?= htmlspecialchars($lang['sin_imagen'] ?? 'Sin imagen') ?></span>
+                                </div>
                             <?php endif; ?>
-                            <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <a href="<?= BASE_URL ?>producto/detalle/<?= (int) $rel['id_producto'] ?>" class="btn btn-sm btn-outline-dark">Ver detalle</a>
-                                <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $rel['id_producto'] ?>" class="btn-icon">
-                                    <span class="material-symbols-outlined" style="font-size:1.1rem">shopping_cart</span>
-                                </a>
+                            <div class="card-body d-flex flex-column">
+                                <span class="category-badge align-self-start mb-2" style="font-size:0.7rem"><?= htmlspecialchars($rel['categoria_nombre'] ?? '') ?></span>
+                                <h6 class="card-title"><?= htmlspecialchars($rel['nombre']) ?></h6>
+                                <?php if (!empty($rel['precio_oferta']) && $rel['precio_oferta'] > 0): ?>
+                                    <p class="card-text mb-2">
+                                        <span class="text-decoration-line-through text-muted small">$<?= number_format($rel['precio'], 2, '.', '') ?></span>
+                                        <span class="fw-bold" style="color:#1e293b;">$<?= number_format($rel['precio_oferta'], 2, '.', '') ?></span>
+                                    </p>
+                                <?php else: ?>
+                                    <p class="card-text fw-bold mb-2" style="color:#1e293b;">$<?= number_format($rel['precio'], 2, '.', '') ?></p>
+                                <?php endif; ?>
                             </div>
+                        </a>
+                        <div class="px-3 pb-3">
+                            <a href="<?= BASE_URL ?>carrito/agregar/<?= (int) $rel['id_producto'] ?>" class="btn-icon">
+                                <span class="material-symbols-outlined" style="font-size:1.1rem">shopping_cart</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -199,15 +170,6 @@
 </div>
 
 <script>
-function cambiarImagen(el, src) {
-    document.querySelectorAll('.thumb-img').forEach(function(t) {
-        t.classList.remove('thumb-active');
-        t.classList.add('thumb-inactive');
-    });
-    el.classList.remove('thumb-inactive');
-    el.classList.add('thumb-active');
-    document.getElementById('mainImage').src = src;
-}
 function incrementarCantidad(max) {
     var input = document.getElementById('inputCantidad');
     var val = parseInt(input.value) || 1;

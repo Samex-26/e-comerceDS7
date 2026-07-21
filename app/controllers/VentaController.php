@@ -67,9 +67,10 @@ class VentaController extends Controller
             'items'       => $items,
             'total'       => $total,
             'errores'     => $_SESSION['errores'] ?? [],
+            'exito'       => $_SESSION['exito'] ?? '',
             'csrf_token'  => $this->generarTokenCsrf(),
         ]);
-        unset($_SESSION['errores']);
+        unset($_SESSION['errores'], $_SESSION['exito']);
     }
 
     private function procesarCheckout(): void

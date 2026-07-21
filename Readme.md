@@ -17,7 +17,7 @@
 Examen final de **Desarrollo de Software VII**, Universidad Tecnológica de Panamá — Facultad de Ingeniería en Sistemas Computacionales, Grupo 1GS133.
 
 ### 1.3. Fecha del Sistema y Versión
-- **Versión:** v1.7
+- **Versión:** v2.0
 - **Fecha de entrega:** 21/07/2026
 
 ### 🎥 1.4. Demostración en Video
@@ -60,7 +60,7 @@ Script de respaldo con la estructura completa y datos semilla (idiomas, categor�
 ```
 venta_productos.sql
 ```
-> Enlace al backup: *[URL del archivo `.sql` de respaldo]*
+> Enlace al backup: https://github.com/Samex-26/e-comerceDS7/blob/main/venta_productos.sql
 
 Impórtalo en phpMyAdmin o vía consola:
 ```bash
@@ -176,7 +176,7 @@ Esto protege específicamente los datos de **ventas** en reposo contra manipulac
 ## Enlaces del Proyecto
 
 - **Repositorio:** https://github.com/Samex-26/e-comerceDS7.git
-- **Backup de la base de datos:** *[URL del archivo `.sql` de respaldo]*
+- **Backup de la base de datos:** https://github.com/Samex-26/e-comerceDS7/blob/main/venta_productos.sql
 
 ---
 

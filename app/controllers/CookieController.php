@@ -10,12 +10,16 @@ class CookieController extends Controller
             return;
         }
 
-        $model = $this->model('CookieConsentimientoModel');
-        $model->registrar([
-            'id_usuario' => $_SESSION['id_usuario'] ?? null,
-        ]);
+        try {
+            $model = $this->model('CookieConsentimientoModel');
+            $model->registrar([
+                'id_usuario' => $_SESSION['id_usuario'] ?? null,
+            ]);
+        } catch (\Throwable $e) {
+            error_log('Cookie consent DB error: ' . $e->getMessage());
+        }
 
-        setcookie('cookie_consent', '1', time() + 365 * 86400, '/', '', false, false);
+        $_SESSION['cookie_consent'] = 1;
 
         echo json_encode(['ok' => true]);
     }
