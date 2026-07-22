@@ -1,0 +1,1005 @@
+{
+  "communities": {
+    "0": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ae",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_be",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_bt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ce",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_d",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_de",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_e",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ee",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_f",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_fe",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_getdataattributes",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_getmultipleelementsfromselector",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_gt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_he",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ht",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_i",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ie",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_j",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_jt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_k",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_k_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_k_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_k_toggle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ke",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_l",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_le",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_update",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_m",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ne",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_next",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_o",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_oe",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_off",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_on",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_one",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_prev",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_qt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_re",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_removedataattribute",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_s",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_se",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_set",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_setdataattribute",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_t",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_te",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_trigger",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ue",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ut",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ve",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_we",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_wt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_x",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xe",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ye",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_yt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zt"
+    ],
+    "1": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_createpopper",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn_getcontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn_getcontentfortemplate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn_iswithcontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_dn_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_addariaandcollapsedclass",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_configaftermerge",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_getdimension",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_getfirstlevelchildren",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_initializechildren",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_isshown",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_getselectorfromelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_configaftermerge",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_createpopper",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_disable",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_disposepopper",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_enable",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_enter",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_fixtitle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_getcontentfortemplate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_getdelegateconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_getpopperconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_gettipelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_gettitle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_initializeondelegatedtarget",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_isanimated",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_isshown",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_iswithactivetrigger",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_iswithcontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_leave",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_setcontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_setlisteners",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_settimeout",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_toggle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_toggleenabled",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_initializebackdrop"
+    ],
+    "2": [
+      "c_wamp64_www_e_comerceds7_public_assets_vendor_bootstrap_bootstrap_bundle_min",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_getconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_configaftermerge",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_getconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_createtipelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_getconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_gettemplatefactory",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_resolvepossiblefunction",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_mergeconfigobj",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_configaftermerge",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_append",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_configaftermerge",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_emulateanimation",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_getelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_pi_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_remove",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_typecheckconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_changecontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_checkcontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_getcontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_hascontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_maybesanitize",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_putelementintemplate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_resolvepossiblefunction",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_setcontent",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_tohtml",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ui_typecheckconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_getconfig"
+    ],
+    "3": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_clearmenus",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_completehide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_dataapikeydownhandler",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_detectnavbar",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_getoffset",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_getplacement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_getpopperconfig",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_isshown",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_selectmenuitem",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_update",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_getoffset",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_q",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_q_close",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_q_destroyelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_q_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_q_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_data_key",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_event_key",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_eventname",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_getinstance",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_getorcreateinstance",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_version",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_jqueryinterface"
+    ],
+    "4": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci_toggle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_toggle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_toggle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_cleartimeout",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_isshown",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_maybeschedulehide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_oninteraction",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_setlisteners",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_nn_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_addeventlisteners",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_initializebackdrop",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_initializefocustrap",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_zi_toggle"
+    ],
+    "5": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_addeventlisteners",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_addtoucheventlisteners",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_clearinterval",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_configaftermerge",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_cycle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_directiontoorder",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_getactive",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_getitemindex",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_getitems",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_isanimated",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_keydown",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_maybeenablecycle",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_next",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_nextwhenvisible",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_ordertodirection",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_pause",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_prev",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_setactiveindicatorelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_slide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_to",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt_updateinterval"
+    ],
+    "6": [
+      "app_controllers_dashboardcontroller",
+      "app_controllers_dashboardcontroller_dashboardcontroller",
+      "app_controllers_dashboardcontroller_dashboardcontroller_index",
+      "app_core_controller_controller_construct",
+      "app_core_database",
+      "app_core_database_database",
+      "app_core_database_database_construct",
+      "app_core_database_database_getconnection",
+      "app_core_database_database_getinstance",
+      "app_core_database_php_pdo",
+      "app_core_model_model_construct",
+      "app_core_router",
+      "app_core_router_router",
+      "app_core_router_router_construct",
+      "app_core_router_router_dispatch",
+      "app_core_router_router_notfound",
+      "app_helpers_idiomahelper",
+      "app_helpers_idiomahelper_idiomahelper",
+      "app_helpers_idiomahelper_idiomahelper_cargar",
+      "app_helpers_idiomahelper_idiomahelper_getcodigo",
+      "app_helpers_validator_validator_enteropositivo",
+      "self"
+    ],
+    "7": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ft_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_getelementfromselector",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_w_queuecallback",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_activate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_deactivate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_elemisactive",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_getactiveelem",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_getchildren",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_getinnerelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_getouterelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_keydown",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_setattributeifnotexists",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_setinitialattributes",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_setinitialattributesonchild",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_setinitialattributesontargetpanel",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn_toggledropdown"
+    ],
+    "8": [
+      "app_controllers_cookiecontroller",
+      "app_controllers_cookiecontroller_cookiecontroller",
+      "app_controllers_cookiecontroller_cookiecontroller_consentir",
+      "app_controllers_iniciocontroller",
+      "app_controllers_iniciocontroller_iniciocontroller",
+      "app_controllers_iniciocontroller_iniciocontroller_index",
+      "app_core_controller",
+      "app_core_controller_controller",
+      "app_core_controller_controller_generartokencsrf",
+      "app_core_controller_controller_json",
+      "app_core_controller_controller_model",
+      "app_core_controller_controller_redirect",
+      "app_core_controller_controller_verificaradmin",
+      "app_core_controller_controller_verificarcliente",
+      "app_core_controller_controller_verificartokencsrf",
+      "app_core_controller_controller_view"
+    ],
+    "9": [
+      "app_controllers_reportecontroller",
+      "app_controllers_reportecontroller_reportecontroller",
+      "app_controllers_reportecontroller_reportecontroller_index",
+      "app_helpers_validator",
+      "app_helpers_validator_validator",
+      "app_helpers_validator_validator_decimal",
+      "app_helpers_validator_validator_email",
+      "app_helpers_validator_validator_entero",
+      "app_helpers_validator_validator_longitud",
+      "app_helpers_validator_validator_maximo",
+      "app_helpers_validator_validator_minimo",
+      "app_helpers_validator_validator_novacio",
+      "app_helpers_validator_validator_numerico",
+      "app_helpers_validator_validator_rangonumerico",
+      "app_helpers_validator_validator_tienecaracterespecial",
+      "app_helpers_validator_validator_url"
+    ],
+    "10": [
+      "app_controllers_visitacontroller",
+      "app_controllers_visitacontroller_visitacontroller",
+      "app_controllers_visitacontroller_visitacontroller_actualizartiempo",
+      "app_controllers_visitacontroller_visitacontroller_registrar",
+      "app_helpers_sanitizer",
+      "app_helpers_sanitizer_sanitizer",
+      "app_helpers_sanitizer_sanitizer_alias",
+      "app_helpers_sanitizer_sanitizer_capitalizar",
+      "app_helpers_sanitizer_sanitizer_decimal",
+      "app_helpers_sanitizer_sanitizer_email",
+      "app_helpers_sanitizer_sanitizer_entero",
+      "app_helpers_sanitizer_sanitizer_html",
+      "app_helpers_sanitizer_sanitizer_nombrepropio",
+      "app_helpers_sanitizer_sanitizer_telefono",
+      "app_helpers_sanitizer_sanitizer_texto",
+      "app_helpers_sanitizer_sanitizer_url"
+    ],
+    "11": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_addeventlisteners",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_adjustdialog",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_handleupdate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_hidemodal",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_initializefocustrap",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_isanimated",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_jqueryinterface",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_resetadjustments",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_show",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_showelement",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni_triggerbackdroptransition"
+    ],
+    "12": [
+      "composer",
+      "composer_autoload",
+      "composer_autoload_classmap",
+      "composer_description",
+      "composer_name",
+      "composer_require",
+      "composer_require_php",
+      "composer_require_tecnickcom_tcpdf",
+      "composer_type",
+      "ref_app_contracts",
+      "ref_app_controllers",
+      "ref_app_core",
+      "ref_app_helpers",
+      "ref_app_models",
+      "ref_app_services"
+    ],
+    "13": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_activateparents",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_clearactiveclass",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_getnewobserver",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_initializetargetsandobservables",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_maybeenablesmoothscroll",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_observercallback",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_process",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_n_refresh",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_parents"
+    ],
+    "14": [
+      "app_models_ventamodel",
+      "app_models_ventamodel_ventamodel",
+      "app_models_ventamodel_ventamodel_buscarporid",
+      "app_models_ventamodel_ventamodel_crear",
+      "app_models_ventamodel_ventamodel_ganancianetames",
+      "app_models_ventamodel_ventamodel_listarporusuario",
+      "app_models_ventamodel_ventamodel_productosvendidosmes",
+      "app_models_ventamodel_ventamodel_resumenmes",
+      "app_models_ventamodel_ventamodel_resumenporrango",
+      "app_models_ventamodel_ventamodel_topcategorias",
+      "app_models_ventamodel_ventamodel_topproductosvendidos",
+      "app_models_ventamodel_ventamodel_ultimasventas",
+      "app_models_ventamodel_ventamodel_ventaspormes"
+    ],
+    "15": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_dispose",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_end",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_eventispointerpentouch",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_handleswipe",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_initevents",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_issupported",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_move",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_name",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_y_start"
+    ],
+    "16": [
+      "app_controllers_productocontroller",
+      "app_controllers_productocontroller_productocontroller",
+      "app_controllers_productocontroller_productocontroller_admin",
+      "app_controllers_productocontroller_productocontroller_crear",
+      "app_controllers_productocontroller_productocontroller_detalle",
+      "app_controllers_productocontroller_productocontroller_editar",
+      "app_controllers_productocontroller_productocontroller_eliminar",
+      "app_controllers_productocontroller_productocontroller_index",
+      "app_controllers_productocontroller_productocontroller_procesarcrear",
+      "app_controllers_productocontroller_productocontroller_procesareditar",
+      "app_controllers_productocontroller_productocontroller_procesarguardarproducto",
+      "app_controllers_productocontroller_productocontroller_procesarimagen"
+    ],
+    "17": [
+      "app_models_producto",
+      "app_models_producto_producto",
+      "app_models_producto_producto_actualizar",
+      "app_models_producto_producto_buscarporid",
+      "app_models_producto_producto_buscarrelacionados",
+      "app_models_producto_producto_contaractivos",
+      "app_models_producto_producto_contarstockbajo",
+      "app_models_producto_producto_crear",
+      "app_models_producto_producto_eliminar",
+      "app_models_producto_producto_listaractivos",
+      "app_models_producto_producto_listartodosadmin"
+    ],
+    "18": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_applymanipulationcallback",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_disableoverflow",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_getwidth",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_hide",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_isoverflowing",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_reset",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_resetelementattributes",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_saveinitialattribute",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_ti_setelementattributes"
+    ],
+    "19": [
+      "app_controllers_authcontroller",
+      "app_controllers_authcontroller_authcontroller",
+      "app_controllers_authcontroller_authcontroller_estalogueado",
+      "app_controllers_authcontroller_authcontroller_login",
+      "app_controllers_authcontroller_authcontroller_logout",
+      "app_controllers_authcontroller_authcontroller_mostrarformulariologin",
+      "app_controllers_authcontroller_authcontroller_mostrarformularioregistro",
+      "app_controllers_authcontroller_authcontroller_procesarlogin",
+      "app_controllers_authcontroller_authcontroller_procesarregistro",
+      "app_controllers_authcontroller_authcontroller_registro"
+    ],
+    "20": [
+      "app_controllers_facturacontroller",
+      "app_controllers_facturacontroller_facturacontroller",
+      "app_controllers_facturacontroller_facturacontroller_generar",
+      "app_controllers_facturacontroller_facturacontroller_generarpdf",
+      "app_controllers_facturacontroller_facturacontroller_requieresesion",
+      "app_controllers_facturacontroller_facturacontroller_servirpdf",
+      "app_models_facturamodel",
+      "app_models_facturamodel_facturamodel",
+      "app_models_facturamodel_facturamodel_buscarporventa",
+      "app_models_facturamodel_facturamodel_crear"
+    ],
+    "21": [
+      "app_core_model",
+      "app_core_model_model",
+      "app_core_model_php_pdo",
+      "app_models_cookieconsentimientomodel",
+      "app_models_cookieconsentimientomodel_cookieconsentimientomodel",
+      "app_models_cookieconsentimientomodel_cookieconsentimientomodel_registrar",
+      "app_models_idioma",
+      "app_models_idioma_idioma",
+      "app_models_idioma_idioma_buscarporid",
+      "app_models_idioma_idioma_listartodos"
+    ],
+    "22": [
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_focusablechildren",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_activate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_constructor",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_deactivate",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_default",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_defaulttype",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_handlefocusin",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_handlekeydown",
+      "public_assets_vendor_bootstrap_bootstrap_bundle_min_vi_name"
+    ],
+    "23": [
+      "app_controllers_categoriacontroller",
+      "app_controllers_categoriacontroller_categoriacontroller",
+      "app_controllers_categoriacontroller_categoriacontroller_admin",
+      "app_controllers_categoriacontroller_categoriacontroller_crear",
+      "app_controllers_categoriacontroller_categoriacontroller_editar",
+      "app_controllers_categoriacontroller_categoriacontroller_eliminar",
+      "app_controllers_categoriacontroller_categoriacontroller_procesarcrear",
+      "app_controllers_categoriacontroller_categoriacontroller_procesareditar",
+      "app_controllers_categoriacontroller_categoriacontroller_procesarguardarcategoria"
+    ],
+    "24": [
+      "app_models_categoria",
+      "app_models_categoria_categoria",
+      "app_models_categoria_categoria_actualizar",
+      "app_models_categoria_categoria_buscarporid",
+      "app_models_categoria_categoria_crear",
+      "app_models_categoria_categoria_eliminar",
+      "app_models_categoria_categoria_listarconconteo",
+      "app_models_categoria_categoria_listartodas",
+      "app_models_categoria_categoria_tieneproductos"
+    ],
+    "25": [
+      "app_models_usuario",
+      "app_models_usuario_usuario",
+      "app_models_usuario_usuario_actualizar",
+      "app_models_usuario_usuario_buscarporemail",
+      "app_models_usuario_usuario_buscarporid",
+      "app_models_usuario_usuario_contaradmins",
+      "app_models_usuario_usuario_crear",
+      "app_models_usuario_usuario_eliminar",
+      "app_models_usuario_usuario_listartodos"
+    ],
+    "26": [
+      "app_services_firmadigitalservice",
+      "app_services_firmadigitalservice_firmadigitalservice",
+      "app_services_firmadigitalservice_firmadigitalservice_procesar",
+      "app_services_firmadigitalservice_firmadigitalservice_verificar",
+      "app_services_passwordhasherservice",
+      "app_services_passwordhasherservice_passwordhasherservice",
+      "app_services_passwordhasherservice_passwordhasherservice_procesar",
+      "app_services_passwordhasherservice_passwordhasherservice_verificar",
+      "criptoserviceinterface"
+    ],
+    "27": [
+      "opencode",
+      "opencode_headers_x_goog_api_key",
+      "opencode_mcp",
+      "opencode_mcp_stitch_mcp",
+      "opencode_schema",
+      "opencode_stitch_mcp_enabled",
+      "opencode_stitch_mcp_headers",
+      "opencode_stitch_mcp_type",
+      "opencode_stitch_mcp_url"
+    ],
+    "28": [
+      "app_controllers_carritocontroller",
+      "app_controllers_carritocontroller_carritocontroller",
+      "app_controllers_carritocontroller_carritocontroller_actualizar",
+      "app_controllers_carritocontroller_carritocontroller_agregar",
+      "app_controllers_carritocontroller_carritocontroller_eliminar",
+      "app_controllers_carritocontroller_carritocontroller_index",
+      "app_controllers_carritocontroller_carritocontroller_requieresesion",
+      "app_controllers_carritocontroller_carritocontroller_ver"
+    ],
+    "29": [
+      "app_controllers_ventacontroller",
+      "app_controllers_ventacontroller_ventacontroller",
+      "app_controllers_ventacontroller_ventacontroller_checkout",
+      "app_controllers_ventacontroller_ventacontroller_exito",
+      "app_controllers_ventacontroller_ventacontroller_historial",
+      "app_controllers_ventacontroller_ventacontroller_procesarcheckout",
+      "app_controllers_ventacontroller_ventacontroller_requieresesion",
+      "app_controllers_ventacontroller_ventacontroller_verificarintegridad"
+    ],
+    "30": [
+      "app_models_proveedormodel",
+      "app_models_proveedormodel_proveedormodel",
+      "app_models_proveedormodel_proveedormodel_actualizar",
+      "app_models_proveedormodel_proveedormodel_buscarporid",
+      "app_models_proveedormodel_proveedormodel_crear",
+      "app_models_proveedormodel_proveedormodel_eliminar",
+      "app_models_proveedormodel_proveedormodel_listartodos",
+      "app_models_proveedormodel_proveedormodel_tieneinventario"
+    ],
+    "31": [
+      "app_models_inventariomodel",
+      "app_models_inventariomodel_inventariomodel",
+      "app_models_inventariomodel_inventariomodel_actualizar",
+      "app_models_inventariomodel_inventariomodel_buscarporid",
+      "app_models_inventariomodel_inventariomodel_crear",
+      "app_models_inventariomodel_inventariomodel_eliminar",
+      "app_models_inventariomodel_inventariomodel_listartodos"
+    ],
+    "32": [
+      "app_models_visitamodel",
+      "app_models_visitamodel_visitamodel",
+      "app_models_visitamodel_visitamodel_actualizartiempo",
+      "app_models_visitamodel_visitamodel_registrar",
+      "app_models_visitamodel_visitamodel_topmasvisitados",
+      "app_models_visitamodel_visitamodel_topmenosvisitados",
+      "app_models_visitamodel_visitamodel_totalvisitas"
+    ],
+    "33": [
+      "app_controllers_inventariocontroller",
+      "app_controllers_inventariocontroller_inventariocontroller",
+      "app_controllers_inventariocontroller_inventariocontroller_admin",
+      "app_controllers_inventariocontroller_inventariocontroller_eliminar",
+      "app_controllers_inventariocontroller_inventariocontroller_procesarguardar"
+    ],
+    "34": [
+      "app_controllers_proveedorcontroller",
+      "app_controllers_proveedorcontroller_proveedorcontroller",
+      "app_controllers_proveedorcontroller_proveedorcontroller_admin",
+      "app_controllers_proveedorcontroller_proveedorcontroller_eliminar",
+      "app_controllers_proveedorcontroller_proveedorcontroller_procesarguardar"
+    ],
+    "35": [
+      "app_controllers_usuariocontroller",
+      "app_controllers_usuariocontroller_usuariocontroller",
+      "app_controllers_usuariocontroller_usuariocontroller_admin",
+      "app_controllers_usuariocontroller_usuariocontroller_eliminar",
+      "app_controllers_usuariocontroller_usuariocontroller_procesarguardarusuario"
+    ],
+    "36": [
+      "app_controllers_contactocontroller",
+      "app_controllers_contactocontroller_contactocontroller",
+      "app_controllers_contactocontroller_contactocontroller_index",
+      "app_controllers_contactocontroller_contactocontroller_procesar"
+    ],
+    "37": [
+      "app_contracts_criptoserviceinterface",
+      "app_contracts_criptoserviceinterface_procesar",
+      "app_contracts_criptoserviceinterface_verificar"
+    ],
+    "38": [
+      "opencode_plugins_graphify",
+      "opencode_plugins_graphify_graphifyplugin",
+      "opencode_plugins_graphify_rationale_4"
+    ],
+    "39": [
+      "public_assets_js_main",
+      "public_assets_js_main_actualizarcantidad",
+      "public_assets_js_main_enviaractualizacion"
+    ],
+    "40": [
+      "app_views_usuario_admin_listado",
+      "app_views_usuario_admin_listado_iniciales"
+    ],
+    "41": [
+      "app_controllers_idiomacontroller"
+    ],
+    "42": [
+      "app_lang_en"
+    ],
+    "43": [
+      "app_lang_es"
+    ],
+    "44": [
+      "app_views_auth_login"
+    ],
+    "45": [
+      "app_views_auth_registro"
+    ],
+    "46": [
+      "app_views_carrito_ver"
+    ],
+    "47": [
+      "app_views_categoria_admin_form"
+    ],
+    "48": [
+      "app_views_categoria_admin_listado"
+    ],
+    "49": [
+      "app_views_contacto_index"
+    ],
+    "50": [
+      "app_views_dashboard_index"
+    ],
+    "51": [
+      "app_views_factura_ver"
+    ],
+    "52": [
+      "app_views_inicio_index"
+    ],
+    "53": [
+      "app_views_inventario_admin_listado"
+    ],
+    "54": [
+      "app_views_layouts_cookie_banner"
+    ],
+    "55": [
+      "app_views_layouts_footer"
+    ],
+    "56": [
+      "app_views_layouts_header"
+    ],
+    "57": [
+      "app_views_layouts_nav"
+    ],
+    "58": [
+      "app_views_layouts_toast"
+    ],
+    "59": [
+      "app_views_producto_admin_form"
+    ],
+    "60": [
+      "app_views_producto_admin_listado"
+    ],
+    "61": [
+      "app_views_producto_catalogo"
+    ],
+    "62": [
+      "app_views_producto_detalle"
+    ],
+    "63": [
+      "app_views_producto_listado"
+    ],
+    "64": [
+      "app_views_proveedor_admin_listado"
+    ],
+    "65": [
+      "app_views_reporte_index"
+    ],
+    "66": [
+      "app_views_usuario_admin_form"
+    ],
+    "67": [
+      "app_views_venta_checkout"
+    ],
+    "68": [
+      "app_views_venta_detalle"
+    ],
+    "69": [
+      "app_views_venta_exito"
+    ],
+    "70": [
+      "app_views_venta_historial"
+    ],
+    "71": [
+      "public_assets_js_cookies"
+    ],
+    "72": [
+      "public_index"
+    ]
+  },
+  "cohesion": {
+    "0": 0.08832425892316999,
+    "1": 0.06623376623376623,
+    "2": 0.07293868921775898,
+    "3": 0.07394957983193277,
+    "4": 0.09982174688057041,
+    "5": 0.1623931623931624,
+    "6": 0.1038961038961039,
+    "7": 0.23157894736842105,
+    "8": 0.14166666666666666,
+    "9": 0.125,
+    "10": 0.125,
+    "11": 0.18333333333333332,
+    "12": 0.13333333333333333,
+    "13": 0.24175824175824176,
+    "14": 0.15384615384615385,
+    "15": 0.2564102564102564,
+    "16": 0.2727272727272727,
+    "17": 0.18181818181818182,
+    "18": 0.36363636363636365,
+    "19": 0.3111111111111111,
+    "20": 0.28888888888888886,
+    "21": 0.2,
+    "22": 0.24444444444444444,
+    "23": 0.3333333333333333,
+    "24": 0.2222222222222222,
+    "25": 0.2222222222222222,
+    "26": 0.25,
+    "27": 0.2222222222222222,
+    "28": 0.39285714285714285,
+    "29": 0.39285714285714285,
+    "30": 0.25,
+    "31": 0.38095238095238093,
+    "32": 0.2857142857142857,
+    "33": 0.5,
+    "34": 0.5,
+    "35": 0.5,
+    "36": 0.6666666666666666,
+    "37": 0.6666666666666666,
+    "38": 0.6666666666666666,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0
+  },
+  "gods": [
+    {
+      "id": "public_assets_vendor_bootstrap_bootstrap_bundle_min_ln",
+      "label": "ln",
+      "degree": 38
+    },
+    {
+      "id": "public_assets_vendor_bootstrap_bootstrap_bundle_min_rt",
+      "label": "rt",
+      "degree": 28
+    },
+    {
+      "id": "app_helpers_validator_validator",
+      "label": "Validator",
+      "degree": 27
+    },
+    {
+      "id": "app_helpers_sanitizer_sanitizer",
+      "label": "Sanitizer",
+      "degree": 26
+    },
+    {
+      "id": "app_core_controller_controller",
+      "label": "Controller",
+      "degree": 25
+    },
+    {
+      "id": "public_assets_vendor_bootstrap_bootstrap_bundle_min_remove",
+      "label": "remove()",
+      "degree": 23
+    },
+    {
+      "id": "public_assets_vendor_bootstrap_bootstrap_bundle_min_ci",
+      "label": "ci",
+      "degree": 22
+    },
+    {
+      "id": "public_assets_vendor_bootstrap_bootstrap_bundle_min_ni",
+      "label": "Ni",
+      "degree": 20
+    },
+    {
+      "id": "public_assets_vendor_bootstrap_bootstrap_bundle_min_n",
+      "label": "N()",
+      "degree": 18
+    },
+    {
+      "id": "public_assets_vendor_bootstrap_bootstrap_bundle_min_xn",
+      "label": "xn",
+      "degree": 18
+    }
+  ],
+  "surprises": [
+    {
+      "source": "AuthController",
+      "target": "Controller",
+      "source_files": [
+        "app/controllers/AuthController.php",
+        "app/core/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "CarritoController",
+      "target": "Controller",
+      "source_files": [
+        "app/controllers/CarritoController.php",
+        "app/core/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "CategoriaController",
+      "target": "Controller",
+      "source_files": [
+        "app/controllers/CategoriaController.php",
+        "app/core/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "ContactoController",
+      "target": "Controller",
+      "source_files": [
+        "app/controllers/ContactoController.php",
+        "app/core/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "DashboardController",
+      "target": "Controller",
+      "source_files": [
+        "app/controllers/DashboardController.php",
+        "app/core/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Controller` connect `Controller` to `InventarioController`, `ProveedorController`, `UsuarioController`, `ContactoController`, `Database`, `Validator`, `Sanitizer`, `ProductoController`, `AuthController`, `FacturaController`, `CategoriaController`, `CarritoController`, `VentaController`?",
+      "why": "High betweenness centrality (0.073) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Model` connect `Model` to `VisitaModel`, `Database`, `VentaModel`, `Producto`, `FacturaController`, `Categoria`, `Usuario`, `ProveedorModel`, `InventarioModel`?",
+      "why": "High betweenness centrality (0.065) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `ln` connect `ln` to `bootstrap.bundle.min.js`, `remove`, `ci`?",
+      "why": "High betweenness centrality (0.048) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 14 inferred relationships involving `Validator` (e.g. with `.procesarRegistro()` and `.actualizar()`) actually correct?",
+      "why": "`Validator` has 14 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 15 inferred relationships involving `Sanitizer` (e.g. with `.procesarRegistro()` and `.actualizar()`) actually correct?",
+      "why": "`Sanitizer` has 15 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `description`, `type` to the rest of the system?",
+      "why": "16 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `bootstrap.bundle.min.js` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08832425892316999 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

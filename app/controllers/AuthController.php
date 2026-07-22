@@ -21,9 +21,10 @@ class AuthController extends Controller
             'idiomas'     => $idiomas,
             'csrf_token'  => $this->generarTokenCsrf(),
             'errores'     => $_SESSION['errores'] ?? [],
+            'exito'       => $_SESSION['exito'] ?? '',
             'old'         => $_SESSION['old'] ?? [],
         ]);
-        unset($_SESSION['errores'], $_SESSION['old']);
+        unset($_SESSION['errores'], $_SESSION['exito'], $_SESSION['old']);
     }
 
     private function procesarRegistro(): void

@@ -1,0 +1,377 @@
+{
+  ".opencode/opencode.json": {
+    "mtime": 1784646833.6207528,
+    "ast_hash": "f2ae21510d07365eb2bce8159272c7a0",
+    "semantic_hash": "f2ae21510d07365eb2bce8159272c7a0"
+  },
+  ".opencode/plugins/graphify.js": {
+    "mtime": 1784646833.6187613,
+    "ast_hash": "b33d000860642c6f4907a877e0387a21",
+    "semantic_hash": "b33d000860642c6f4907a877e0387a21"
+  },
+  "app/contracts/CriptoServiceInterface.php": {
+    "mtime": 1784234633.8292546,
+    "ast_hash": "301cddea4741852e65033b7ccd634353",
+    "semantic_hash": "301cddea4741852e65033b7ccd634353"
+  },
+  "app/controllers/AuthController.php": {
+    "mtime": 1784622300.987044,
+    "ast_hash": "55b2a889410199992bee4b1915041e8f",
+    "semantic_hash": "55b2a889410199992bee4b1915041e8f"
+  },
+  "app/controllers/CarritoController.php": {
+    "mtime": 1784624637.2985067,
+    "ast_hash": "133d7cc35bd0e228c1ae787fefd1e5d3",
+    "semantic_hash": "133d7cc35bd0e228c1ae787fefd1e5d3"
+  },
+  "app/controllers/CategoriaController.php": {
+    "mtime": 1784622071.5015082,
+    "ast_hash": "3b147b1b0762d86f3436c55d92daf775",
+    "semantic_hash": "3b147b1b0762d86f3436c55d92daf775"
+  },
+  "app/controllers/ContactoController.php": {
+    "mtime": 1784622301.6283784,
+    "ast_hash": "346681b35476d85a95c4f7e934cc3990",
+    "semantic_hash": "346681b35476d85a95c4f7e934cc3990"
+  },
+  "app/controllers/CookieController.php": {
+    "mtime": 1784625494.1242263,
+    "ast_hash": "0dc2d5493b5dcfe155649b4ae4924d2d",
+    "semantic_hash": "0dc2d5493b5dcfe155649b4ae4924d2d"
+  },
+  "app/controllers/DashboardController.php": {
+    "mtime": 1784562047.2666185,
+    "ast_hash": "052c1ff0dcab862cdf01d6b24ceb8c10",
+    "semantic_hash": "052c1ff0dcab862cdf01d6b24ceb8c10"
+  },
+  "app/controllers/FacturaController.php": {
+    "mtime": 1784590446.0756078,
+    "ast_hash": "69493657631728d4b216140fd4f487c0",
+    "semantic_hash": "69493657631728d4b216140fd4f487c0"
+  },
+  "app/controllers/IdiomaController.php": {
+    "mtime": 1784562047.271704,
+    "ast_hash": "22ebd40fed89e5b92f205f839a0d61c1",
+    "semantic_hash": "22ebd40fed89e5b92f205f839a0d61c1"
+  },
+  "app/controllers/InicioController.php": {
+    "mtime": 1784389212.617526,
+    "ast_hash": "97ab19d201fec8e943f2f4f042772681",
+    "semantic_hash": "97ab19d201fec8e943f2f4f042772681"
+  },
+  "app/controllers/InventarioController.php": {
+    "mtime": 1784622072.0786977,
+    "ast_hash": "53cd79d4e13893ca073daf6fb9621ab0",
+    "semantic_hash": "53cd79d4e13893ca073daf6fb9621ab0"
+  },
+  "app/controllers/ProductoController.php": {
+    "mtime": 1784623288.9506493,
+    "ast_hash": "d0e9a9876b8a693c8150174b6e72b60c",
+    "semantic_hash": "d0e9a9876b8a693c8150174b6e72b60c"
+  },
+  "app/controllers/ProveedorController.php": {
+    "mtime": 1784622065.5061083,
+    "ast_hash": "03bd350399749a3c72078326fe1fcc19",
+    "semantic_hash": "03bd350399749a3c72078326fe1fcc19"
+  },
+  "app/controllers/ReporteController.php": {
+    "mtime": 1784435487.9082794,
+    "ast_hash": "16543fb8f1b4f92e37f23800a96070e2",
+    "semantic_hash": "16543fb8f1b4f92e37f23800a96070e2"
+  },
+  "app/controllers/UsuarioController.php": {
+    "mtime": 1784622302.0243938,
+    "ast_hash": "8f503c381877b69ae4f38f4484e8262d",
+    "semantic_hash": "8f503c381877b69ae4f38f4484e8262d"
+  },
+  "app/controllers/VentaController.php": {
+    "mtime": 1784624875.00713,
+    "ast_hash": "8ef5671983f0a3fa2ce04e5f72d0aa0d",
+    "semantic_hash": "8ef5671983f0a3fa2ce04e5f72d0aa0d"
+  },
+  "app/controllers/VisitaController.php": {
+    "mtime": 1784562047.2902734,
+    "ast_hash": "455de5b57148e347799209048da2f4e4",
+    "semantic_hash": "455de5b57148e347799209048da2f4e4"
+  },
+  "app/core/Controller.php": {
+    "mtime": 1784592777.0813463,
+    "ast_hash": "14cc15212c9c2c1188a1ab5253298e8c",
+    "semantic_hash": "14cc15212c9c2c1188a1ab5253298e8c"
+  },
+  "app/core/Database.php": {
+    "mtime": 1784233903.6441157,
+    "ast_hash": "b5637bb33920c429077c96aff889b438",
+    "semantic_hash": "b5637bb33920c429077c96aff889b438"
+  },
+  "app/core/Model.php": {
+    "mtime": 1784233911.1591763,
+    "ast_hash": "cae94a7607157ed8b0231243b487f21a",
+    "semantic_hash": "cae94a7607157ed8b0231243b487f21a"
+  },
+  "app/core/Router.php": {
+    "mtime": 1784562047.2942889,
+    "ast_hash": "5b626f79651d07966eb9d1510a3eec54",
+    "semantic_hash": "5b626f79651d07966eb9d1510a3eec54"
+  },
+  "app/helpers/IdiomaHelper.php": {
+    "mtime": 1784236758.4468284,
+    "ast_hash": "5a0f42d171dcffeae4d535b94a3141e1",
+    "semantic_hash": "5a0f42d171dcffeae4d535b94a3141e1"
+  },
+  "app/helpers/Sanitizer.php": {
+    "mtime": 1784622059.4295578,
+    "ast_hash": "860e2d5a8eb746a575f9ba48c2afe225",
+    "semantic_hash": "860e2d5a8eb746a575f9ba48c2afe225"
+  },
+  "app/helpers/Validator.php": {
+    "mtime": 1784617306.407401,
+    "ast_hash": "2b08fe63cd9d0ccfc9fe0b748f0ed27a",
+    "semantic_hash": "2b08fe63cd9d0ccfc9fe0b748f0ed27a"
+  },
+  "app/lang/en.php": {
+    "mtime": 1784617317.9507103,
+    "ast_hash": "1175a1415cd8ab866791cd08ec8372e1",
+    "semantic_hash": "1175a1415cd8ab866791cd08ec8372e1"
+  },
+  "app/lang/es.php": {
+    "mtime": 1784617317.242989,
+    "ast_hash": "a94e815da5c0f588c02baedafa4da6d2",
+    "semantic_hash": "a94e815da5c0f588c02baedafa4da6d2"
+  },
+  "app/models/Categoria.php": {
+    "mtime": 1784583007.279955,
+    "ast_hash": "336767027eac3002638e80ef98cbf94f",
+    "semantic_hash": "336767027eac3002638e80ef98cbf94f"
+  },
+  "app/models/CookieConsentimientoModel.php": {
+    "mtime": 1784589187.2715962,
+    "ast_hash": "e5707c31e33f0482f75c9f6a8e2e885b",
+    "semantic_hash": "e5707c31e33f0482f75c9f6a8e2e885b"
+  },
+  "app/models/FacturaModel.php": {
+    "mtime": 1784337358.003165,
+    "ast_hash": "504a6c594bb30324d3d8177da4c8381a",
+    "semantic_hash": "504a6c594bb30324d3d8177da4c8381a"
+  },
+  "app/models/Idioma.php": {
+    "mtime": 1784562047.2962794,
+    "ast_hash": "2a92320ec05adf6ea0bdd970c1c425ec",
+    "semantic_hash": "2a92320ec05adf6ea0bdd970c1c425ec"
+  },
+  "app/models/InventarioModel.php": {
+    "mtime": 1784562047.297276,
+    "ast_hash": "6dc3b3b91eb1baa3f297548221e4f560",
+    "semantic_hash": "6dc3b3b91eb1baa3f297548221e4f560"
+  },
+  "app/models/Producto.php": {
+    "mtime": 1784623283.4518025,
+    "ast_hash": "75d75cad1dd0f9c7ed679cff857bf792",
+    "semantic_hash": "75d75cad1dd0f9c7ed679cff857bf792"
+  },
+  "app/models/ProveedorModel.php": {
+    "mtime": 1784579655.3681715,
+    "ast_hash": "dc4ff25952117d5c5b263b1fea0c4f3d",
+    "semantic_hash": "dc4ff25952117d5c5b263b1fea0c4f3d"
+  },
+  "app/models/Usuario.php": {
+    "mtime": 1784493361.0900872,
+    "ast_hash": "9726489194f21c62c78f4d2770ece6fd",
+    "semantic_hash": "9726489194f21c62c78f4d2770ece6fd"
+  },
+  "app/models/VentaModel.php": {
+    "mtime": 1784562047.3002841,
+    "ast_hash": "7e2bbbdb138a570ad6ff561ba9a3c9f4",
+    "semantic_hash": "7e2bbbdb138a570ad6ff561ba9a3c9f4"
+  },
+  "app/models/VisitaModel.php": {
+    "mtime": 1784627382.4021387,
+    "ast_hash": "faf50ca67bc2143ab6cd2dbc7c919b94",
+    "semantic_hash": "faf50ca67bc2143ab6cd2dbc7c919b94"
+  },
+  "app/services/FirmaDigitalService.php": {
+    "mtime": 1784234636.3439016,
+    "ast_hash": "7177a5abd0a7bb23257e5e33e3d5561c",
+    "semantic_hash": "7177a5abd0a7bb23257e5e33e3d5561c"
+  },
+  "app/services/PasswordHasherService.php": {
+    "mtime": 1784234634.6888108,
+    "ast_hash": "ce5d664c75b9df582f377da5153cdecc",
+    "semantic_hash": "ce5d664c75b9df582f377da5153cdecc"
+  },
+  "app/views/auth/login.php": {
+    "mtime": 1784617864.6320515,
+    "ast_hash": "cbd2be8f490d9ccb74f8094692c7cb90",
+    "semantic_hash": "cbd2be8f490d9ccb74f8094692c7cb90"
+  },
+  "app/views/auth/registro.php": {
+    "mtime": 1784617863.4842176,
+    "ast_hash": "ef1bc01ba75db9286b7bd46d9a7be357",
+    "semantic_hash": "ef1bc01ba75db9286b7bd46d9a7be357"
+  },
+  "app/views/carrito/ver.php": {
+    "mtime": 1784617867.6374314,
+    "ast_hash": "0b668e333c76f357f81847eba39644da",
+    "semantic_hash": "0b668e333c76f357f81847eba39644da"
+  },
+  "app/views/categoria/admin_form.php": {
+    "mtime": 1784617870.9897437,
+    "ast_hash": "0f8775f7adea6dc320c9d8ea78ef7b98",
+    "semantic_hash": "0f8775f7adea6dc320c9d8ea78ef7b98"
+  },
+  "app/views/categoria/admin_listado.php": {
+    "mtime": 1784617847.8458326,
+    "ast_hash": "c06b52780d924f151c694fe414ca3c35",
+    "semantic_hash": "c06b52780d924f151c694fe414ca3c35"
+  },
+  "app/views/contacto/index.php": {
+    "mtime": 1784617866.2680435,
+    "ast_hash": "8cc496bb957cc6372575c07f984c3fe3",
+    "semantic_hash": "8cc496bb957cc6372575c07f984c3fe3"
+  },
+  "app/views/dashboard/index.php": {
+    "mtime": 1784387028.3879087,
+    "ast_hash": "a1d3f21cc3176bb783ee2914bab3858f",
+    "semantic_hash": "a1d3f21cc3176bb783ee2914bab3858f"
+  },
+  "app/views/factura/ver.php": {
+    "mtime": 1784590419.2440736,
+    "ast_hash": "dd949c9958d84f65725126c0d406e202",
+    "semantic_hash": "dd949c9958d84f65725126c0d406e202"
+  },
+  "app/views/inicio/index.php": {
+    "mtime": 1784590422.9142883,
+    "ast_hash": "434f74657a3c033e40b2fa3993384931",
+    "semantic_hash": "434f74657a3c033e40b2fa3993384931"
+  },
+  "app/views/inventario/admin_listado.php": {
+    "mtime": 1784617854.0385587,
+    "ast_hash": "4800e012b341264c8ec8b2f08dd03564",
+    "semantic_hash": "4800e012b341264c8ec8b2f08dd03564"
+  },
+  "app/views/layouts/cookie_banner.php": {
+    "mtime": 1784625216.8190806,
+    "ast_hash": "6d924bddae72ff0e7b70c1ec2bd10250",
+    "semantic_hash": "6d924bddae72ff0e7b70c1ec2bd10250"
+  },
+  "app/views/layouts/footer.php": {
+    "mtime": 1784616294.3789566,
+    "ast_hash": "c24ddd46785e6ce83dc00d642c53e024",
+    "semantic_hash": "c24ddd46785e6ce83dc00d642c53e024"
+  },
+  "app/views/layouts/header.php": {
+    "mtime": 1784616293.7460814,
+    "ast_hash": "d37be2c861d46b8312e47f14d0a9d703",
+    "semantic_hash": "d37be2c861d46b8312e47f14d0a9d703"
+  },
+  "app/views/layouts/nav.php": {
+    "mtime": 1784592946.4697423,
+    "ast_hash": "3f27d1c783bc05b48690595c7d4dfbeb",
+    "semantic_hash": "3f27d1c783bc05b48690595c7d4dfbeb"
+  },
+  "app/views/layouts/toast.php": {
+    "mtime": 1784621390.8255997,
+    "ast_hash": "14975ea44b127ff5f4da4c2567a71ee4",
+    "semantic_hash": "14975ea44b127ff5f4da4c2567a71ee4"
+  },
+  "app/views/producto/admin_form.php": {
+    "mtime": 1784617869.937924,
+    "ast_hash": "8ff66dd0c6b6b9c10ac428f9349bcb15",
+    "semantic_hash": "8ff66dd0c6b6b9c10ac428f9349bcb15"
+  },
+  "app/views/producto/admin_listado.php": {
+    "mtime": 1784617813.3202522,
+    "ast_hash": "5f93d4cab6ca4da534b04f57b737877a",
+    "semantic_hash": "5f93d4cab6ca4da534b04f57b737877a"
+  },
+  "app/views/producto/catalogo.php": {
+    "mtime": 1784624634.7722795,
+    "ast_hash": "ed57e84bb1ea0fadcb8db2a3a03f5632",
+    "semantic_hash": "ed57e84bb1ea0fadcb8db2a3a03f5632"
+  },
+  "app/views/producto/detalle.php": {
+    "mtime": 1784623827.0767417,
+    "ast_hash": "8ed9f459e7af767a3a6ecca747e69473",
+    "semantic_hash": "8ed9f459e7af767a3a6ecca747e69473"
+  },
+  "app/views/producto/listado.php": {
+    "mtime": 1784233182.811702,
+    "ast_hash": "be5388a38cecddebaf5a38a3784038ec",
+    "semantic_hash": "be5388a38cecddebaf5a38a3784038ec"
+  },
+  "app/views/proveedor/admin_listado.php": {
+    "mtime": 1784617850.9236188,
+    "ast_hash": "3f1bd6fbccadf2f2c24f9ddcde4b0215",
+    "semantic_hash": "3f1bd6fbccadf2f2c24f9ddcde4b0215"
+  },
+  "app/views/reporte/index.php": {
+    "mtime": 1784388205.5664034,
+    "ast_hash": "df6ae8321b822904056012cc4120f0bb",
+    "semantic_hash": "df6ae8321b822904056012cc4120f0bb"
+  },
+  "app/views/usuario/admin_form.php": {
+    "mtime": 1784617871.995983,
+    "ast_hash": "e9d6b945c911874c89755d2756c27d45",
+    "semantic_hash": "e9d6b945c911874c89755d2756c27d45"
+  },
+  "app/views/usuario/admin_listado.php": {
+    "mtime": 1784617857.0961664,
+    "ast_hash": "f32af533c0fc5bb9d5a91a08bfa78a10",
+    "semantic_hash": "f32af533c0fc5bb9d5a91a08bfa78a10"
+  },
+  "app/views/venta/checkout.php": {
+    "mtime": 1784617868.382429,
+    "ast_hash": "17ef554eb09e5576b3591bc2cf17688f",
+    "semantic_hash": "17ef554eb09e5576b3591bc2cf17688f"
+  },
+  "app/views/venta/detalle.php": {
+    "mtime": 1784430257.9513812,
+    "ast_hash": "fa2d26a13ba805f859a4e3163d5c1a5e",
+    "semantic_hash": "fa2d26a13ba805f859a4e3163d5c1a5e"
+  },
+  "app/views/venta/exito.php": {
+    "mtime": 1784430257.9533615,
+    "ast_hash": "2b238014cd5057c1c28269df7325f9f7",
+    "semantic_hash": "2b238014cd5057c1c28269df7325f9f7"
+  },
+  "app/views/venta/historial.php": {
+    "mtime": 1784430257.9563622,
+    "ast_hash": "2a56a99a281fa6b36d1dca6b69916776",
+    "semantic_hash": "2a56a99a281fa6b36d1dca6b69916776"
+  },
+  "composer.json": {
+    "mtime": 1784337305.9524722,
+    "ast_hash": "f487082bdc6bf5b26950a169f58897c3",
+    "semantic_hash": "f487082bdc6bf5b26950a169f58897c3"
+  },
+  "opencode.json": {
+    "mtime": 1784265796.9648113,
+    "ast_hash": "20b74e0cd1be0ad4f9002f024dd9988a",
+    "semantic_hash": "20b74e0cd1be0ad4f9002f024dd9988a"
+  },
+  "public/assets/js/cookies.js": {
+    "mtime": 1784626490.8631203,
+    "ast_hash": "0a3bb02270d4150287d03a9cb2d8958a",
+    "semantic_hash": "0a3bb02270d4150287d03a9cb2d8958a"
+  },
+  "public/assets/js/main.js": {
+    "mtime": 1784591941.9203446,
+    "ast_hash": "84e828eb9d554ef857ccfb2180f598ed",
+    "semantic_hash": "84e828eb9d554ef857ccfb2180f598ed"
+  },
+  "public/assets/vendor/bootstrap/bootstrap.bundle.min.js": {
+    "mtime": 1784616287.4090703,
+    "ast_hash": "849e6db145f2905ce210f628bddd9de5",
+    "semantic_hash": "849e6db145f2905ce210f628bddd9de5"
+  },
+  "public/index.php": {
+    "mtime": 1784562047.3268778,
+    "ast_hash": "e42ecb0ae84b56f3dd1f024018f00d14",
+    "semantic_hash": "e42ecb0ae84b56f3dd1f024018f00d14"
+  },
+  "venta_productos.sql": {
+    "mtime": 1784614618.7914407,
+    "ast_hash": "99674a3e8677d3a73a2f9c8d1e516e6e",
+    "semantic_hash": "99674a3e8677d3a73a2f9c8d1e516e6e"
+  }
+}
