@@ -17,11 +17,11 @@
 Examen final de **Desarrollo de Software VII**, Universidad Tecnológica de Panamá — Facultad de Ingeniería en Sistemas Computacionales, Grupo 1GS133.
 
 ### 1.3. Fecha del Sistema y Versión
-- **Versión:** v2.1
+- **Versión:** v2.1.1
 - **Fecha de entrega:** 21/07/2026
 
 ### 🎥 1.4. Demostración en Video
-> *[Enlace directo al video — YouTube / Drive — donde el grupo sustenta, ejecuta el sistema y demuestra el funcionamiento real de las pantallas y las validaciones de seguridad]*
+> https://drive.google.com/file/d/1Hze1G9RLh_FzfCdymLjw-HYUQolJE0hL/view?usp=sharing
 
 ---
 
